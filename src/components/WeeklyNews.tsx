@@ -11,29 +11,31 @@ const newsCategories = [
   {
     title: "Weekly news TV Programs",
     desc: "The latest updates from the Monarch Universe, behind-the-scenes insights, and exclusive announcements.",
-    image: "", // Background removed as requested
+    image: "/canvas/34.png", 
     link: "/weekly-news-tv-programs"
-  },
-  {
-    title: "TV Programs",
-    desc: "Deep dives into our unscripted reality, documentary, and live broadcast divisions.",
-    image: "/canvas/29.png"
   },
   {
     title: "Fiction Series",
     desc: "Explore the lore, cast interviews, and production secrets of our narrative masterpieces.",
     image: "/canvas/30.png"
-  },
-  {
-    title: "Production",
-    desc: "A look inside the cutting-edge VFX, set design, and technological innovations at Monarch Studios.",
-    image: "/canvas/31.png"
   }
 ];
 
 const WeeklyNews = () => {
   return (
     <section className="py-24 relative overflow-hidden bg-black/40">
+      {/* Pink Smoke Animations */}
+      <style>{`
+        @keyframes smoke {
+          0% { transform: translate(30%, 30%) scale(1); opacity: 0; filter: blur(20px); }
+          50% { opacity: 0.8; filter: blur(30px); }
+          100% { transform: translate(-50%, -60%) scale(2); opacity: 0; filter: blur(40px); }
+        }
+        .smoke-1 { animation: smoke 5s infinite ease-in-out; }
+        .smoke-2 { animation: smoke 6s infinite ease-in-out 1.5s; }
+        .smoke-3 { animation: smoke 5.5s infinite ease-in-out 2.5s; }
+      `}</style>
+
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
@@ -47,7 +49,7 @@ const WeeklyNews = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {newsCategories.map((category, i) => {
             const isLink = !!category.link;
             
@@ -62,6 +64,15 @@ const WeeklyNews = () => {
                   />
                 ) : (
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-black to-black opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                )}
+
+                {/* Animated Intense Pink Smoke Effect Container (always visible, diagonal movement) */}
+                {i === 0 && (
+                  <div className="absolute inset-0 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
+                    <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/80 rounded-full smoke-1" />
+                    <div className="absolute bottom-0 right-[20%] w-72 h-72 bg-pink-600/70 rounded-full smoke-2" />
+                    <div className="absolute bottom-[10%] right-[40%] w-56 h-56 bg-rose-500/80 rounded-full smoke-3" />
+                  </div>
                 )}
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />

@@ -59,8 +59,8 @@ export default function WeeklyNewsTVPrograms() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               
-              {/* Animated Pink Smoke Effect Container (visible on hover) */}
-              <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen">
+              {/* Animated Pink Smoke Effect Container (always visible) */}
+              <div className="absolute inset-0 overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen">
                 <div className="absolute bottom-0 left-1/4 w-32 h-32 bg-primary/60 rounded-full smoke-1" />
                 <div className="absolute bottom-0 left-1/2 w-40 h-40 bg-pink-500/50 rounded-full smoke-2" />
                 <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-rose-400/60 rounded-full smoke-3" />

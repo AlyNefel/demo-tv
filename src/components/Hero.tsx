@@ -13,7 +13,6 @@ const Hero = () => {
   
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
   return (
     <section className="relative h-[95vh] w-full overflow-hidden flex items-center">
       {/* Background Image with Parallax */}
