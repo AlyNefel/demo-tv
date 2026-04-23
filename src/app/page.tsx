@@ -7,6 +7,7 @@ import Partners from "@/components/Partners";
 import AboutUs from "@/components/AboutUs";
 import WeeklyNews from "@/components/WeeklyNews";
 import FeaturedCards from "@/components/FeaturedCards";
+import ContactForm from "@/components/ContactForm";
 import { shows } from "@/lib/tv-shows";
 
 const Divider = () => (
@@ -48,12 +49,7 @@ export default function Home() {
           <FeaturedCards />
 
           <Divider />
-          <ShowCarousel title="Top Rated" shows={shows.slice(0, 4)} />
-          
-          <ShowCarousel title="Recently Added" shows={shows.slice(2, 6)} />
-
-          <Divider />
-          <BrowseShows />
+          <ContactForm />
         </div>
       </main>
       

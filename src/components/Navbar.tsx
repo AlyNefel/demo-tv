@@ -63,6 +63,18 @@ const Navbar = () => {
             </div>
           </div>
 
+          {/* More Dropdown */}
+          <div className="relative group py-2">
+            <button className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 uppercase tracking-widest">
+              More
+            </button>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-48 bg-black/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_0_30px_rgba(255,204,233,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2 z-50">
+              <Link href="/top-rated" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Top Rated</Link>
+              <Link href="/recently-added" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Recently Added</Link>
+              <Link href="/archives" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors italic tracking-tighter">Explore the Archives</Link>
+            </div>
+          </div>
+
           <Link href="/news" className="text-sm font-medium hover:text-primary transition-colors">News</Link>
           <Link href="/new" className="text-sm font-medium hover:text-primary transition-colors">New & Popular</Link>
         </div>
@@ -96,6 +108,13 @@ const Navbar = () => {
           <Link href="/subsidiaries/channel" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Channel</Link>
           <Link href="/subsidiaries/crypto" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Crypto</Link>
           <Link href="/subsidiaries/novels" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Novels</Link>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <span className="text-sm font-bold text-white/40 uppercase tracking-widest">More</span>
+          <Link href="/top-rated" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Top Rated</Link>
+          <Link href="/recently-added" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Recently Added</Link>
+          <Link href="/archives" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors italic" onClick={() => setIsMobileMenuOpen(false)}>Explore the Archives</Link>
         </div>
 
         <Link href="/news" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>News</Link>
