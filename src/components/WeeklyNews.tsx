@@ -17,7 +17,8 @@ const newsCategories = [
   {
     title: "Fiction Series",
     desc: "Explore the lore, cast interviews, and production secrets of our narrative masterpieces.",
-    image: "/monster/show-4.png"
+    image: "/monster/show-4.png",
+    link: "/fiction-series"
   }
 ];
 
