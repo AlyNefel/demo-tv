@@ -5,11 +5,14 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
+import Link from 'next/link';
+
 const newsCategories = [
   {
-    title: "Weekly News",
+    title: "Weekly news TV Programs",
     desc: "The latest updates from the Monarch Universe, behind-the-scenes insights, and exclusive announcements.",
-    image: "/canvas/27.png"
+    image: "", // Background removed as requested
+    link: "/weekly-news-tv-programs"
   },
   {
     title: "TV Programs",
@@ -45,22 +48,22 @@ const WeeklyNews = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {newsCategories.map((category, i) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group cursor-pointer"
-            >
-              <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-6 border border-white/10 group-hover:border-primary/50 transition-colors duration-500">
-                <Image 
-                  src={category.image} 
-                  fill 
-                  alt={category.title} 
-                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                />
+          {newsCategories.map((category, i) => {
+            const isLink = !!category.link;
+            
+            const cardContent = (
+              <div className={`relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-6 border border-white/10 group-hover:border-primary/50 transition-colors duration-500 ${!category.image ? 'bg-primary/5 flex items-center justify-center' : ''}`}>
+                {category.image ? (
+                  <Image 
+                    src={category.image} 
+                    fill 
+                    alt={category.title} 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-black to-black opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                )}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
                 
                 <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -73,8 +76,27 @@ const WeeklyNews = () => {
                   </p>
                 </div>
               </div>
-            </motion.div>
-          ))}
+            );
+
+            return (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="group cursor-pointer"
+              >
+                {isLink ? (
+                  <Link href={category.link!} className="block w-full h-full">
+                    {cardContent}
+                  </Link>
+                ) : (
+                  cardContent
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

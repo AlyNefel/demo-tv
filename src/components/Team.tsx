@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const teamMembers = [
   {
@@ -28,12 +29,23 @@ const teamMembers = [
 ];
 
 const Team = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [-300, 300]);
+  const scaleParallax = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
+
   return (
-    <section className="py-24 relative overflow-hidden bg-black/50">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
+    <section ref={containerRef} className="py-24 relative overflow-hidden bg-black/50">
+      {/* Background decoration with strong Parallax */}
+      <motion.div 
+        style={{ y: yParallax, scale: scaleParallax }} 
+        className="absolute inset-0 opacity-15 pointer-events-none scale-125"
+      >
         <Image src="/canvas/5.png" fill alt="" className="object-cover" />
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">

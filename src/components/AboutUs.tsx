@@ -12,8 +12,8 @@ const AboutUs = () => {
   });
 
   // Stronger Parallax effects
-  const y1 = useTransform(scrollYProgress, [0, 1], [-400, 400]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [300, -300]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [-800, 800]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [600, -600]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (

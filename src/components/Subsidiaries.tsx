@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const subsidiaries = [
   {
@@ -30,13 +31,23 @@ const subsidiaries = [
 
 const Subsidiaries = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  const yParallax = useTransform(scrollYProgress, [0, 1], [-800, 800]);
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none">
+    <section ref={containerRef} className="py-24 relative overflow-hidden">
+      {/* Background decoration with strong Parallax */}
+      <motion.div 
+        style={{ y: yParallax }} 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[150%] opacity-20 pointer-events-none"
+      >
         <Image src="/canvas/35.png" fill alt="" className="object-cover" />
-      </div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">

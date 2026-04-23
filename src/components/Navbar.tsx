@@ -3,14 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Search, Menu, X, Play } from 'lucide-react';
+import { MoreVertical, X, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +23,7 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4",
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
+        isScrolled || isMobileMenuOpen ? "bg-background/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -46,35 +45,61 @@ const Navbar = () => {
           </div>
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
           <Link href="/shows" className="text-sm font-medium hover:text-primary transition-colors">TV Shows</Link>
           <Link href="/movies" className="text-sm font-medium hover:text-primary transition-colors">Movies</Link>
+          
+          {/* Subsidiaries Dropdown */}
+          <div className="relative group py-2">
+            <button className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              Our Subsidiaries
+            </button>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-48 bg-black/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_0_30px_rgba(255,204,233,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2 z-50">
+              <Link href="/subsidiaries/channel" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Channel</Link>
+              <Link href="/subsidiaries/crypto" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Crypto</Link>
+              <Link href="/subsidiaries/novels" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Novels</Link>
+            </div>
+          </div>
+
           <Link href="/news" className="text-sm font-medium hover:text-primary transition-colors">News</Link>
           <Link href="/new" className="text-sm font-medium hover:text-primary transition-colors">New & Popular</Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className={cn(
-            "flex items-center bg-white/5 rounded-full px-3 py-1 border border-white/10 transition-all",
-            isSearchOpen ? "w-64" : "w-10 overflow-hidden"
-          )}>
-            <Search 
-              className="cursor-pointer text-muted-foreground hover:text-primary" 
-              size={18} 
-              onClick={() => setIsSearchOpen(!isSearchOpen)}
-            />
-            <input 
-              type="text" 
-              placeholder="Search shows..."
-              className="bg-transparent border-none focus:ring-0 text-sm ml-2 w-full outline-none"
-            />
-          </div>
-          
-          <Button variant="ghost" size="icon" className="md:hidden text-white">
-            <Menu size={24} />
+          {/* Mobile Menu Toggle (Kebab Menu) */}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="md:hidden text-white hover:bg-white/10 rounded-full"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <MoreVertical size={24} />}
           </Button>
         </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      <div 
+        className={cn(
+          "absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 flex flex-col p-6 gap-6 transition-all duration-300 md:hidden z-40 overflow-hidden",
+          isMobileMenuOpen ? "opacity-100 visible max-h-[500px]" : "opacity-0 invisible max-h-0 py-0 border-transparent"
+        )}
+      >
+        <Link href="/" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+        <Link href="/shows" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>TV Shows</Link>
+        <Link href="/movies" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Movies</Link>
+        
+        <div className="flex flex-col gap-3">
+          <span className="text-sm font-bold text-white/40 uppercase tracking-widest">Our Subsidiaries</span>
+          <Link href="/subsidiaries/channel" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Channel</Link>
+          <Link href="/subsidiaries/crypto" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Crypto</Link>
+          <Link href="/subsidiaries/novels" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Novels</Link>
+        </div>
+
+        <Link href="/news" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>News</Link>
+        <Link href="/new" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>New & Popular</Link>
       </div>
     </nav>
   );
