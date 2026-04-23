@@ -17,7 +17,7 @@ const newsCategories = [
   {
     title: "Fiction Series",
     desc: "Explore the lore, cast interviews, and production secrets of our narrative masterpieces.",
-    image: "/canvas/30.png"
+    image: "/monster/show-4.png"
   }
 ];
 
@@ -44,9 +44,6 @@ const WeeklyNews = () => {
             </h2>
             <div className="w-24 h-1 bg-primary rounded-full glow-pink" />
           </div>
-          <button className="flex items-center gap-2 text-primary hover:text-white font-bold tracking-widest uppercase transition-colors group">
-            View All Updates <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -67,13 +64,11 @@ const WeeklyNews = () => {
                 )}
 
                 {/* Animated Intense Pink Smoke Effect Container (always visible, diagonal movement) */}
-                {i === 0 && (
-                  <div className="absolute inset-0 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
-                    <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/80 rounded-full smoke-1" />
-                    <div className="absolute bottom-0 right-[20%] w-72 h-72 bg-pink-600/70 rounded-full smoke-2" />
-                    <div className="absolute bottom-[10%] right-[40%] w-56 h-56 bg-rose-500/80 rounded-full smoke-3" />
-                  </div>
-                )}
+                <div className="absolute inset-0 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
+                  <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/80 rounded-full smoke-1" />
+                  <div className="absolute bottom-0 right-[20%] w-72 h-72 bg-pink-600/70 rounded-full smoke-2" />
+                  <div className="absolute bottom-[10%] right-[40%] w-56 h-56 bg-rose-500/80 rounded-full smoke-3" />
+                </div>
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
                 
