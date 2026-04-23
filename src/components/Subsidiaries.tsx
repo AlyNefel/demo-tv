@@ -7,21 +7,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 const subsidiaries = [
   {
     name: "Monarch TV Channel",
-    icon: "/canvas/1.png", 
+    icon: "/canvas/Monarch-tv-channel.png", 
     color: "text-white",
     desc: "The flagship broadcast network.",
     fullDesc: "Our premier network broadcasts the cornerstone of Monarch's original programming. From sweeping historical dramas to mind-bending sci-fi epics, the flagship channel is where legends are born and reality is redefined every evening."
   },
   {
     name: "Monarch TV Crypto",
-    icon: "/canvas/21.png",
+    icon: "/canvas/Monarch-tv-crypto.png",
     color: "text-blue-300",
     desc: "Digital assets and blockchain television.",
     fullDesc: "Pioneering the intersection of narrative and decentralized finance. Monarch Crypto offers exclusive interactive series where viewers hold the keys to the story's outcome, featuring tokenized rewards and immutable digital storytelling."
   },
   {
     name: "Monarch TV Novels",
-    icon: "/canvas/18.png", 
+    icon: "/canvas/Monarch-tv-novel.png", 
     color: "text-primary",
     desc: "Literary adaptations and serial dramas.",
     fullDesc: "Breathing life into the written word. Monarch Novels specializes in lavish, high-fidelity adaptations of bestselling literature, turning beloved books into sprawling, multi-season cinematic masterpieces with uncompromising vision."
