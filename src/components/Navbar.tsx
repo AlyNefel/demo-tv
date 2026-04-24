@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MoreVertical, X, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -27,16 +28,36 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="relative w-12 h-12 bg-black rounded-xl border border-primary/30 flex items-center justify-center glow-pink rotate-3 group-hover:rotate-0 transition-transform">
-            <span className="text-2xl font-black text-primary italic">M</span>
-            {/* Liquid metal decoration */}
-            <div className="absolute -inset-1 opacity-20 pointer-events-none">
-               <Image src="/canvas/21.png" fill alt="" className="object-cover" />
-            </div>
+        <Link href="/" className="flex items-center gap-3 group">
+          <div className="relative w-14 h-14 bg-black rounded-full border-2 border-primary/30 flex items-center justify-center glow-pink overflow-hidden group-hover:border-primary transition-colors">
+            {/* Animated Fish Logo (Simulated GIF) */}
+            <motion.div
+              animate={{ 
+                y: [2, -2, 2],
+                x: [1, -1, 1],
+                rotate: [0, 3, -3, 0],
+              }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute inset-0 scale-[2.5]"
+              style={{ originX: 0.5, originY: 0.3 }}
+            >
+              <Image 
+                src="/canvas/1.png" 
+                fill 
+                alt="Monarch Logo" 
+                className="object-cover"
+                style={{ objectPosition: '50% 32%' }}
+              />
+            </motion.div>
+            {/* Overlay to further hide text remnants and add depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
           </div>
           <div className="flex flex-col -gap-1">
-            <span className="text-2xl font-heading font-black tracking-tighter text-white leading-none">
+            <span className="text-2xl font-heading font-black tracking-tighter text-white leading-none group-hover:text-primary transition-colors">
               MONARCH
             </span>
             <span className="text-[10px] font-black tracking-[0.3em] text-primary uppercase leading-none">
