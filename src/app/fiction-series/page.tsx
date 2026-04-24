@@ -43,7 +43,7 @@ export default function FictionSeriesPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {series.map((prog, i) => (
             <motion.div 
               key={i} 
@@ -51,7 +51,7 @@ export default function FictionSeriesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-white/10 group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,204,233,0.15)]"
+              className="relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-white/10 group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,204,233,0.15)]"
             >
               <Image 
                 src={`/Fiction Series Production/${prog.img}`} 
@@ -59,7 +59,7 @@ export default function FictionSeriesPage() {
                 alt={prog.title} 
                 className="object-cover transition-transform duration-700 group-hover:scale-110" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
               
               {/* Animated Intense Pink Smoke Effect (Diagonal movement) */}
               <div className="absolute inset-0 overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen">
@@ -70,7 +70,7 @@ export default function FictionSeriesPage() {
 
               {/* Title Content */}
               <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                <h3 className="text-xl font-heading font-black text-white italic tracking-widest uppercase drop-shadow-[0_0_15px_rgba(255,204,233,0.8)] leading-tight">
+                <h3 className="text-2xl font-heading font-black text-white italic tracking-widest uppercase drop-shadow-[0_0_15px_rgba(255,204,233,0.8)] leading-tight">
                   {prog.title}
                 </h3>
               </div>
