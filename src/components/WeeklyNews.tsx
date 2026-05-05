@@ -9,16 +9,16 @@ import Link from 'next/link';
 
 const newsCategories = [
   {
-    title: "Weekly news TV Programs",
-    desc: "The latest updates from the Monarch Universe, behind-the-scenes insights, and exclusive announcements.",
-    image: "/canvas/34.png", 
-    link: "/weekly-news-tv-programs"
+    title: "Capsule: Our Scientific Quarterly Magazine",
+    desc: "Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers.",
+    image: "/assets/Capsule our Scientific Quaterly Magazine.png", 
+    link: null
   },
   {
-    title: "Fiction Series",
-    desc: "Explore the lore, cast interviews, and production secrets of our narrative masterpieces.",
-    image: "/monster/show-4.png",
-    link: "/fiction-series"
+    title: "The Carthaginians: Our American Football Franchise",
+    desc: "Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.",
+    image: "/assets/The Carthaginians  our American Football Franchise.png",
+    link: null
   }
 ];
 
@@ -41,13 +41,13 @@ const WeeklyNews = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div>
             <h2 className="text-4xl md:text-5xl font-heading font-black text-white italic tracking-tighter mb-4 uppercase">
-              Monarch <span className="text-primary">Dispatch</span>
+              Our <span className="text-primary">Assets</span>
             </h2>
             <div className="w-24 h-1 bg-primary rounded-full glow-pink" />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
           {newsCategories.map((category, i) => {
             const isLink = !!category.link;
             
@@ -105,8 +105,59 @@ const WeeklyNews = () => {
             );
           })}
         </div>
+
+        {/* Upcoming Assets Button */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
+          <style>{`
+            @keyframes infiniteGlow {
+              0%, 100% { 
+                box-shadow: 0 0 15px rgba(255,204,233,0.1);
+                border-color: rgba(255,204,233,0.3);
+                transform: scale(1);
+              }
+              50% { 
+                box-shadow: 0 0 30px rgba(255,204,233,0.4);
+                border-color: rgba(255,204,233,0.8);
+                transform: scale(1.03);
+              }
+            }
+            .animate-infinite-glow {
+              animation: infiniteGlow 2s infinite ease-in-out;
+            }
+            @keyframes smoke-button {
+              0% { transform: translateX(-100%) translateY(20%) scale(1); opacity: 0; }
+              50% { opacity: 0.5; }
+              100% { transform: translateX(100%) translateY(-20%) scale(1.5); opacity: 0; }
+            }
+            .smoke-btn-1 { animation: smoke-button 4s infinite linear; }
+            .smoke-btn-2 { animation: smoke-button 5s infinite linear 1s; }
+          `}</style>
+          <Link href="/upcoming-assets">
+            <button className="group relative px-10 py-4 bg-transparent border-2 rounded-full transition-all duration-500 hover:scale-105 active:scale-95 animate-infinite-glow overflow-hidden">
+              {/* More Visible Pink Smoke Overlay Effect */}
+              <div className="absolute inset-0 pointer-events-none opacity-90 mix-blend-screen z-0">
+                <div className="absolute top-0 left-0 w-48 h-48 bg-primary/90 rounded-full blur-3xl smoke-btn-1" />
+                <div className="absolute bottom-0 right-0 w-56 h-56 bg-pink-500/80 rounded-full blur-3xl smoke-btn-2" />
+              </div>
+
+              <span className="relative z-10 text-2xl font-nosifer text-primary text-glow-pink tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
+                Upcoming Assets
+              </span>
+              <div className="absolute inset-0 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </button>
+          </Link>
+        </motion.div>
+
+
+
       </div>
     </section>
+
   );
 };
 

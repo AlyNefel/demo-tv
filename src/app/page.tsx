@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ShowCarousel from "@/components/ShowCarousel";
+import ShowCard from "@/components/ShowCard";
 import BrowseShows from "@/components/BrowseShows";
 import Team from "@/components/Team";
 import Partners from "@/components/Partners";
@@ -9,6 +10,40 @@ import WeeklyNews from "@/components/WeeklyNews";
 import FeaturedCards from "@/components/FeaturedCards";
 import ContactForm from "@/components/ContactForm";
 import { shows } from "@/lib/tv-shows";
+import { weeklyPrograms } from "@/lib/weekly-programs";
+import { fictionSeries } from "@/lib/fiction-series";
+
+const weeklyNewsShows = weeklyPrograms.map(p => ({
+  id: p.id,
+  title: p.title,
+  synopsis: p.description,
+  rating: 9.0,
+  year: 2026,
+  genres: ["TV Program"],
+  poster: `/weekly-news-tv-programs/${p.img}`,
+  banner: `/weekly-news-tv-programs/${p.img}`,
+  cast: [],
+  trailer: "",
+  monarchFont: p.monarchFont,
+  showFont: p.showFont,
+}));
+
+
+const fictionSeriesShows = fictionSeries.map(s => ({
+  id: s.id,
+  title: s.title,
+  titleSecondary: s.titleSecondary,
+  synopsis: s.description,
+  rating: 9.5,
+  year: s.year,
+  genres: ["Fiction Series"],
+  poster: `/Fiction Series Production/${s.img}`,
+  banner: `/Fiction Series Production/${s.img}`,
+  cast: [],
+  trailer: "",
+  fontClass: s.fontClass,
+  secondaryFontClass: s.secondaryFontClass
+}));
 
 const Divider = () => (
   <div className="w-full flex justify-center py-28 relative z-20">
@@ -38,9 +73,35 @@ export default function Home() {
           <WeeklyNews />
           
           <Divider />
-          <ShowCarousel title="Trending Now" shows={shows} />
+          <Divider />
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-heading font-black italic tracking-tighter text-white flex items-center gap-3">
+                <span className="w-2 h-8 bg-primary rounded-full glow-pink" />
+                Weekly News <span className="text-primary">TV Programs</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {weeklyNewsShows.map((show) => (
+                <ShowCard key={show.id} show={show} />
+              ))}
+            </div>
+          </div>
           
-          <ShowCarousel title="Originals" shows={[...shows].reverse()} />
+          <Divider />
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-heading font-black italic tracking-tighter text-white flex items-center gap-3">
+                <span className="w-2 h-8 bg-primary rounded-full glow-pink" />
+                Fiction <span className="text-primary">Series</span>
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {fictionSeriesShows.map((show) => (
+                <ShowCard key={show.id} show={show} />
+              ))}
+            </div>
+          </div>
           
           <Divider />
           <Team />

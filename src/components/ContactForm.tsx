@@ -1,95 +1,249 @@
 "use client";
-import React from 'react';
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Send, Phone } from 'lucide-react';
+import { Mail, Send, Phone, Ghost } from 'lucide-react';
+import Image from 'next/image';
 
 const ContactForm = () => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // ...
+    e.preventDefault();
+    setStatus('loading');
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      setStatus('error');
+    }
+  };
+
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-black/40">
-      {/* Pink Smoke Effect for Contact Form */}
+    <section id="contact" className="py-32 relative overflow-hidden bg-black min-h-screen flex items-center">
+      {/* ... (styles remain same) */}
       <style>{`
-        @keyframes smokeContact {
-          0% { transform: translate(-20%, 20%) scale(1); opacity: 0; filter: blur(30px); }
-          50% { opacity: 0.3; filter: blur(50px); }
-          100% { transform: translate(20%, -20%) scale(1.5); opacity: 0; filter: blur(70px); }
+        @keyframes sway {
+          0%, 100% { transform: rotate(-1.5deg); }
+          50% { transform: rotate(1.5deg); }
         }
-        .smoke-c-1 { animation: smokeContact 10s infinite ease-in-out; }
-        .smoke-c-2 { animation: smokeContact 12s infinite ease-in-out 2s; }
+        @keyframes smoke-organic {
+          0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0; filter: blur(50px); }
+          25% { opacity: 0.4; }
+          50% { transform: translate(15%, -10%) scale(1.4) rotate(180deg); opacity: 0.6; filter: blur(70px); }
+          75% { opacity: 0.4; }
+          100% { transform: translate(-10%, -20%) scale(2) rotate(360deg); opacity: 0; filter: blur(100px); }
+        }
+        @keyframes drip {
+          0% { height: 0; opacity: 0; }
+          30% { opacity: 1; }
+          100% { height: 30px; opacity: 0; }
+        }
+        .chain-link {
+          fill: #2a2a2a;
+          filter: drop-shadow(0 0 5px rgba(0,0,0,0.8));
+        }
+        .chain-container {
+          animation: sway 6s infinite ease-in-out;
+          transform-origin: top center;
+        }
+        .dripping-text::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 80%;
+          width: 3px;
+          background: #ffcce9;
+          animation: drip 2.5s infinite ease-in;
+          box-shadow: 0 0 15px #ffcce9;
+          border-radius: 50%;
+        }
+        .smoke-layer {
+          animation: smoke-organic 15s infinite ease-in-out;
+          background: radial-gradient(circle, rgba(255,204,233,0.15) 0%, transparent 70%);
+        }
       `}</style>
       
-      <div className="absolute inset-0 pointer-events-none opacity-40 mix-blend-screen">
-        <div className="absolute -bottom-24 -left-24 w-[600px] h-[600px] bg-primary/20 rounded-full smoke-c-1" />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-pink-500/10 rounded-full smoke-c-2" />
+      {/* Volumetric Pink Smoke System */}
+      <div className="absolute inset-0 pointer-events-none mix-blend-screen z-0 overflow-hidden">
+        {mounted && [...Array(6)].map((_, i) => (
+          <motion.div 
+            key={i}
+            initial={{ 
+              x: Math.random() * 100 - 50 + '%', 
+              y: '100%', 
+              opacity: 0, 
+              scale: 0.8,
+              rotate: Math.random() * 360
+            }}
+            animate={{ 
+              y: '-20%', 
+              opacity: [0, 0.4, 0.6, 0.4, 0],
+              scale: [0.8, 1.5, 2],
+              rotate: [Math.random() * 360, (Math.random() * 360) + 180],
+              x: [
+                Math.random() * 100 - 50 + '%', 
+                Math.random() * 100 - 50 + '%', 
+                Math.random() * 100 - 50 + '%'
+              ]
+            }}
+            transition={{ 
+              duration: 15 + Math.random() * 10, 
+              repeat: Infinity, 
+              delay: i * 3,
+              ease: "linear"
+            }}
+            className="absolute w-[800px] h-[800px]"
+          >
+            <Image 
+              src="/pink_smoke_texture_1777993367752.png" 
+              fill 
+              alt="Smoke" 
+              className="object-contain opacity-40 blur-sm"
+            />
+          </motion.div>
+        ))}
+        {/* Ambient bottom glow */}
+        <div className="absolute bottom-0 left-0 right-0 h-[60vh] bg-gradient-to-t from-primary/20 via-primary/5 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-5xl md:text-7xl font-heading font-black text-white italic tracking-tighter mb-8 uppercase">
-              HOW TO <span className="text-primary text-glow-pink">CONTACT US</span>
-            </h2>
-            <p className="text-xl text-muted-foreground mb-12 max-w-lg leading-relaxed font-medium">
-              Have a question about the Monarch Universe? Want to collaborate or just say hello? Reach out and our team will get back to you shortly.
-            </p>
-            
+      {/* Dynamic SVG Chains */}
+      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-10 flex justify-between px-12 lg:px-32">
+        {[...Array(6)].map((_, i) => (
+          <div key={i} className="chain-container flex flex-col items-center" style={{ animationDelay: `${i * 0.7}s` }}>
+            {[...Array(12)].map((_, j) => (
+              <svg key={j} width="24" height="36" viewBox="0 0 24 36" className="chain-link -mt-1">
+                <path d="M12 0C18.6274 0 24 5.37258 24 12V24C24 30.6274 18.6274 36 12 36C5.37258 36 0 30.6274 0 24V12C0 5.37258 5.37258 0 12 0ZM12 6C8.68629 6 6 8.68629 6 12V24C6 27.3137 8.68629 30 12 30C15.3137 30 18 27.3137 18 24V12C18 8.68629 15.3137 6 12 6Z" />
+              </svg>
+            ))}
+            {/* Hanging Hook or Weight */}
+            <div className="w-6 h-6 rounded-full border-4 border-[#1a1a1a] shadow-[0_0_10px_rgba(0,0,0,0.9)]" />
+          </div>
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
+        <div className="text-center mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-7xl md:text-9xl font-creepster text-primary text-glow-pink tracking-widest dripping-text"
+          >
+            CONTACT
+          </motion.h2>
+          <p className="mt-8 text-xl text-white/50 font-rosario italic">
+            Enter the abyss. We see you...
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+          {/* Info Side */}
+          <div className="space-y-12">
             <div className="space-y-8">
               <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
-                  <Mail className="text-primary" size={24} />
+                <div className="w-16 h-16 rounded-full bg-black border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 shadow-inner">
+                  <Mail className="text-primary" size={28} />
                 </div>
                 <div>
-                  <span className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-1">Email Us</span>
-                  <span className="text-lg font-medium text-white group-hover:text-primary transition-colors">contact@monarch-studios.tv</span>
+                  <span className="block text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-1">Electronic Mail</span>
+                  <span className="text-xl font-medium text-white group-hover:text-primary transition-colors font-rosario">contact@monarch-studios.tv</span>
                 </div>
               </div>
               
               <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300">
-                  <Phone className="text-primary" size={24} />
+                <div className="w-16 h-16 rounded-full bg-black border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 shadow-inner">
+                  <Phone className="text-primary" size={28} />
                 </div>
                 <div>
-                  <span className="block text-xs font-bold text-white/40 uppercase tracking-widest mb-1">Call Us</span>
-                  <span className="text-lg font-medium text-white group-hover:text-primary transition-colors">+1 (555) MONARCH</span>
+                  <span className="block text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-1">Direct Signal</span>
+                  <span className="text-xl font-medium text-white group-hover:text-primary transition-colors font-rosario">+1 (555) MONARCH</span>
                 </div>
               </div>
             </div>
+
+            <div className="p-8 rounded-3xl bg-black/40 border border-white/5 backdrop-blur-md">
+              <p className="text-white/60 font-rosario italic leading-relaxed">
+                &quot;The shadows have carried your words, and they will be answered… soon.&quot;
+              </p>
+            </div>
           </div>
 
+          {/* Form Side */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-white/[0.03] backdrop-blur-xl border border-white/10 p-10 rounded-3xl shadow-2xl relative group"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="liquid-container p-10 rounded-[2rem] border border-white/10 relative overflow-hidden"
           >
-            {/* Inner glow effect */}
-            <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-            
-            <form className="space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-bold text-white/60 uppercase tracking-[0.2em] ml-1">Name</label>
-                  <Input placeholder="Your Name" className="bg-white/5 border-white/10 h-14 rounded-xl focus:border-primary/50 transition-all" />
+            {/* Glossy Reflection Effect */}
+            <div className="absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+
+            {status === 'success' ? (
+              <div className="text-center py-20 space-y-6">
+                <Ghost className="mx-auto text-primary animate-bounce" size={64} />
+                <h3 className="text-3xl font-creepster text-primary">MESSAGE CAPTURED</h3>
+                <p className="text-white/60 font-rosario">The abyss has received your soul. Expect a whisper soon.</p>
+                <Button variant="outline" onClick={() => setStatus('idle')} className="mt-4 border-primary/40 text-primary hover:bg-primary/10">SEND ANOTHER</Button>
+              </div>
+            ) : (
+              <form className="space-y-6 relative z-10" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">Identify Yourself</label>
+                    <Input name="name" required placeholder="Your Name" className="bg-black/40 border-white/5 h-14 rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all font-rosario" />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">Return Frequency</label>
+                    <Input name="email" required type="email" placeholder="Your Email" className="bg-black/40 border-white/5 h-14 rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all font-rosario" />
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-bold text-white/60 uppercase tracking-[0.2em] ml-1">Email</label>
-                  <Input placeholder="Your Email" type="email" className="bg-white/5 border-white/10 h-14 rounded-xl focus:border-primary/50 transition-all" />
+                  <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">Nature of Inquiry</label>
+                  <Input name="subject" required placeholder="Subject" className="bg-black/40 border-white/5 h-14 rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all font-rosario" />
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-white/60 uppercase tracking-[0.2em] ml-1">Subject</label>
-                <Input placeholder="Inquiry Type" className="bg-white/5 border-white/10 h-14 rounded-xl focus:border-primary/50 transition-all" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs font-bold text-white/60 uppercase tracking-[0.2em] ml-1">Message</label>
-                <Textarea placeholder="Tell us more about your project..." className="bg-white/5 border-white/10 min-h-[150px] rounded-xl focus:border-primary/50 transition-all resize-none" />
-              </div>
-              <Button size="lg" className="w-full h-16 rounded-xl text-lg font-black gap-3 glow-pink hover:scale-[1.02] active:scale-[0.98] transition-all group/btn">
-                SEND MESSAGE <Send size={20} className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-              </Button>
-            </form>
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">The Message</label>
+                  <Textarea name="message" required placeholder="Whisper your thoughts..." className="bg-black/40 border-white/5 min-h-[160px] rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all resize-none font-rosario" />
+                </div>
+                <Button 
+                  disabled={status === 'loading'}
+                  type="submit" 
+                  className="w-full h-16 rounded-xl text-lg font-black tracking-[0.4em] bg-black border border-primary/40 text-primary neon-button hover:bg-primary hover:text-black transition-all group"
+                >
+                  {status === 'loading' ? 'CAPTURING...' : 'SEND A MESSAGE'}
+                  <Send size={20} className="ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </Button>
+                {status === 'error' && (
+                  <p className="text-center text-red-500 text-xs mt-2">The abyss is currently unreachable. Try again later.</p>
+                )}
+              </form>
+            )}
           </motion.div>
         </div>
       </div>
@@ -98,3 +252,4 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
+

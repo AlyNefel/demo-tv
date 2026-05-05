@@ -1,6 +1,7 @@
 export interface Show {
   id: string;
   title: string;
+  titleSecondary?: string;
   synopsis: string;
   rating: number;
   year: number;
@@ -9,6 +10,10 @@ export interface Show {
   banner: string;
   cast: string[];
   trailer: string;
+  fontClass?: string;
+  secondaryFontClass?: string;
+  monarchFont?: string;
+  showFont?: string;
 }
 
 export const shows: Show[] = [

@@ -1,21 +1,25 @@
-"use client";
 import React from 'react';
 import Navbar from "@/components/Navbar";
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-
-const series = [
-  { img: "1.png", title: "REIS BIRDY" },
-  { img: "2.png", title: "Hannibal The DRAGON of carthage" },
-  { img: "3.png", title: "Sallam the interpreter : a journey to Gog & Magog realm" },
-  { img: "4.png", title: "Didon the weeked queen" },
-  { img: "5.png", title: "MIJOUJ downtown" },
-  { img: "6.png", title: "prophesy" },
-  { img: "7.png", title: "the two horned king" },
-  { img: "8.png", title: "Qirch" }
-];
+import ShowCard from "@/components/ShowCard";
+import { fictionSeries } from '@/lib/fiction-series';
 
 export default function FictionSeriesPage() {
+  const fictionSeriesShows = fictionSeries.map(s => ({
+    id: s.id,
+    title: s.title,
+    titleSecondary: s.titleSecondary,
+    synopsis: s.description,
+    rating: 9.5,
+    year: s.year,
+    genres: ["Fiction Series"],
+    poster: `/Fiction Series Production/${s.img}`,
+    banner: `/Fiction Series Production/${s.img}`,
+    cast: [],
+    trailer: "",
+    fontClass: s.fontClass,
+    secondaryFontClass: s.secondaryFontClass
+  }));
+
   return (
     <>
       <Navbar />
@@ -43,38 +47,9 @@ export default function FictionSeriesPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {series.map((prog, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-white/10 group hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_20px_rgba(255,204,233,0.15)]"
-            >
-              <Image 
-                src={`/Fiction Series Production/${prog.img}`} 
-                fill 
-                alt={prog.title} 
-                className="object-cover transition-transform duration-700 group-hover:scale-110" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-              
-              {/* Animated Intense Pink Smoke Effect (Diagonal movement) */}
-              <div className="absolute inset-0 overflow-hidden opacity-40 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen">
-                <div className="absolute bottom-[-10%] right-[-10%] w-48 h-48 bg-primary/60 rounded-full smoke-1" />
-                <div className="absolute bottom-0 right-[20%] w-56 h-56 bg-pink-500/50 rounded-full smoke-2" />
-                <div className="absolute bottom-[10%] right-[40%] w-40 h-40 bg-rose-400/60 rounded-full smoke-3" />
-              </div>
-
-              {/* Title Content */}
-              <div className="absolute inset-0 p-6 flex flex-col justify-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500 z-10">
-                <h3 className="text-2xl font-heading font-black text-white italic tracking-widest uppercase drop-shadow-[0_0_15px_rgba(255,204,233,0.8)] leading-tight">
-                  {prog.title}
-                </h3>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {fictionSeriesShows.map((show) => (
+            <ShowCard key={show.id} show={show} />
           ))}
         </div>
       </main>

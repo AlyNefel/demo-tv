@@ -30,31 +30,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-14 h-14 bg-black rounded-full border-2 border-primary/30 flex items-center justify-center glow-pink overflow-hidden group-hover:border-primary transition-colors">
-            {/* Animated Fish Logo (Simulated GIF) */}
-            <motion.div
-              animate={{ 
-                y: [2, -2, 2],
-                x: [1, -1, 1],
-                rotate: [0, 3, -3, 0],
-              }}
-              transition={{ 
-                duration: 5, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              className="absolute inset-0 scale-[2.5]"
-              style={{ originX: 0.5, originY: 0.3 }}
-            >
+            {/* Logo */}
+            <div className="absolute inset-0">
               <Image 
-                src="/canvas/1.png" 
+                src="/logo/logo-modified.png" 
                 fill 
                 alt="Monarch Logo" 
-                className="object-cover"
-                style={{ objectPosition: '50% 32%' }}
+                className="object-contain p-1"
               />
-            </motion.div>
-            {/* Overlay to further hide text remnants and add depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
           <div className="flex flex-col -gap-1">
             <span className="text-2xl font-heading font-black tracking-tighter text-white leading-none group-hover:text-primary transition-colors">
@@ -69,35 +53,11 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
           <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
-          <Link href="/shows" className="text-sm font-medium hover:text-primary transition-colors">TV Shows</Link>
-          <Link href="/movies" className="text-sm font-medium hover:text-primary transition-colors">Movies</Link>
-          
-          {/* Subsidiaries Dropdown */}
-          <div className="relative group py-2">
-            <button className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
-              Our Subsidiaries
-            </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-48 bg-black/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_0_30px_rgba(255,204,233,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2 z-50">
-              <Link href="/subsidiaries/channel" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Channel</Link>
-              <Link href="/subsidiaries/crypto" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Crypto</Link>
-              <Link href="/subsidiaries/novels" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Monarch TV Novels</Link>
-            </div>
-          </div>
-
-          {/* More Dropdown */}
-          <div className="relative group py-2">
-            <button className="text-sm font-medium hover:text-primary transition-colors flex items-center gap-1 uppercase tracking-widest">
-              More
-            </button>
-            <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 w-48 bg-black/95 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_0_30px_rgba(255,204,233,0.15)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col py-2 z-50">
-              <Link href="/top-rated" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Top Rated</Link>
-              <Link href="/recently-added" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors">Recently Added</Link>
-              <Link href="/archives" className="px-4 py-2.5 text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/10 transition-colors italic tracking-tighter">Explore the Archives</Link>
-            </div>
-          </div>
-
-          <Link href="/news" className="text-sm font-medium hover:text-primary transition-colors">News</Link>
-          <Link href="/new" className="text-sm font-medium hover:text-primary transition-colors">New & Popular</Link>
+          <Link href="/about-us" className="text-sm font-medium hover:text-primary transition-colors">About Us</Link>
+          <Link href="/channel-bouquet" className="text-sm font-medium hover:text-primary transition-colors">Channel Bouquet</Link>
+          <Link href="/production" className="text-sm font-medium hover:text-primary transition-colors">Production</Link>
+          <Link href="/our-assets" className="text-sm font-medium hover:text-primary transition-colors">Our Assets</Link>
+          <Link href="/investors-relation" className="text-sm font-medium hover:text-primary transition-colors">Investors Relation</Link>
         </div>
 
         <div className="flex items-center gap-4">
@@ -121,25 +81,11 @@ const Navbar = () => {
         )}
       >
         <Link href="/" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-        <Link href="/shows" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>TV Shows</Link>
-        <Link href="/movies" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Movies</Link>
-        
-        <div className="flex flex-col gap-3">
-          <span className="text-sm font-bold text-white/40 uppercase tracking-widest">Our Subsidiaries</span>
-          <Link href="/subsidiaries/channel" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Channel</Link>
-          <Link href="/subsidiaries/crypto" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Crypto</Link>
-          <Link href="/subsidiaries/novels" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Monarch TV Novels</Link>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <span className="text-sm font-bold text-white/40 uppercase tracking-widest">More</span>
-          <Link href="/top-rated" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Top Rated</Link>
-          <Link href="/recently-added" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Recently Added</Link>
-          <Link href="/archives" className="pl-4 text-lg text-white/80 hover:text-primary transition-colors italic" onClick={() => setIsMobileMenuOpen(false)}>Explore the Archives</Link>
-        </div>
-
-        <Link href="/news" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>News</Link>
-        <Link href="/new" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>New & Popular</Link>
+        <Link href="/about-us" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
+        <Link href="/channel-bouquet" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Channel Bouquet</Link>
+        <Link href="/production" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Production</Link>
+        <Link href="/our-assets" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Our Assets</Link>
+        <Link href="/investors-relation" className="text-xl font-medium hover:text-primary transition-colors" onClick={() => setIsMobileMenuOpen(false)}>Investors Relation</Link>
       </div>
     </nav>
   );
