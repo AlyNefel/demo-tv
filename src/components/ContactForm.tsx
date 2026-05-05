@@ -48,7 +48,7 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="py-32 relative overflow-hidden bg-black min-h-screen flex items-center">
-      {/* ... (styles remain same) */}
+      {/* Dynamic Cinematic Horror Styles */}
       <style>{`
         @keyframes sway {
           0%, 100% { transform: rotate(-1.5deg); }
@@ -61,10 +61,19 @@ const ContactForm = () => {
           75% { opacity: 0.4; }
           100% { transform: translate(-10%, -20%) scale(2) rotate(360deg); opacity: 0; filter: blur(100px); }
         }
-        @keyframes drip {
-          0% { height: 0; opacity: 0; }
-          30% { opacity: 1; }
-          100% { height: 30px; opacity: 0; }
+        @keyframes blood-drip {
+          0% { height: 0; opacity: 0; transform: translateY(0); }
+          10% { opacity: 1; }
+          100% { height: 100px; opacity: 0; transform: translateY(50px); }
+        }
+        .blood-drop {
+          position: absolute;
+          width: 3px;
+          background: #ffcce9;
+          border-radius: 0 0 5px 5px;
+          filter: blur(1px);
+          box-shadow: 0 0 10px #ffcce9;
+          animation: blood-drip linear infinite;
         }
         .chain-link {
           fill: #2a2a2a;
@@ -74,16 +83,8 @@ const ContactForm = () => {
           animation: sway 6s infinite ease-in-out;
           transform-origin: top center;
         }
-        .dripping-text::after {
-          content: '';
-          position: absolute;
-          left: 50%;
-          top: 80%;
-          width: 3px;
-          background: #ffcce9;
-          animation: drip 2.5s infinite ease-in;
-          box-shadow: 0 0 15px #ffcce9;
-          border-radius: 50%;
+        .dripping-text {
+          text-shadow: 0 0 10px rgba(255, 204, 233, 0.5), 0 0 20px rgba(255, 204, 233, 0.3);
         }
         .smoke-layer {
           animation: smoke-organic 15s infinite ease-in-out;
@@ -123,9 +124,10 @@ const ContactForm = () => {
             className="absolute w-[800px] h-[800px]"
           >
             <Image 
-              src="/pink_smoke_texture_1777993367752.png" 
+              src="/smoke.png" 
               fill 
               alt="Smoke" 
+              sizes="100vw"
               className="object-contain opacity-40 blur-sm"
             />
           </motion.div>
@@ -150,14 +152,36 @@ const ContactForm = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
-        <div className="text-center mb-20">
-          <motion.h2 
+        <div className="text-center mb-20 relative">
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-7xl md:text-9xl font-creepster text-primary text-glow-pink tracking-widest dripping-text"
+            className="relative inline-block"
           >
-            CONTACT
-          </motion.h2>
+            <h2 className="text-7xl md:text-9xl font-creepster text-primary tracking-widest dripping-text">
+              CONTACT
+            </h2>
+            {/* Blood Drops */}
+            {mounted && [
+              { left: '15%', delay: '0.2s', dur: '3s', width: '3px' },
+              { left: '35%', delay: '1.2s', dur: '4.5s', width: '2px' },
+              { left: '55%', delay: '0.8s', dur: '3.5s', width: '4px' },
+              { left: '75%', delay: '2.2s', dur: '5s', width: '2px' },
+              { left: '85%', delay: '1.5s', dur: '4s', width: '3px' },
+            ].map((drop, idx) => (
+              <div 
+                key={idx} 
+                className="blood-drop" 
+                style={{ 
+                  left: drop.left, 
+                  animationDelay: drop.delay, 
+                  animationDuration: drop.dur,
+                  width: drop.width,
+                  backgroundColor: '#ffcce9' 
+                }} 
+              />
+            ))}
+          </motion.div>
           <p className="mt-8 text-xl text-white/50 font-rosario italic">
             Enter the abyss. We see you...
           </p>
