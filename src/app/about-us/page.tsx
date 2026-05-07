@@ -22,6 +22,7 @@ const values = [
 ];
 
 export default function AboutUsPage() {
+  const [isMascotOpened, setIsMascotOpened] = React.useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
@@ -35,8 +36,21 @@ export default function AboutUsPage() {
         {/* Hero */}
         <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
           <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
-            <Image src="/about/about-img.jpg" fill alt="About Monarch" className="object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black" />
+            <Image 
+              src="/about/tv.png" 
+              fill 
+              alt="About Monarch" 
+              className="object-cover blur-[3px]" 
+            />
+            {/* Intense Volumetric Pink Smoke System */}
+            <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+              <div className="absolute -bottom-[10%] -left-[10%] w-[120%] h-[80%] bg-primary/30 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
+              <div className="absolute top-[20%] -right-[20%] w-[100%] h-[100%] bg-pink-600/20 rounded-full blur-[150px] mix-blend-screen animate-pulse" style={{ animationDelay: '1s' }} />
+              <div className="absolute bottom-[20%] right-[10%] w-[80%] h-[60%] bg-rose-500/15 rounded-full blur-[100px] mix-blend-screen" />
+            </div>
+            {/* Smoke Gradients */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-primary/25 to-black mix-blend-screen opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black" />
           </motion.div>
           <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center px-6">
             <motion.div
@@ -60,9 +74,7 @@ export default function AboutUsPage() {
 
         {/* Mission Section */}
         <section className="py-32 px-6 bg-black relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <Image src="/canvas/21.png" fill alt="" className="object-cover" />
-          </div>
+
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <motion.div
@@ -85,21 +97,93 @@ export default function AboutUsPage() {
                   From the abyssal depths of the ocean to the neon-soaked streets of tomorrow, our original series push the boundaries of what is possible in serialized storytelling.
                 </p>
               </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="relative h-[500px] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(255,204,233,0.1)]"
-              >
-                <Image src="/canvas/38.png" fill alt="Mission" className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="inline-block px-4 py-2 bg-primary/20 border border-primary/40 rounded-xl backdrop-blur-sm">
-                    <span className="text-primary font-black uppercase tracking-widest text-sm">Est. 2022</span>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="relative h-[500px] rounded-3xl overflow-hidden border-2 border-primary/50 shadow-[0_0_60px_rgba(255,204,233,0.3)] bg-black">
+                {/* Background Image (Revealed: OUR MASCOT) */}
+                <div className="absolute inset-0 z-0">
+                  <Image 
+                    src="/monster/hero-banner.png" 
+                    fill 
+                    alt="Our Mascot" 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  
+                  {/* OUR MASCOT Label (Revealed) */}
+                  <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30">
+                    <div className="px-6 py-2 bg-primary/20 backdrop-blur-md border border-primary/40 rounded-full shadow-[0_0_20px_rgba(255,204,233,0.4)]">
+                      <span className="text-primary font-black uppercase tracking-[0.4em] text-xs">OUR MASCOT</span>
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+
+                {/* Sliding Curtain (Top: Monarch Vision) */}
+                <motion.div 
+                  className="absolute inset-0 z-20 overflow-hidden origin-left"
+                  initial={{ x: 0 }}
+                  animate={isMascotOpened ? { x: "-100%" } : { x: 0 }}
+                  transition={{ type: "spring", stiffness: 40, damping: 20 }}
+                >
+                  <Image 
+                    src="/canvas/38.png" 
+                    fill 
+                    alt="Monarch Vision" 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <button 
+                      onClick={() => setIsMascotOpened(true)}
+                      className="px-8 py-3 bg-primary text-black font-black uppercase tracking-widest rounded-full hover:scale-110 transition-transform glow-pink z-30"
+                    >
+                      SLIDE LEFT
+                    </button>
+                  </div>
+                </motion.div>
+                
+                {/* Celebration Confetti Effect (Stays in background) */}
+                <div className="absolute inset-0 pointer-events-none z-10">
+                  <div className="absolute top-0 left-0 w-full h-full opacity-40 mix-blend-screen">
+                    {[...Array(20)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        animate={{
+                          y: ["-10%", "110%"],
+                          x: [Math.random() * 100 + "%", (Math.random() * 100 - 10) + "%"],
+                          rotate: [0, 360],
+                          opacity: [0, 1, 0]
+                        }}
+                        transition={{
+                          duration: 3 + Math.random() * 4,
+                          repeat: Infinity,
+                          delay: Math.random() * 5,
+                          ease: "linear"
+                        }}
+                        className="absolute w-2 h-2 rounded-full"
+                        style={{ backgroundColor: i % 2 === 0 ? '#ffcce9' : '#ffffff' }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {isMascotOpened && (
+                  <div className="absolute bottom-8 left-8 right-8 z-30 text-center">
+                    <button 
+                      onClick={() => setIsMascotOpened(false)}
+                      className="text-primary/60 text-[10px] font-black uppercase tracking-[0.3em] hover:text-primary transition-colors"
+                    >
+                      [ Close Surprise ]
+                    </button>
+                  </div>
+                )}
+              </div>
+            </motion.div>
             </div>
           </div>
         </section>
@@ -134,9 +218,7 @@ export default function AboutUsPage() {
 
         {/* Timeline */}
         <section className="py-32 px-6 bg-black relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-            <Image src="/canvas/37.png" fill alt="" className="object-cover" />
-          </div>
+
           <div className="max-w-4xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-5xl font-heading font-black text-white italic tracking-tighter mb-4">

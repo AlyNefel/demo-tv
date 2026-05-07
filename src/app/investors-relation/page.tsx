@@ -264,9 +264,7 @@ export default function InvestorsRelationPage() {
 
         {/* Investment Highlights Grid */}
         <section className="py-28 px-6 bg-black relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-            <Image src="/canvas/36.png" fill alt="" className="object-cover" />
-          </div>
+
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-5xl font-heading font-black text-white italic tracking-tighter mb-4">
@@ -343,9 +341,7 @@ export default function InvestorsRelationPage() {
 
         {/* CTA — Contact */}
         <section className="py-32 px-6 bg-black relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <Image src="/canvas/9.png" fill alt="" className="object-cover" />
-          </div>
+
           {/* Pink glow orb */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
 

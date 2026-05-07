@@ -38,9 +38,9 @@ const initialTeamData = [
   { name: "CMO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.19.png" },
   { name: "CIO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.25.png" },
   { name: "CHRO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.32.png" },
-  { name: "Head of Monrach TV Channel", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.39.png" },
-  { name: "Head of Monrach TV crypto", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.48.png" },
-  { name: "Head of monrach TV novels", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.55.png" },
+  { name: "Head of Monarch TV Channel", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.39.png" },
+  { name: "Head of Monarch TV crypto", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.48.png" },
+  { name: "Head of Monarch TV novels", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.55.png" },
 ];
 
 const TypingEffect = ({ text }: { text: string }) => {
@@ -110,13 +110,7 @@ const Team = () => {
 
   return (
     <section id="leadership" ref={containerRef} className="py-24 relative overflow-hidden bg-black/50">
-      {/* Background decoration with strong Parallax */}
-      <motion.div 
-        style={{ y: yParallax, scale: scaleParallax }} 
-        className="absolute inset-0 opacity-15 pointer-events-none scale-125"
-      >
-        <Image src="/canvas/5.png" fill alt="" className="object-cover" />
-      </motion.div>
+
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -166,10 +160,7 @@ const Team = () => {
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
             className="lg:col-span-3 min-h-[400px] flex items-center bg-white/[0.03] backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-16 relative overflow-hidden"
           >
-            {/* Background texture for the description card */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <Image src="/canvas/22.png" fill alt="" className="object-cover mix-blend-overlay" />
-            </div>
+
             
             <div className="relative z-10">
               <TypingEffect text={description} />

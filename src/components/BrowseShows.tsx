@@ -69,13 +69,7 @@ const BrowseShows = () => {
 
   return (
     <section ref={containerRef} className="max-w-7xl mx-auto px-6 py-12 relative overflow-hidden rounded-3xl border border-white/5 bg-black/40 shadow-2xl mt-8">
-      {/* Background decoration with strong Parallax */}
-      <motion.div 
-        style={{ y: yParallax }} 
-        className="absolute inset-0 opacity-20 pointer-events-none scale-[1.5]"
-      >
-        <Image src="/canvas/20.png" fill alt="" className="object-cover opacity-50 mix-blend-screen" />
-      </motion.div>
+
 
       <div className="relative z-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">

@@ -19,33 +19,9 @@ const AboutUs = () => {
 
   return (
     <section ref={containerRef} className="relative py-32 overflow-hidden bg-black flex items-center min-h-[80vh]">
-      {/* Deep Background Image with Parallax */}
-      <motion.div 
-        style={{ y: y1 }}
-        className="absolute inset-0 z-0 opacity-40 scale-150"
-      >
-        <Image 
-          src="/canvas/38.png" 
-          fill 
-          alt="About Monarch" 
-          className="object-cover" 
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-black/90" />
-      </motion.div>
 
-      {/* Floating Canvas Elements with inverse Parallax */}
-      <motion.div 
-        style={{ y: y2 }}
-        className="absolute right-0 top-1/4 z-10 opacity-30 pointer-events-none"
-      >
-        <Image 
-          src="/canvas/12.png" 
-          width={600} 
-          height={600} 
-          alt="" 
-          className="object-contain animate-pulse" 
-        />
-      </motion.div>
+
+
 
       <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

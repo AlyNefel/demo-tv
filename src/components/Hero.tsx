@@ -15,25 +15,7 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   return (
     <section className="relative h-[95vh] w-full overflow-hidden flex items-center">
-      {/* Background Smoke Decor (Behind the Fish) */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
-         <motion.div 
-           animate={{ 
-             scale: [1, 1.2, 1],
-             opacity: [0.3, 0.6, 0.3],
-             rotate: [0, 5, 0]
-           }}
-           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-           className="absolute top-1/4 right-0 w-[1000px] h-[1000px]"
-         >
-           <Image 
-             src="/canvas/smoke.png" 
-             fill
-             alt="smoke decor" 
-             className="object-contain filter blur-[20px] drop-shadow-[0_0_50px_rgba(255,204,233,0.5)]"
-           />
-         </motion.div>
-      </div>
+
 
       {/* Background Image with Parallax, Entrance, and 'Swimming/Bouncing' Loop */}
       <motion.div 
@@ -87,8 +69,8 @@ const Hero = () => {
             </div>
           </div>
           
-          <h1 className="text-7xl md:text-[10rem] font-heading font-black mb-6 tracking-tighter leading-[0.8] text-white drop-shadow-[0_0_30px_rgba(255,204,233,0.3)]">
-            MONARCH<br />
+          <h1 className="text-5xl md:text-[7.5rem] font-heading font-black mb-6 tracking-tighter leading-[0.85] text-white drop-shadow-[0_0_30px_rgba(255,204,233,0.3)] uppercase">
+            MONARCH TV<br />
             <span className="text-primary text-glow-pink italic">STUDIOS</span>
           </h1>
           

@@ -91,64 +91,7 @@ const ContactForm = () => {
         }
       `}</style>
       
-      {/* Volumetric Pink Smoke System */}
-      <div className="absolute inset-0 pointer-events-none mix-blend-screen z-0 overflow-hidden">
-        {mounted && [...Array(6)].map((_, i) => (
-          <motion.div 
-            key={i}
-            initial={{ 
-              x: Math.random() * 100 - 50 + '%', 
-              y: '100%', 
-              opacity: 0, 
-              scale: 0.8,
-              rotate: Math.random() * 360
-            }}
-            animate={{ 
-              y: '-20%', 
-              opacity: [0, 0.4, 0.6, 0.4, 0],
-              scale: [0.8, 1.5, 2],
-              rotate: [Math.random() * 360, (Math.random() * 360) + 180],
-              x: [
-                Math.random() * 100 - 50 + '%', 
-                Math.random() * 100 - 50 + '%', 
-                Math.random() * 100 - 50 + '%'
-              ]
-            }}
-            transition={{ 
-              duration: 15 + Math.random() * 10, 
-              repeat: Infinity, 
-              delay: i * 3,
-              ease: "linear"
-            }}
-            className="absolute w-[800px] h-[800px]"
-          >
-            <Image 
-              src="/smoke.png" 
-              fill 
-              alt="Smoke" 
-              sizes="100vw"
-              className="object-contain opacity-40 blur-sm"
-            />
-          </motion.div>
-        ))}
-        {/* Ambient bottom glow */}
-        <div className="absolute bottom-0 left-0 right-0 h-[60vh] bg-gradient-to-t from-primary/20 via-primary/5 to-transparent" />
-      </div>
 
-      {/* Dynamic SVG Chains */}
-      <div className="absolute top-0 left-0 right-0 h-screen pointer-events-none z-10 flex justify-between px-12 lg:px-32">
-        {[...Array(6)].map((_, i) => (
-          <div key={i} className="chain-container flex flex-col items-center" style={{ animationDelay: `${i * 0.7}s` }}>
-            {[...Array(12)].map((_, j) => (
-              <svg key={j} width="24" height="36" viewBox="0 0 24 36" className="chain-link -mt-1">
-                <path d="M12 0C18.6274 0 24 5.37258 24 12V24C24 30.6274 18.6274 36 12 36C5.37258 36 0 30.6274 0 24V12C0 5.37258 5.37258 0 12 0ZM12 6C8.68629 6 6 8.68629 6 12V24C6 27.3137 8.68629 30 12 30C15.3137 30 18 27.3137 18 24V12C18 8.68629 15.3137 6 12 6Z" />
-              </svg>
-            ))}
-            {/* Hanging Hook or Weight */}
-            <div className="w-6 h-6 rounded-full border-4 border-[#1a1a1a] shadow-[0_0_10px_rgba(0,0,0,0.9)]" />
-          </div>
-        ))}
-      </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
         <div className="text-center mb-20 relative">

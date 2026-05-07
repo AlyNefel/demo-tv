@@ -71,27 +71,49 @@ const Navbar = () => {
       )}
     >
       <style>{`
-        @keyframes logo-swim {
-          0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
-          20% { transform: translateY(-4px) scale(1.15); filter: brightness(1.2); }
-          40% { transform: translateY(-8px) scale(0.9); filter: brightness(0.8); }
-          60% { transform: translateY(4px) scale(1.1); filter: brightness(1.1); }
-          80% { transform: translateY(6px) scale(0.95); filter: brightness(0.9); }
+        @keyframes logo-tv {
+          0%, 100% { 
+            transform: scale(1); 
+            filter: brightness(1) blur(0px);
+            opacity: 1;
+          }
+          45% { opacity: 1; }
+          50% { 
+            transform: scale(1.15); 
+            filter: brightness(1.3) blur(2px);
+            opacity: 0.8;
+          }
+          55% { opacity: 1; }
         }
-        .animate-logo-swim {
-          animation: logo-swim 8s infinite ease-in-out;
+        @keyframes contour-pulse {
+          0%, 100% { 
+            transform: scale(1); 
+            border-color: rgba(255, 204, 233, 0.3);
+            box-shadow: 0 0 10px rgba(255, 204, 233, 0.2);
+          }
+          50% { 
+            transform: scale(1.1); 
+            border-color: rgba(255, 204, 233, 0.9);
+            box-shadow: 0 0 30px rgba(255, 204, 233, 0.6);
+          }
+        }
+        .animate-logo-tv {
+          animation: logo-tv 4s infinite ease-in-out;
+        }
+        .animate-contour-pulse {
+          animation: contour-pulse 4s infinite ease-in-out;
         }
       `}</style>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative w-14 h-14 bg-black rounded-full border-2 border-primary/30 flex items-center justify-center glow-pink overflow-hidden group-hover:border-primary transition-colors">
+          <div className="relative w-14 h-14 bg-black rounded-full border-2 border-primary/30 flex items-center justify-center glow-pink overflow-hidden group-hover:border-primary transition-colors animate-contour-pulse">
             {/* Logo */}
             <div className="absolute inset-0">
               <Image 
                 src="/logo/logo-modified.png" 
                 fill 
                 alt="Monarch Logo" 
-                className="object-contain p-1 animate-logo-swim"
+                className="object-contain p-1 animate-logo-tv"
               />
             </div>
           </div>
