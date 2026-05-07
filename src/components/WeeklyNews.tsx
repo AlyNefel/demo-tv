@@ -3,22 +3,29 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-
 import Link from 'next/link';
 
-const newsCategories = [
+const upcomingAssets = [
   {
-    title: "Capsule: Our Scientific Quarterly Magazine",
-    desc: "Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers.",
-    image: "/assets/Capsule our Scientific Quaterly Magazine.png", 
-    link: null
+    title: "Radio Astronomy Observatory",
+    subtitle: "Tataouine-Tunisia",
+    desc: "Located in the historic Ksar of Douiret, a designated INTERNATIONAL DARK SKY PARK, combining scientific exploration with sustainable tourism.",
+    image: "/upcoming assets/Radio Astronomy Observatory.png", 
+    year: "2027"
   },
   {
-    title: "The Carthaginians: Our American Football Franchise",
-    desc: "Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.",
-    image: "/assets/The Carthaginians  our American Football Franchise.png",
-    link: null
+    title: "Souvenir Shops Chain",
+    subtitle: "Global Airports",
+    desc: "A global chain of duty-free shops at major airports worldwide featuring exclusive merchandise inspired by our documentaries and mascot 'Bruru'.",
+    image: "/upcoming assets/Souvenir Shops  Chain.png",
+    year: "2028"
+  },
+  {
+    title: "Giant Aquarium",
+    subtitle: "Nabeul-Tunisia",
+    desc: "A state-of-the-art facility for advanced scientific research in oceanography and marine biology, doubling as a premier global tourist attraction.",
+    image: "/upcoming assets/Giant Aquarium.png",
+    year: "2028"
   }
 ];
 
@@ -38,126 +45,81 @@ const WeeklyNews = () => {
       `}</style>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-center md:text-left">
           <div>
             <h2 className="text-4xl md:text-5xl font-heading font-black text-white italic tracking-tighter mb-4 uppercase">
-              Our <span className="text-primary">Assets</span>
+              Upcoming <span className="text-primary italic text-glow-pink">Assets</span>
             </h2>
-            <div className="w-24 h-1 bg-primary rounded-full glow-pink" />
+            <div className="w-24 h-1 bg-primary rounded-full glow-pink mx-auto md:mx-0" />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-          {newsCategories.map((category, i) => {
-            const isLink = !!category.link;
-            
-            const cardContent = (
-              <div className={`relative w-full aspect-[4/5] rounded-xl overflow-hidden mb-6 border border-white/10 group-hover:border-primary/50 transition-colors duration-500 ${!category.image ? 'bg-primary/5 flex items-center justify-center' : ''}`}>
-                {category.image ? (
-                  <Image 
-                    src={category.image} 
-                    fill 
-                    alt={category.title} 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-black to-black opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {upcomingAssets.map((asset, i) => (
+            <motion.div
+              key={asset.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15 }}
+              className="group cursor-pointer"
+            >
+              <div className="relative w-full aspect-[2/3] rounded-3xl overflow-hidden mb-6 border-2 border-white/5 group-hover:border-primary/50 transition-all duration-500 shadow-2xl bg-black">
+                <Image 
+                  src={asset.image} 
+                  fill 
+                  alt={asset.title} 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
 
-                {/* Animated Intense Pink Smoke Effect Container (always visible, diagonal movement) */}
-                <div className="absolute inset-0 overflow-hidden opacity-80 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
+                {/* Animated Intense Pink Smoke Effect */}
+                <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
                   <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/80 rounded-full smoke-1" />
                   <div className="absolute bottom-0 right-[20%] w-72 h-72 bg-pink-600/70 rounded-full smoke-2" />
-                  <div className="absolute bottom-[10%] right-[40%] w-56 h-56 bg-rose-500/80 rounded-full smoke-3" />
                 </div>
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-300" />
                 
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-2xl font-black text-white mb-2 tracking-tighter">
-                    {category.title}
+                {/* Year Label */}
+                <div className="absolute top-6 left-6 z-20">
+                  <span className="px-4 py-1.5 bg-primary/20 backdrop-blur-md text-[10px] font-black uppercase tracking-widest text-primary border border-primary/40 rounded-full glow-pink">
+                    {asset.year}
+                  </span>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-2xl font-black text-white mb-1 tracking-tighter uppercase italic">
+                    {asset.title}
                   </h3>
-                  <div className="h-0.5 w-8 bg-primary mb-3 glow-pink" />
-                  <p className="text-sm text-white/70 line-clamp-2 group-hover:line-clamp-none transition-all duration-300">
-                    {category.desc}
+                  <p className="text-primary text-[10px] font-black uppercase tracking-widest mb-4">{asset.subtitle}</p>
+                  <div className="h-0.5 w-8 bg-primary mb-4 glow-pink" />
+                  <p className="text-sm text-white/70 line-clamp-2 group-hover:line-clamp-none transition-all duration-300 font-light leading-relaxed">
+                    {asset.desc}
                   </p>
                 </div>
               </div>
-            );
-
-            return (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="group cursor-pointer"
-              >
-                {isLink ? (
-                  <Link href={category.link!} className="block w-full h-full">
-                    {cardContent}
-                  </Link>
-                ) : (
-                  cardContent
-                )}
-              </motion.div>
-            );
-          })}
+            </motion.div>
+          ))}
         </div>
 
-        {/* Upcoming Assets Button */}
+        {/* Roadmap Button */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="flex justify-center"
         >
-          <style>{`
-            @keyframes infiniteGlow {
-              0%, 100% { 
-                box-shadow: 0 0 15px rgba(255,204,233,0.1);
-                border-color: rgba(255,204,233,0.3);
-                transform: scale(1);
-              }
-              50% { 
-                box-shadow: 0 0 30px rgba(255,204,233,0.4);
-                border-color: rgba(255,204,233,0.8);
-                transform: scale(1.03);
-              }
-            }
-            .animate-infinite-glow {
-              animation: infiniteGlow 2s infinite ease-in-out;
-            }
-            @keyframes smoke-button {
-              0% { transform: translateX(-100%) translateY(20%) scale(1); opacity: 0; }
-              50% { opacity: 0.5; }
-              100% { transform: translateX(100%) translateY(-20%) scale(1.5); opacity: 0; }
-            }
-            .smoke-btn-1 { animation: smoke-button 4s infinite linear; }
-            .smoke-btn-2 { animation: smoke-button 5s infinite linear 1s; }
-          `}</style>
           <Link href="/upcoming-assets">
-            <button className="group relative px-10 py-4 bg-transparent border-2 rounded-full transition-all duration-500 hover:scale-105 active:scale-95 animate-infinite-glow overflow-hidden">
-              {/* More Visible Pink Smoke Overlay Effect */}
-              <div className="absolute inset-0 pointer-events-none opacity-90 mix-blend-screen z-0">
-                <div className="absolute top-0 left-0 w-48 h-48 bg-primary/90 rounded-full blur-3xl smoke-btn-1" />
-                <div className="absolute bottom-0 right-0 w-56 h-56 bg-pink-500/80 rounded-full blur-3xl smoke-btn-2" />
-              </div>
-
-              <span className="relative z-10 text-2xl font-nosifer text-primary text-glow-pink tracking-widest uppercase transition-colors duration-300 group-hover:text-white">
-                Upcoming Assets
+            <button className="group relative px-10 py-4 bg-transparent border-2 border-primary/30 rounded-full transition-all duration-500 hover:scale-105 hover:border-primary glow-pink-hover overflow-hidden">
+              <span className="relative z-10 text-xl font-black text-white tracking-widest uppercase italic">
+                View Full Roadmap
               </span>
               <div className="absolute inset-0 bg-primary/10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </button>
           </Link>
         </motion.div>
-
-
-
       </div>
     </section>
-
   );
 };
 

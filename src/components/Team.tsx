@@ -28,6 +28,21 @@ const teamMembers = [
   }
 ];
 
+const initialTeamData = [
+  { name: "Mokhtar Darmoul", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.33.png" },
+  { name: "COO Americas", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.39.png" },
+  { name: "COO EMEA", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.46.png" },
+  { name: "Head of Content Partnership & Acquisitions", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.55.png" },
+  { name: "Head Of channels Strategy & Distribution", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.02.png" },
+  { name: "CFO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.10.png" },
+  { name: "CMO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.19.png" },
+  { name: "CIO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.25.png" },
+  { name: "CHRO", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.32.png" },
+  { name: "Head of Monrach TV Channel", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.39.png" },
+  { name: "Head of Monrach TV crypto", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.48.png" },
+  { name: "Head of monrach TV novels", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.47.55.png" },
+];
+
 const TypingEffect = ({ text }: { text: string }) => {
   const [displayedCount, setDisplayedCount] = React.useState(0);
   const [isInView, setIsInView] = React.useState(false);
@@ -94,7 +109,7 @@ const Team = () => {
   const firstMember = teamMembers[0];
 
   return (
-    <section ref={containerRef} className="py-24 relative overflow-hidden bg-black/50">
+    <section id="leadership" ref={containerRef} className="py-24 relative overflow-hidden bg-black/50">
       {/* Background decoration with strong Parallax */}
       <motion.div 
         style={{ y: yParallax, scale: scaleParallax }} 
@@ -111,7 +126,7 @@ const Team = () => {
           <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-pink" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-center mb-32">
           {/* First Member Card with Parallax */}
           <motion.div
             style={{ y: yCardParallax }}
@@ -163,6 +178,73 @@ const Team = () => {
             {/* Decorative pink glow */}
             <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
           </motion.div>
+        </div>
+
+        {/* Initial Team Section */}
+        <div className="mt-48 pt-24 border-t border-white/10 relative">
+          <div className="text-center mb-24">
+            <h3 className="text-4xl md:text-6xl font-heading font-black text-white italic tracking-tighter uppercase mb-4">
+              INITIAL <span className="text-primary">TEAM</span>
+            </h3>
+            <div className="w-20 h-1 bg-primary mx-auto rounded-full glow-pink" />
+          </div>
+
+          <div className="space-y-24">
+            {/* First two rows (6 images) */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-10 gap-y-20 max-w-5xl mx-auto">
+              {initialTeamData.slice(0, 6).map((member, index) => (
+                <div key={index} className="flex flex-col gap-6">
+                  {/* Floating Name Label - Button Style (OUTSIDE) */}
+                  <div className="z-20 w-full">
+                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[44px] flex items-center justify-center">
+                      {member.name}
+                    </span>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative aspect-[2/3] rounded-3xl overflow-hidden border border-white/5 group hover:border-primary/40 transition-all duration-700 bg-white/[0.02] shadow-2xl"
+                  >
+                    <Image src={member.image} fill alt={member.name} className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+
+            {/* Separator HR */}
+            <hr className="border-t border-white/5 w-1/2 mx-auto" />
+
+            {/* Last two rows (6 images) */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-x-10 gap-y-20 max-w-5xl mx-auto">
+              {initialTeamData.slice(6, 12).map((member, index) => (
+                <div key={index + 6} className="flex flex-col gap-6">
+                  {/* Floating Name Label - Button Style (OUTSIDE) */}
+                  <div className="z-20 w-full">
+                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[44px] flex items-center justify-center">
+                      {member.name}
+                    </span>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative aspect-[2/3] rounded-3xl overflow-hidden border border-white/5 group hover:border-primary/40 transition-all duration-700 bg-white/[0.02] shadow-2xl"
+                  >
+                    <Image src={member.image} fill alt={member.name} className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Background atmosphere for Initial Team */}
+          <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+          <div className="absolute -right-20 bottom-0 w-[500px] h-[500px] bg-pink-600/5 rounded-full blur-[120px] pointer-events-none" />
         </div>
       </div>
     </section>

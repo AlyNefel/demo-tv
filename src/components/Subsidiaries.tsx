@@ -1,119 +1,92 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 const subsidiaries = [
   {
-    name: "Monarch TV Channel",
-    icon: "/canvas/Monarch-tv-channel.png", 
-    color: "text-white",
-    desc: "The flagship broadcast network.",
-    fullDesc: "Our premier network broadcasts the cornerstone of Monarch's original programming. From sweeping historical dramas to mind-bending sci-fi epics, the flagship channel is where legends are born and reality is redefined every evening."
+    name: "MONARCH TV PRODUCTION & STUDIOS",
+    image: "/subsidiaries/image.png",
+    desc: "Based in Tunis, Tunisia, with a prospective studio complex in Tunisia, specializes in producing engaging TV shows, documentaries, Fiction and Pseudo-Fiction series. We focus on innovative storytelling and high-quality content to captivate diverse audiences."
   },
   {
-    name: "Monarch TV Crypto",
-    icon: "/canvas/Monarch-tv-crypto.png",
-    color: "text-blue-300",
-    desc: "Digital assets and blockchain television.",
-    fullDesc: "Pioneering the intersection of narrative and decentralized finance. Monarch Crypto offers exclusive interactive series where viewers hold the keys to the story's outcome, featuring tokenized rewards and immutable digital storytelling."
-  },
-  {
-    name: "Monarch TV Novels",
-    icon: "/canvas/Monarch-tv-novel.png", 
-    color: "text-primary",
-    desc: "Literary adaptations and serial dramas.",
-    fullDesc: "Breathing life into the written word. Monarch Novels specializes in lavish, high-fidelity adaptations of bestselling literature, turning beloved books into sprawling, multi-season cinematic masterpieces with uncompromising vision."
+    name: "MONARCH TV MUSIC AGENCY",
+    image: "/subsidiaries/image copy.png",
+    desc: "Located in Tunis, Tunisia, is dedicated to producing scores, soundtracks, and music for cinema and TV. It supports the group’s audiovisual productions by delivering compelling music that enhances the emotional impact and artistic value of each project."
   }
 ];
 
 const Subsidiaries = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
-  const yParallax = useTransform(scrollYProgress, [0, 1], [-800, 800]);
+  const yParallax = useTransform(scrollYProgress, [0, 1], [-400, 400]);
 
   return (
-    <section ref={containerRef} className="py-24 relative overflow-hidden">
-      {/* Background decoration with strong Parallax */}
+    <section id="subsidiaries" ref={containerRef} className="py-32 bg-black relative overflow-hidden">
+      {/* Background decoration with Parallax */}
       <motion.div 
         style={{ y: yParallax }} 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[150%] opacity-20 pointer-events-none"
+        className="absolute top-0 left-0 w-full h-[150%] opacity-15 pointer-events-none"
       >
         <Image src="/canvas/35.png" fill alt="" className="object-cover" />
       </motion.div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-heading font-black text-white italic tracking-tighter mb-4">
-            OUR <span className="text-primary">SUBSIDIARIES</span>
-          </h2>
-          <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-pink" />
+        <div className="text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <span className="inline-block px-4 py-1 bg-primary/20 border border-primary/40 text-primary text-[11px] font-black tracking-[0.3em] uppercase rounded mb-6">
+              Strategic Entities
+            </span>
+            <h2 className="text-5xl md:text-7xl font-heading font-black text-white italic tracking-tighter uppercase mb-6">
+              OUR <span className="text-primary text-glow-pink">SUBSIDIARIES</span>
+            </h2>
+            <div className="w-32 h-1.5 bg-primary mx-auto rounded-full glow-pink" />
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-6xl mx-auto">
           {subsidiaries.map((sub, i) => (
             <motion.div
               key={sub.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              className="group flex flex-col items-center text-center"
+              transition={{ duration: 0.8, delay: i * 0.2 }}
+              className="group relative flex flex-col h-full rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.02] hover:border-primary/40 transition-all duration-700 shadow-2xl"
             >
-              <div className="relative w-48 h-48 mb-8 cursor-pointer" onClick={() => setExpandedIndex(expandedIndex === i ? null : i)}>
-                 {/* Stylized Logo Frame */}
-                 <div className="absolute inset-0 rounded-full border-2 border-white/5 group-hover:border-primary/50 transition-colors duration-500" />
-                 <div className="absolute inset-4 rounded-full border border-white/10" />
-                 
-                 <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="relative w-full h-full">
-                       <Image src={sub.icon} fill alt={sub.name} className="object-contain drop-shadow-[0_0_20px_rgba(255,204,233,0.2)] group-hover:scale-110 transition-transform duration-700" />
-                       <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-4xl font-black text-white/20 italic group-hover:text-primary transition-colors">M</span>
-                       </div>
-                    </div>
-                 </div>
+              <div className="relative aspect-video overflow-hidden">
+                <Image 
+                  src={sub.image} 
+                  fill 
+                  alt={sub.name} 
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
+              </div>
+              <div className="p-12 flex flex-col flex-1">
+                <h3 className="text-3xl font-black text-white italic tracking-tighter mb-6 group-hover:text-primary transition-colors">
+                  {sub.name}
+                </h3>
+                <div className="w-12 h-1 bg-primary rounded-full mb-6 opacity-40 group-hover:opacity-100 transition-opacity glow-pink" />
+                <p className="text-white/60 leading-relaxed font-rosario text-lg italic">
+                  {sub.desc}
+                </p>
               </div>
               
-              <h3 className={`text-2xl font-black mb-3 tracking-tighter ${sub.color}`}>
-                {sub.name}
-              </h3>
+              {/* Animated Accent */}
+              <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-primary/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
-              <AnimatePresence mode="wait">
-                {expandedIndex === i ? (
-                  <motion.p
-                    key="full"
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="text-white/80 text-sm leading-relaxed"
-                  >
-                    {sub.fullDesc}
-                    <button onClick={() => setExpandedIndex(null)} className="block mx-auto mt-2 text-primary hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Show Less</button>
-                  </motion.p>
-                ) : (
-                  <motion.div
-                    key="short"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    <p className="text-muted-foreground text-sm max-w-[200px] mb-2 mx-auto">
-                      {sub.desc}
-                    </p>
-                    <button onClick={() => setExpandedIndex(i)} className="text-primary hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">
-                      Read More
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {/* Shine effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none transition-opacity duration-700 bg-gradient-to-tr from-primary via-white to-transparent" />
             </motion.div>
           ))}
         </div>

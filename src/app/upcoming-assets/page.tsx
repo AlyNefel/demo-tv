@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Footer from "@/components/Footer";
 
 const assets = [
   {
@@ -45,173 +46,113 @@ const AssetCard = ({ asset, index }: { asset: typeof assets[0], index: number })
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
-  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.4, 0.55], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.1, 0.4, 0.55], [0.9, 1, 1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <motion.div 
       ref={ref}
-      style={{ opacity, scale }}
-      className={`flex flex-col ${asset.layout === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-16 py-32 px-6 md:px-20 min-h-[90vh] border-b border-white/5 last:border-0 sticky top-0 bg-black`}
+      style={{ opacity }}
+      className={`flex flex-col ${asset.layout === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-20 py-48 px-6 md:px-20 min-h-screen bg-black relative`}
     >
-      {/* Taller, Clearer Image Section */}
-      <div className="w-full lg:w-[38%] relative aspect-[4/5] rounded-3xl overflow-hidden group border border-white/10 shadow-2xl bg-white/5">
-        <motion.div style={{ y }} className="absolute -inset-8">
+      {/* Compact Image Container - Matching ShowCard Size */}
+      <div className="w-full lg:w-1/3 relative aspect-[2/3] max-w-[320px] mx-auto rounded-[2rem] overflow-hidden group border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.8)] bg-muted transition-all duration-700 hover:border-primary/40">
+        <div className="absolute inset-0">
           <Image 
             src={asset.image} 
             fill 
             alt={asset.title} 
-            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+            className="object-cover transition-transform duration-1000 group-hover:scale-110"
             priority={index === 0}
           />
-        </motion.div>
-        {/* Lighter Gradient for Clarity */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
-        {/* Subtle Pink Smoke Overlay on Card Images too */}
-        <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
-          <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/40 rounded-full smoke-thumb-1" />
-          <div className="absolute top-[20%] left-[10%] w-48 h-48 bg-pink-500/30 rounded-full smoke-thumb-2" />
         </div>
-        <div className="absolute inset-0 border border-white/10 rounded-3xl" />
+        
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+        
+        {/* Pink Smoke Overlay on Hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
+          <div className="absolute bottom-[-10%] right-[-10%] w-full h-1/2 bg-primary/20 rounded-full blur-[60px] animate-pulse" />
+        </div>
+
+        {/* Floating Year Label */}
+        <div className="absolute top-8 left-8 z-20">
+          <span className="px-5 py-2 bg-primary/20 backdrop-blur-md text-[12px] font-black uppercase tracking-[0.3em] text-primary border border-primary/40 rounded-full glow-pink">
+            Horizon {asset.year}
+          </span>
+        </div>
       </div>
 
       {/* Text Section */}
-      <div className="w-full lg:w-[55%] flex flex-col justify-center">
-        <div className="flex items-center gap-4 mb-4">
-           <span className="px-4 py-1 bg-primary/20 text-primary font-black rounded-full border border-primary/40 tracking-widest text-xs">
-            {asset.year}
-          </span>
-          <div className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
+      <div className="w-full lg:w-2/3 space-y-10">
+        <div className="space-y-4">
+          <h2 
+            className={`text-5xl md:text-8xl font-heading font-black uppercase tracking-tighter leading-[0.85] italic
+              ${asset.titleStyle === 'outlined' ? 'text-transparent [-webkit-text-stroke:1px_white] drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]' : ''}
+              ${asset.titleStyle === 'pink' ? 'text-primary text-glow-pink' : ''}
+              ${asset.titleStyle === 'filled-outlined' ? 'text-white [-webkit-text-stroke:1px_var(--primary)] drop-shadow-[0_0_20px_rgba(255,204,233,0.3)]' : ''}
+            `}
+          >
+            {asset.title}
+          </h2>
+          <h3 className="text-2xl md:text-3xl font-rosario font-bold text-white/60 italic tracking-tight">
+            {asset.subtitle}
+          </h3>
+          <div className="w-24 h-2 bg-primary rounded-full glow-pink" />
         </div>
 
-        <h2 
-          className={`text-4xl md:text-6xl font-archivo-black mb-4 uppercase tracking-tighter leading-none
-            ${asset.titleStyle === 'outlined' ? 'text-transparent [-webkit-text-stroke:1px_white] drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]' : ''}
-            ${asset.titleStyle === 'pink' ? 'text-primary glow-pink' : ''}
-            ${asset.titleStyle === 'filled-outlined' ? 'text-white [-webkit-text-stroke:1px_var(--primary)] drop-shadow-[0_0_15px_rgba(255,204,233,0.3)]' : ''}
-          `}
-        >
-          {asset.title}
-        </h2>
-
-        <h3 className="text-xl md:text-2xl font-rosario font-bold text-white/90 mb-6 italic">
-          {asset.subtitle}
-        </h3>
-
-        <div className="w-16 h-1 bg-primary rounded-full mb-8 glow-pink" />
-
-        <p className="text-lg md:text-xl font-rosario text-white/70 leading-relaxed font-light">
+        <p className="text-xl md:text-2xl font-rosario text-white/70 leading-relaxed font-light italic">
           {asset.description}
         </p>
+
+        <div className="pt-8">
+           <div className="inline-flex items-center gap-4 px-10 py-5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-sm group hover:border-primary/40 transition-all cursor-default">
+              <span className="w-3 h-3 rounded-full bg-primary animate-pulse glow-pink" />
+              <span className="text-sm font-black uppercase tracking-[0.4em] text-white/60">Coming Soon</span>
+           </div>
+        </div>
       </div>
     </motion.div>
   );
 };
 
 export default function UpcomingAssets() {
-  const scrollToAsset = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-32 pb-20 bg-black">
-        <style>{`
-          @keyframes smoke-thumb {
-            0% { transform: translate(30%, 30%) scale(1); opacity: 0; filter: blur(20px); }
-            50% { opacity: 0.8; filter: blur(30px); }
-            100% { transform: translate(-50%, -60%) scale(2); opacity: 0; filter: blur(40px); }
-          }
-          .smoke-thumb-1 { animation: smoke-thumb 5s infinite ease-in-out; }
-          .smoke-thumb-2 { animation: smoke-thumb 6s infinite ease-in-out 1.5s; }
-          .smoke-thumb-3 { animation: smoke-thumb 5.5s infinite ease-in-out 2.5s; }
-        `}</style>
+      <main className="min-h-screen bg-black">
+        {/* Background Atmosphere */}
+        <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
+          <div className="absolute top-[20%] right-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[10%] left-[-10%] w-[1000px] h-[1000px] bg-pink-600/10 rounded-full blur-[150px]" />
+        </div>
 
-        {/* Cinematic Header */}
-        <div className="max-w-7xl mx-auto px-6 mb-20">
+        {/* Simplified Cinematic Header */}
+        <div className="max-w-7xl mx-auto px-6 pt-48 pb-20 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-6xl md:text-9xl font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-6">
-              FUTURE <span className="text-white">HORIZONS</span>
+            <h1 className="text-7xl md:text-[12rem] font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-8 leading-[0.75]">
+              FUTURE <br /><span className="text-white">HORIZONS</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto italic font-rosario mb-12">
-              Exploring the intersection of science, tourism, and global heritage.
+            <div className="w-48 h-2 bg-primary mx-auto rounded-full glow-pink mb-12" />
+            <p className="text-2xl text-white/50 max-w-3xl mx-auto italic font-rosario">
+              "Exploring the intersection of science, tourism, and global heritage through ambitious large-scale infrastructure projects."
             </p>
-
-            {/* Taller, Clearer Thumbnails */}
-            <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
-              {assets.map((asset) => (
-                <motion.div
-                  key={asset.id}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToAsset(`asset-${asset.id}`)}
-                  className="group relative w-48 aspect-[3/4] rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:border-primary/50 transition-all duration-500 shadow-2xl"
-                >
-                  <Image 
-                    src={asset.image} 
-                    fill 
-                    alt={asset.title} 
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Persistent Pink Smoke Effect */}
-                  <div className="absolute inset-0 overflow-hidden opacity-30 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none mix-blend-screen z-10">
-                    <div className="absolute bottom-[-20%] right-[-20%] w-32 h-32 bg-primary/60 rounded-full smoke-thumb-1" />
-                    <div className="absolute bottom-0 right-[10%] w-40 h-40 bg-pink-600/50 rounded-full smoke-thumb-2" />
-                    <div className="absolute bottom-[10%] right-[30%] w-24 h-24 bg-rose-500/60 rounded-full smoke-thumb-3" />
-                  </div>
-                  <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500" />
-                  <div className="absolute inset-0 flex items-center justify-center p-4 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="text-xs font-archivo-black text-white text-center leading-tight uppercase tracking-tighter drop-shadow-lg">
-                      {asset.title}
-                    </span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
         </div>
 
         {/* Assets Section */}
-        <div className="w-full">
+        <div className="relative z-10 pb-48">
           {assets.map((asset, index) => (
-            <div key={asset.id} id={`asset-${asset.id}`}>
-              <AssetCard asset={asset} index={index} />
-            </div>
+            <AssetCard key={asset.id} asset={asset} index={index} />
           ))}
         </div>
       </main>
 
-
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-12 px-6 bg-black/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center glow-pink" />
-            <span className="text-xl font-heading font-bold tracking-tighter text-glow-pink">
-              MONARCH
-            </span>
-          </div>
-          
-          <div className="flex gap-8 text-sm text-muted-foreground font-rosario">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-primary transition-colors">Contact Us</a>
-          </div>
-          
-          <p className="text-xs text-muted-foreground font-rosario">
-            © 2026 MONARCH TV STUDIOS. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

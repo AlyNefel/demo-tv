@@ -3,7 +3,9 @@ import "./globals.css";
 import CanvasBackground from "@/components/CanvasBackground";
 import SmoothScroll from "@/components/SmoothScroll";
 
+
 export const metadata: Metadata = {
+// ... (rest of metadata)
   title: "MONARCH | Cinematic TV Shows",
   description: "Experience the best TV shows with a modern, cinematic feel.",
 };
@@ -35,6 +37,7 @@ export default function RootLayout({
           <div className="relative z-0 flex min-h-screen flex-col">
             {children}
           </div>
+
         </SmoothScroll>
       </body>
     </html>

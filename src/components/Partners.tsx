@@ -4,16 +4,16 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 const partnerLogos = [
-  { src: "/partner/2.png", invert: false },
-  { src: "/partner/3.png", invert: false },
-  { src: "/partner/4.png", invert: false },
-  { src: "/partner/7.png", invert: false },
-  { src: "/partner/8.png", invert: false },
-  { src: "/partner/9.png", invert: false },
-  { src: "/partner/10.png", invert: false },
-  { src: "/partner/11.png", invert: false },
-  { src: "/partner/12.png", invert: false },
-  { src: "/partner/13.png", invert: false },
+  { src: "/partner/2.png" },
+  { src: "/partner/3.png" },
+  { src: "/partner/4.png" },
+  { src: "/partner/7.png" },
+  { src: "/partner/8.png" },
+  { src: "/partner/9.png" },
+  { src: "/partner/10.png" },
+  { src: "/partner/11.png" },
+  { src: "/partner/12.png" },
+  { src: "/partner/13.png" },
 ];
 
 const doubled = [...partnerLogos, ...partnerLogos];
@@ -53,60 +53,98 @@ const Partners = () => {
   }, []);
 
   return (
-    <div className="w-full bg-black py-12 overflow-hidden border-y border-white/5 relative">
-      {/* Edge fade overlays */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+    <div className="w-full bg-black py-32 overflow-hidden border-y border-white/5 relative">
+      {/* Cinematic Spotlight Background - Matching Reference Image */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_70%)]" />
+        <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-black to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-black to-transparent" />
+      </div>
 
       <style>{`
+        @keyframes shine {
+          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+          20%, 100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
         .partner-item {
-          opacity: 0.45;
-          transition: opacity 0.6s ease;
+          opacity: 0.1;
+          transition: opacity 0.8s ease;
           position: relative;
         }
         .partner-item.is-center {
           opacity: 1;
-          z-index: 20;
+          z-index: 50;
         }
 
-        /* Logo image zoom */
+        /* Logo image styling */
+        .partner-item .partner-img-container {
+          position: relative;
+          transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          transform: scale(0.8);
+          overflow: visible;
+        }
+        
+        .partner-item.is-center .partner-img-container {
+          transform: scale(2.5);
+        }
+
         .partner-item .partner-img {
-          transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
-                      filter 0.5s ease;
-          transform: scale(1);
-          filter: drop-shadow(0 0 0px rgba(255,255,255,0));
-        }
-        .partner-item.is-center .partner-img {
-          transform: scale(1.45);
-          filter:
-            drop-shadow(0 0 12px rgba(255, 255, 255, 1))
-            drop-shadow(0 0 30px rgba(255, 255, 255, 0.6))
-            drop-shadow(0 0 60px rgba(255, 255, 255, 0.3));
+          transition: filter 1s ease;
+          filter: grayscale(1) brightness(0.6);
         }
 
-        /* Radial white spotlight behind logo */
+        .partner-item.is-center .partner-img {
+          filter: grayscale(0) brightness(1.5) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
+        }
+
+        /* Shine Effect Overlay */
+        .partner-item .shine-overlay {
+          position: absolute;
+          inset: -100%;
+          background: linear-gradient(
+            to bottom right,
+            transparent,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.4),
+            rgba(255, 255, 255, 0),
+            transparent
+          );
+          pointer-events: none;
+          z-index: 15;
+          animation: shine 4s infinite ease-in-out;
+        }
+
+        /* Moon Effect Light (Halo behind logo) */
         .partner-item .partner-glow {
           position: absolute;
           left: 50%;
           top: 50%;
           translate: -50% -50%;
-          width: 200px;
-          height: 100px;
+          width: 500px;
+          height: 500px;
           border-radius: 50%;
-          background: radial-gradient(ellipse at center,
-            rgba(255,255,255,0.35) 0%,
-            rgba(255,255,255,0.12) 40%,
-            transparent 70%
+          background: radial-gradient(circle at center,
+            rgba(255,255,255,0.4) 0%,
+            rgba(255,255,255,0.05) 50%,
+            transparent 80%
           );
           opacity: 0;
-          transform: scale(0.6);
-          transition: opacity 0.5s ease, transform 0.5s ease;
+          transform: scale(0.4);
+          transition: opacity 1s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
           pointer-events: none;
           z-index: 0;
+          filter: blur(40px);
         }
+        
         .partner-item.is-center .partner-glow {
           opacity: 1;
           transform: scale(1.5);
+          background: radial-gradient(circle at center,
+            rgba(255,255,255,0.6) 0%,
+            rgba(255,255,255,0.15) 50%,
+            transparent 80%
+          );
         }
       `}</style>
 
@@ -117,18 +155,20 @@ const Partners = () => {
         {doubled.map((logo, index) => (
           <div
             key={index}
-            className="partner-item flex items-center justify-center mx-16 cursor-default"
+            className="partner-item flex items-center justify-center mx-[30vw] cursor-default"
           >
-            {/* White radial spotlight */}
+            {/* White radial spotlight background */}
             <div className="partner-glow" />
 
-            <div className="relative h-16 w-40 z-10">
+            <div className="partner-img-container relative h-16 w-40 z-10">
               <Image
                 src={logo.src}
                 alt={`Partner ${index + 1}`}
                 fill
-                className={`partner-img object-contain ${logo.invert ? 'invert hue-rotate-180' : ''}`}
+                className="partner-img object-contain"
               />
+              {/* Shine streak moving across */}
+              <div className="shine-overlay" />
             </div>
           </div>
         ))}
@@ -138,4 +178,3 @@ const Partners = () => {
 };
 
 export default Partners;
-

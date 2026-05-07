@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Send, Phone, Ghost } from 'lucide-react';
+import { Mail, Send, Ghost } from 'lucide-react';
 import Image from 'next/image';
 
 const ContactForm = () => {
@@ -17,7 +17,6 @@ const ContactForm = () => {
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // ...
     e.preventDefault();
     setStatus('loading');
     
@@ -200,16 +199,6 @@ const ContactForm = () => {
                   <span className="text-xl font-medium text-white group-hover:text-primary transition-colors font-rosario">contact@monarch-studios.tv</span>
                 </div>
               </div>
-              
-              <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-16 h-16 rounded-full bg-black border border-white/10 flex items-center justify-center group-hover:border-primary/50 transition-all duration-500 shadow-inner">
-                  <Phone className="text-primary" size={28} />
-                </div>
-                <div>
-                  <span className="block text-[10px] font-black text-white/40 uppercase tracking-[0.4em] mb-1">Direct Signal</span>
-                  <span className="text-xl font-medium text-white group-hover:text-primary transition-colors font-rosario">+1 (555) MONARCH</span>
-                </div>
-              </div>
             </div>
 
             <div className="p-8 rounded-3xl bg-black/40 border border-white/5 backdrop-blur-md">
@@ -249,7 +238,32 @@ const ContactForm = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">Nature of Inquiry</label>
-                  <Input name="subject" required placeholder="Subject" className="bg-black/40 border-white/5 h-14 rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all font-rosario" />
+                  <div className="relative group">
+                    <select 
+                      name="subject" 
+                      required 
+                      defaultValue=""
+                      className="w-full bg-black/60 border border-white/10 h-14 rounded-xl px-6 focus:border-primary/60 focus:ring-4 focus:ring-primary/10 transition-all font-rosario text-white outline-none appearance-none cursor-pointer group-hover:border-primary/30"
+                    >
+                      <option value="" disabled className="bg-[#0a0a0a] text-white/40">Select Your Purpose</option>
+                      <option value="Partnership" className="bg-[#0a0a0a]">Partnership</option>
+                      <option value="Strategic Partnership" className="bg-[#0a0a0a]">Strategic Partnership</option>
+                      <option value="Scripted Content Coproduction" className="bg-[#0a0a0a]">Scripted Content Coproduction</option>
+                      <option value="Unscripted Content Coproduction" className="bg-[#0a0a0a]">Unscripted Content Coproduction</option>
+                      <option value="Group Equities Investment" className="bg-[#0a0a0a]">Group Equities Investment</option>
+                      <option value="Group Upcoming Projects Investment" className="bg-[#0a0a0a]">Group Upcoming Projects Investment</option>
+                      <option value="Sponsoring our American Football Franchise" className="bg-[#0a0a0a]">Sponsoring our American Football Franchise</option>
+                      <option value="Pre-book an ad slot on our upcoming channels" className="bg-[#0a0a0a]">Pre-book an ad slot on our upcoming channels</option>
+                    </select>
+                    {/* Custom Premium Arrow */}
+                    <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-primary group-hover:scale-110 transition-transform duration-300">
+                      <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                    {/* Inner Glow Effect */}
+                    <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 bg-primary/5 pointer-events-none transition-opacity duration-500" />
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">The Message</label>
@@ -276,4 +290,3 @@ const ContactForm = () => {
 };
 
 export default ContactForm;
-

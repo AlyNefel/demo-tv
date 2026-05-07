@@ -15,14 +15,51 @@ const Hero = () => {
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   return (
     <section className="relative h-[95vh] w-full overflow-hidden flex items-center">
-      {/* Background Image with Parallax */}
+      {/* Background Smoke Decor (Behind the Fish) */}
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
+         <motion.div 
+           animate={{ 
+             scale: [1, 1.2, 1],
+             opacity: [0.3, 0.6, 0.3],
+             rotate: [0, 5, 0]
+           }}
+           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+           className="absolute top-1/4 right-0 w-[1000px] h-[1000px]"
+         >
+           <Image 
+             src="/canvas/smoke.png" 
+             fill
+             alt="smoke decor" 
+             className="object-contain filter blur-[20px] drop-shadow-[0_0_50px_rgba(255,204,233,0.5)]"
+           />
+         </motion.div>
+      </div>
+
+      {/* Background Image with Parallax, Entrance, and 'Swimming/Bouncing' Loop */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute inset-0 z-0"
+        initial={{ x: "20%", opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 z-10"
       >
-        <div 
+        <motion.div 
+          animate={{ 
+            x: [0, -40, 20, 0],
+            y: [0, -25, 10, 0],
+            scale: [1.1, 1.18, 1.12, 1.1],
+            rotate: [0, 2, -1, 0]
+          }}
+          transition={{ 
+            duration: 18, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(/monster/hero-banner.png)` }}
+          style={{ 
+            backgroundImage: `url(/homeHero/first-bg.png)`,
+            filter: 'drop-shadow(0 0 40px rgba(255, 204, 233, 0.3))'
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -31,7 +68,7 @@ const Hero = () => {
       {/* Content */}
       <motion.div 
         style={{ opacity }}
-        className="relative z-10 max-w-7xl mx-auto px-6 w-full"
+        className="relative z-20 max-w-7xl mx-auto px-6 w-full"
       >
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -58,28 +95,10 @@ const Hero = () => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-10 line-clamp-3 leading-relaxed max-w-xl font-medium">
             Where reality meets the extraordinary. Experience the most ambitious storytelling in television history.
           </p>
-          
-          <div className="flex flex-wrap items-center gap-6">
-            <Button size="lg" className="rounded-full px-10 h-16 text-xl font-black gap-3 glow-pink transition-all hover:scale-105 active:scale-95">
-              <Play className="fill-current" size={24} /> WATCH NOW
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-10 h-16 text-xl font-black gap-3 border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all">
-              <Info size={24} /> DETAILS
-            </Button>
-          </div>
         </motion.div>
       </motion.div>
 
-      {/* Liquid Metal Accents (Decor) */}
-      <div className="absolute top-1/4 right-0 opacity-20 pointer-events-none select-none overflow-hidden">
-         <Image 
-           src="/canvas/15.png" 
-           width={800} 
-           height={800} 
-           alt="decor" 
-           className="animate-pulse"
-         />
-      </div>
+
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent" />

@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Footer from "@/components/Footer";
 
 const milestones = [
   { year: "2022", title: "The Vision", desc: "Monarch TV Studios was conceived by a group of visionary storytellers and technologists who believed that broadcast television could be elevated to a true cinematic art form." },
@@ -171,6 +172,7 @@ export default function AboutUsPage() {
         </section>
 
       </main>
+      <Footer />
     </>
   );
 }
