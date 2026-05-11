@@ -7,12 +7,12 @@ import { useRef } from 'react';
 
 const subsidiaries = [
   {
-    name: "MONARCH TV PRODUCTION & STUDIOS",
+    name: "Monarch TV Studios Content Production Entity",
     image: "/subsidiaries/image.png",
     desc: "Based in Tunis, Tunisia, with a prospective studio complex in Tunisia, specializes in producing engaging TV shows, documentaries, Fiction and Pseudo-Fiction series. We focus on innovative storytelling and high-quality content to captivate diverse audiences."
   },
   {
-    name: "MONARCH TV MUSIC AGENCY",
+    name: "Monarch TV Studios Music Production Entity",
     image: "/subsidiaries/image copy.png",
     desc: "Located in Tunis, Tunisia, is dedicated to producing scores, soundtracks, and music for cinema and TV. It supports the group’s audiovisual productions by delivering compelling music that enhances the emotional impact and artistic value of each project."
   }
@@ -58,11 +58,11 @@ const Subsidiaries = () => {
               className="group relative flex flex-col h-full rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.02] hover:border-primary/40 transition-all duration-700 shadow-2xl"
             >
               <div className="relative aspect-video overflow-hidden">
-                <Image 
-                  src={sub.image} 
-                  fill 
-                  alt={sub.name} 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                <Image
+                  src={sub.image}
+                  fill
+                  alt={sub.name}
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
               </div>
@@ -75,10 +75,10 @@ const Subsidiaries = () => {
                   {sub.desc}
                 </p>
               </div>
-              
+
               {/* Animated Accent */}
               <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-primary/10 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
+
               {/* Shine effect on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none transition-opacity duration-700 bg-gradient-to-tr from-primary via-white to-transparent" />
             </motion.div>

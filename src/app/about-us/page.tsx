@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Footer from "@/components/Footer";
+import { Film, Globe, Zap, Heart } from 'lucide-react';
 
 const milestones = [
   { year: "2022", title: "The Vision", desc: "Monarch TV Studios was conceived by a group of visionary storytellers and technologists who believed that broadcast television could be elevated to a true cinematic art form." },
@@ -15,10 +16,30 @@ const milestones = [
 ];
 
 const values = [
-  { title: "Cinematic Vision", icon: "🎬", desc: "Every frame is crafted with the intent of a feature film. We never compromise on visual quality or narrative depth." },
-  { title: "Global Stories", icon: "🌍", desc: "We tell stories from across the world, honoring diverse cultures and perspectives to build bridges between communities." },
-  { title: "Innovation First", icon: "⚡", desc: "From AI-assisted visual effects to interactive storytelling, we are always exploring the cutting edge of media technology." },
-  { title: "Human Truth", icon: "❤️", desc: "At the heart of every production is an authentic human experience. We believe great stories change how people see the world." },
+  { 
+    title: "Cinematic Vision", 
+    icon: <Film className="w-12 h-12" />, 
+    color: "from-pink-200 via-pink-500 to-purple-600",
+    desc: "Every frame is crafted with the intent of a feature film. We never compromise on visual quality or narrative depth." 
+  },
+  { 
+    title: "Global Stories", 
+    icon: <Globe className="w-12 h-12" />, 
+    color: "from-pink-200 via-pink-500 to-purple-600",
+    desc: "We tell stories from across the world, honoring diverse cultures and perspectives to build bridges between communities." 
+  },
+  { 
+    title: "Innovation First", 
+    icon: <Zap className="w-12 h-12" />, 
+    color: "from-pink-200 via-pink-500 to-purple-600",
+    desc: "From AI-assisted visual effects to interactive storytelling, we are always exploring the cutting edge of media technology." 
+  },
+  { 
+    title: "Human Truth", 
+    icon: <Heart className="w-12 h-12" />, 
+    color: "from-pink-200 via-pink-500 to-purple-600",
+    desc: "At the heart of every production is an authentic human experience. We believe great stories change how people see the world." 
+  },
 ];
 
 export default function AboutUsPage() {
@@ -36,11 +57,11 @@ export default function AboutUsPage() {
         {/* Hero */}
         <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden">
           <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
-            <Image 
-              src="/about/tv.png" 
-              fill 
-              alt="About Monarch" 
-              className="object-cover blur-[3px]" 
+            <Image
+              src="/about/tv.png"
+              fill
+              alt="About Monarch"
+              className="object-cover blur-[3px]"
             />
             {/* Intense Volumetric Pink Smoke System */}
             <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
@@ -87,103 +108,102 @@ export default function AboutUsPage() {
                   Our Mission
                 </span>
                 <h2 className="text-5xl md:text-7xl font-heading font-black text-white italic tracking-tighter leading-none mb-8">
-                  REDEFINING <br /><span className="text-primary">REALITY</span>
+                  REDEFINING <br /><span className="text-primary">TELEVISION</span>
                 </h2>
                 <div className="w-24 h-1 bg-primary rounded-full glow-pink mb-8" />
                 <p className="text-lg text-white/70 leading-relaxed mb-6">
-                  Monarch TV Studios was founded on a simple premise: television should not just be watched — it should be experienced. We blend cutting-edge visual effects with profound narrative design to create worlds that stay with you long after the screen goes dark.
-                </p>
+                  Monarch TV Studios Group is set to launch in Juillet 2026 in France, emerging as a dynamic and innovative mass media company. It will hold European media licenses from ARCOM and UK licenses from OFCOM. The group plans to operate three distinct English-language channels: Monarch TV Crypto, dedicated to business and market news; Monarch TV Channel, featuring documentaries and scientific reality shows; and Monarch TV Novels, a hybrid channel offering fiction series, outdoor programs, American football, and rock music.                </p>
                 <p className="text-lg text-white/50 leading-relaxed">
-                  From the abyssal depths of the ocean to the neon-soaked streets of tomorrow, our original series push the boundaries of what is possible in serialized storytelling.
+                  Additionally, Monarch TV Studios will establish two subsidiaries in Tunisia—Monarch TV Pictures, producing documentaries, reality shows, and fiction series, and Monarch TV Records, creating scores and soundtracks. With a strategic presence across Europe and North Africa, Monarch TV Studios aims to deliver diverse, high-quality content across multiple platforms to a global audience.
                 </p>
               </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative h-[500px] rounded-3xl overflow-hidden border-2 border-primary/50 shadow-[0_0_60px_rgba(255,204,233,0.3)] bg-black">
-                {/* Background Image (Revealed: OUR MASCOT) */}
-                <div className="absolute inset-0 z-0">
-                  <Image 
-                    src="/monster/hero-banner.png" 
-                    fill 
-                    alt="Our Mascot" 
-                    className="object-cover" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  
-                  {/* OUR MASCOT Label (Revealed) */}
-                  <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30">
-                    <div className="px-6 py-2 bg-primary/20 backdrop-blur-md border border-primary/40 rounded-full shadow-[0_0_20px_rgba(255,204,233,0.4)]">
-                      <span className="text-primary font-black uppercase tracking-[0.4em] text-xs">OUR MASCOT</span>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="relative h-[500px] rounded-3xl overflow-hidden border-2 border-primary/50 shadow-[0_0_60px_rgba(255,204,233,0.3)] bg-black">
+                  {/* Background Image (Revealed: OUR MASCOT) */}
+                  <div className="absolute inset-0 z-0">
+                    <Image
+                      src="/canvas/38.png"
+                      fill
+                      alt="Our Mascot"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+
+                    {/* OUR MASCOT Label (Revealed) */}
+                    <div className="absolute top-6 left-1/2 -translate-x-1/2 z-30">
+                      <div className="px-6 py-2 bg-primary/20 backdrop-blur-md border border-primary/40 rounded-full shadow-[0_0_20px_rgba(255,204,233,0.4)]">
+                        <span className="text-primary font-black uppercase tracking-[0.4em] text-xs">OUR MASCOT</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Sliding Curtain (Top: Monarch Vision) */}
-                <motion.div 
-                  className="absolute inset-0 z-20 overflow-hidden origin-left"
-                  initial={{ x: 0 }}
-                  animate={isMascotOpened ? { x: "-100%" } : { x: 0 }}
-                  transition={{ type: "spring", stiffness: 40, damping: 20 }}
-                >
-                  <Image 
-                    src="/canvas/38.png" 
-                    fill 
-                    alt="Monarch Vision" 
-                    className="object-cover" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button 
-                      onClick={() => setIsMascotOpened(true)}
-                      className="px-8 py-3 bg-primary text-black font-black uppercase tracking-widest rounded-full hover:scale-110 transition-transform glow-pink z-30"
-                    >
-                      SLIDE LEFT
-                    </button>
-                  </div>
-                </motion.div>
-                
-                {/* Celebration Confetti Effect (Stays in background) */}
-                <div className="absolute inset-0 pointer-events-none z-10">
-                  <div className="absolute top-0 left-0 w-full h-full opacity-40 mix-blend-screen">
-                    {[...Array(20)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        animate={{
-                          y: ["-10%", "110%"],
-                          x: [Math.random() * 100 + "%", (Math.random() * 100 - 10) + "%"],
-                          rotate: [0, 360],
-                          opacity: [0, 1, 0]
-                        }}
-                        transition={{
-                          duration: 3 + Math.random() * 4,
-                          repeat: Infinity,
-                          delay: Math.random() * 5,
-                          ease: "linear"
-                        }}
-                        className="absolute w-2 h-2 rounded-full"
-                        style={{ backgroundColor: i % 2 === 0 ? '#ffcce9' : '#ffffff' }}
-                      />
-                    ))}
-                  </div>
-                </div>
+                  {/* Sliding Curtain (Top: Monarch Vision) */}
+                  <motion.div
+                    className="absolute inset-0 z-20 overflow-hidden origin-left"
+                    initial={{ x: 0 }}
+                    animate={isMascotOpened ? { x: "-100%" } : { x: 0 }}
+                    transition={{ type: "spring", stiffness: 40, damping: 20 }}
+                  >
+                    <Image
+                      src="/monster/hero-banner.png"
+                      fill
+                      alt="Monarch Vision"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <button
+                        onClick={() => setIsMascotOpened(true)}
+                        className="px-8 py-3 bg-primary text-black font-black uppercase tracking-widest rounded-full hover:scale-110 transition-transform glow-pink z-30"
+                      >
+                        SLIDE LEFT
+                      </button>
+                    </div>
+                  </motion.div>
 
-                {isMascotOpened && (
-                  <div className="absolute bottom-8 left-8 right-8 z-30 text-center">
-                    <button 
-                      onClick={() => setIsMascotOpened(false)}
-                      className="text-primary/60 text-[10px] font-black uppercase tracking-[0.3em] hover:text-primary transition-colors"
-                    >
-                      [ Close Surprise ]
-                    </button>
+                  {/* Celebration Confetti Effect (Stays in background) */}
+                  <div className="absolute inset-0 pointer-events-none z-10">
+                    <div className="absolute top-0 left-0 w-full h-full opacity-40 mix-blend-screen">
+                      {[...Array(20)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{
+                            y: ["-10%", "110%"],
+                            x: [Math.random() * 100 + "%", (Math.random() * 100 - 10) + "%"],
+                            rotate: [0, 360],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{
+                            duration: 3 + Math.random() * 4,
+                            repeat: Infinity,
+                            delay: Math.random() * 5,
+                            ease: "linear"
+                          }}
+                          className="absolute w-2 h-2 rounded-full"
+                          style={{ backgroundColor: i % 2 === 0 ? '#ffcce9' : '#ffffff' }}
+                        />
+                      ))}
+                    </div>
                   </div>
-                )}
-              </div>
-            </motion.div>
+
+                  {isMascotOpened && (
+                    <div className="absolute bottom-8 left-8 right-8 z-30 text-center">
+                      <button
+                        onClick={() => setIsMascotOpened(false)}
+                        className="text-primary/60 text-[10px] font-black uppercase tracking-[0.3em] hover:text-primary transition-colors"
+                      >
+                        [ Close Surprise ]
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -198,6 +218,16 @@ export default function AboutUsPage() {
               <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-pink" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* SVG Gradient Definition */}
+              <svg width="0" height="0" className="absolute">
+                <defs>
+                  <linearGradient id="pink-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ffcce9" /> {/* Baby Pink */}
+                    <stop offset="50%" stopColor="#ec4899" /> {/* Dark Pink */}
+                    <stop offset="100%" stopColor="#9333EA" /> {/* Purple */}
+                  </linearGradient>
+                </defs>
+              </svg>
               {values.map((value, i) => (
                 <motion.div
                   key={value.title}
@@ -205,9 +235,21 @@ export default function AboutUsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.15 }}
-                  className="group p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-primary/40 hover:bg-white/[0.06] transition-all duration-500 text-center"
+                  className="group p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-primary/40 hover:bg-white/[0.06] transition-all duration-500 text-center relative overflow-hidden"
                 >
-                  <div className="text-5xl mb-6">{value.icon}</div>
+                  <div className={`mb-6 flex justify-center bg-gradient-to-br ${value.color} bg-clip-text text-transparent`}>
+                    <div className="relative">
+                      <div className={`absolute inset-0 blur-lg opacity-40 bg-gradient-to-br ${value.color}`} />
+                      <div className="relative z-10 text-white">
+                        {React.cloneElement(value.icon as React.ReactElement, { 
+                          className: "w-12 h-12 stroke-[1.5]",
+                          style: { 
+                            stroke: "url(#pink-gradient)" 
+                          } 
+                        })}
+                      </div>
+                    </div>
+                  </div>
                   <h3 className="text-xl font-black text-white tracking-tighter mb-3 group-hover:text-primary transition-colors">{value.title}</h3>
                   <p className="text-sm text-white/60 leading-relaxed">{value.desc}</p>
                 </motion.div>

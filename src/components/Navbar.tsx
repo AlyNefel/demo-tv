@@ -132,13 +132,20 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {menuItems.map((item) => (
             <div key={item.label} className="relative group/menu">
-              <Link 
-                href={item.href} 
-                className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2"
-              >
-                {item.label}
-                <ChevronDown size={14} className="group-hover/menu:rotate-180 transition-transform" />
-              </Link>
+              {item.label === "Production" ? (
+                <div className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2 cursor-default">
+                  {item.label}
+                  <ChevronDown size={14} className="group-hover/menu:rotate-180 transition-transform" />
+                </div>
+              ) : (
+                <Link 
+                  href={item.href} 
+                  className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2"
+                >
+                  {item.label}
+                  <ChevronDown size={14} className="group-hover/menu:rotate-180 transition-transform" />
+                </Link>
+              )}
               
               {/* Dropdown */}
               <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover/menu:opacity-100 group-hover/menu:visible transition-all duration-300 translate-y-2 group-hover/menu:translate-y-0">

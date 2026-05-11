@@ -6,17 +6,17 @@ import { motion } from 'framer-motion';
 
 const facilityItems = [
   {
-    title: "Production Studios",
-    desc: "Designed for versatile productions with three fully equipped studios covering 1,300 m².",
+    title: "Editorial Offices",
+    desc: "Our specialized editorial teams craft the best stories and scenarios for our scripted and unscripted content Production.",
     image: "/facilities/image.png"
   },
   {
     title: "HQ Building",
-    desc: "A separate three-floor facility housing offices, control rooms, and creative creative spaces.",
+    desc: "A separate three-floor facility housing offices, control rooms, and creative spaces.",
     image: "/facilities/image copy.png"
   },
   {
-    title: "Creative Spaces",
+    title: "Production Studios",
     desc: "Advanced infrastructure supporting all subsidiaries for high-quality content creation.",
     image: "/facilities/image copy 2.png"
   }
@@ -40,7 +40,7 @@ const Facilities = () => {
             <h2 className="text-5xl md:text-7xl font-heading font-black text-white italic tracking-tighter uppercase mb-8">
               OUR <span className="text-primary text-glow-pink">FACILITIES</span>
             </h2>
-            
+
             <p className="max-w-4xl mx-auto text-xl md:text-2xl text-white/70 font-rosario leading-relaxed italic mb-10">
               "Monarch TV Studios HQ in Tunisia is a 4,000 m² modern complex with three fully equipped studios covering 1,300 m², designed for versatile productions. The three-floor HQ building is separate from the studios and includes offices, control rooms, and creative spaces, supporting all subsidiaries and ensuring high-quality content creation with advanced infrastructure."
             </p>
@@ -60,11 +60,11 @@ const Facilities = () => {
               className="group relative flex flex-col h-full rounded-[2.5rem] overflow-hidden border border-white/10 hover:border-primary/40 transition-all duration-700 bg-white/[0.03] shadow-2xl"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
-                <Image 
-                  src={item.image} 
-                  fill 
-                  alt={item.title} 
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110" 
+                <Image
+                  src={item.image}
+                  fill
+                  alt={item.title}
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
               </div>
