@@ -18,6 +18,12 @@ const projects = [
     subtitle: "El Haouaria Nabeul-Tunisia",
     image: "/upcoming assets/Giant Aquarium.png",
     year: "2028"
+  },
+  {
+    title: "Souvenir Shops Chain",
+    subtitle: "Nationwide — Tunisia",
+    image: "/upcoming assets/Souvenir Shops  Chain.png",
+    year: "2029"
   }
 ];
 
@@ -70,7 +76,7 @@ const UpcomingProjects = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((project, i) => (
             <motion.div
               key={project.title}
@@ -84,6 +90,7 @@ const UpcomingProjects = () => {
                 src={project.image} 
                 fill 
                 alt={project.title} 
+                unoptimized
                 className="object-cover transition-transform duration-1000 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80" />

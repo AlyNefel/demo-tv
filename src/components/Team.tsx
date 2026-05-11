@@ -8,8 +8,8 @@ import { useRef } from 'react';
 const teamMembers = [
   {
     name: "Mokhtar Darmoul",
-    role: "Creative Director",
-    image: "/canvas/8.png"
+    role: "CEO & Founder",
+    image: "/initialTeam/mokthar.png"
   },
   {
     name: "Sarah Jenkins",
@@ -29,7 +29,7 @@ const teamMembers = [
 ];
 
 const initialTeamData = [
-  { name: "Mokhtar Darmoul", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.33.png" },
+  { name: "COO Local", image: "/initialTeam/cooLocal.png" },
   { name: "COO Americas", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.39.png" },
   { name: "COO EMEA", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.46.png" },
   { name: "Head of Content Partnership & Acquisitions", image: "/initialTeam/Capture d’écran 2026-05-07 à 16.46.55.png" },
@@ -63,7 +63,7 @@ const TypingEffect = ({ text }: { text: string }) => {
     if (isInView && displayedCount < text.length) {
       const timeout = setTimeout(() => {
         setDisplayedCount((prev) => prev + 1);
-      }, 40);
+      }, 18);
       return () => clearTimeout(timeout);
     }
   }, [displayedCount, text, isInView]);
@@ -104,13 +104,58 @@ const Team = () => {
   const yCardParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const yDescParallax = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
-  const description = "At Monarch Studios, our mission is to redefine the visual landscape of modern television. We believe that every frame should be a masterpiece, and every story an odyssey. Our collective of visionary creators works tirelessly to merge cutting-edge technology with timeless narrative artistry, bringing the extraordinary to your screen every single day.";
+  const bioText = "Mokhtar Darmoul is the Founder and Chief Executive Officer of Monarch TV Group, an emerging influential media company poised to make a significant impact worldwide. Under his leadership, the company manages a premier portfolio of scientific news, sports, and entertainment assets. He is also pivotal in the upcoming launch of two new subsidiaries, Monarch TV Pictures and Monarch TV Records, which will further expand the group's reach and influence.  With over a decade of experience, Mr. Darmoul has built, operated, and advised in the Forex trading assets industry. He is recognized as a monetarist, holding a PhD and specializing in applied finance, asset volatility, and central bank monetary policies. His expertise includes understanding the effects of quantitative easing, target interest rates, and central bank tools on exchange rates and diverse financial assets.  In 2017, Mr. Darmoul was recognized as North Africa's most awarded forex advisory service provider, establishing a successful private FX advisory firm. Driven by a desire to elevate financial and market news coverage globally, he initiated a project to create a comprehensive international TV channel dedicated to helping professional digital assets traders manage their portfolios effectively.  Looking to the future, Mr. Darmoul is spearheading the establishment of Monarch TV Studios, with a strategic goal of becoming one of the top ten largest media groups in the world within the next five years.";
 
   const firstMember = teamMembers[0];
 
   return (
-    <section id="leadership" ref={containerRef} className="py-24 relative overflow-hidden bg-black/50">
+    <section id="leadership" ref={containerRef} className="py-24 relative overflow-hidden bg-black">
 
+      {/* Smoke background */}
+      <style>{`
+        @keyframes smoke-drift-1 {
+          0%   { transform: translateX(-6%) translateY(0%)   scale(1.08); }
+          50%  { transform: translateX( 6%) translateY(-3%) scale(1.13); }
+          100% { transform: translateX(-6%) translateY(0%)   scale(1.08); }
+        }
+        @keyframes smoke-drift-2 {
+          0%   { transform: translateX( 5%) translateY(-2%) scale(1.1); }
+          50%  { transform: translateX(-5%) translateY( 2%) scale(1.15); }
+          100% { transform: translateX( 5%) translateY(-2%) scale(1.1); }
+        }
+        .smoke-layer-1 { animation: smoke-drift-1 14s ease-in-out infinite; }
+        .smoke-layer-2 { animation: smoke-drift-2 18s ease-in-out infinite; }
+      `}</style>
+
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {/* Primary smoke layer */}
+        <div
+          className="smoke-layer-1 absolute inset-0 w-full h-full"
+          style={{ filter: 'blur(6px)', opacity: 0.55 }}
+        >
+          <Image
+            src="/canvas/smoke.png"
+            fill
+            alt=""
+            className="object-cover"
+            priority
+          />
+        </div>
+        {/* Secondary smoke layer — offset phase */}
+        <div
+          className="smoke-layer-2 absolute inset-0 w-full h-full"
+          style={{ filter: 'blur(10px)', opacity: 0.3, mixBlendMode: 'screen' }}
+        >
+          <Image
+            src="/canvas/smoke.png"
+            fill
+            alt=""
+            className="object-cover scale-x-[-1]"
+          />
+        </div>
+        {/* Dark overlay to keep text readable */}
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
@@ -135,8 +180,7 @@ const Team = () => {
                 src={firstMember.image} 
                 fill 
                 alt={firstMember.name} 
-                className="object-cover transition-transform duration-700 group-hover:scale-[2.8]" 
-                style={{ objectPosition: '61% 56%', scale: '2.5' }}
+                className="object-cover transition-transform duration-700 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
               
@@ -151,23 +195,39 @@ const Team = () => {
             </div>
           </motion.div>
 
-          {/* Fusionated Description Card with Parallax and Typing Effect */}
           <motion.div
             style={{ y: yDescParallax }}
             initial={{ opacity: 0, x: 50, filter: 'blur(10px)' }}
             whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            viewport={{ amount: 0.3 }}
+            viewport={{ amount: 0.2 }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
-            className="lg:col-span-3 min-h-[400px] flex items-center bg-white/[0.03] backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-16 relative overflow-hidden"
+            className="lg:col-span-3 bg-white/[0.03] backdrop-blur-sm rounded-3xl border border-white/5 p-8 md:p-14 relative overflow-hidden"
           >
-
-            
             <div className="relative z-10">
-              <TypingEffect text={description} />
+              {/* Name + role */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="mb-6"
+              >
+                <span className="inline-block px-3 py-1 bg-primary/20 border border-primary/40 text-primary text-[10px] font-black tracking-[0.3em] uppercase rounded-full mb-3">
+                  {firstMember.role}
+                </span>
+                <h3 className="text-3xl md:text-4xl font-heading font-black text-white italic tracking-tighter">
+                  {firstMember.name}
+                </h3>
+                <div className="w-16 h-0.5 bg-primary mt-3 rounded-full glow-pink" />
+              </motion.div>
+
+              {/* Bio — typing effect */}
+              <TypingEffect text={bioText} />
             </div>
-            
+
             {/* Decorative pink glow */}
             <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
+            <div className="absolute -top-16 -left-16 w-64 h-64 bg-primary/5 rounded-full blur-[80px]" />
           </motion.div>
         </div>
 

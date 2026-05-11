@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ShowCarousel from "@/components/ShowCarousel";
 import BrowseShows from "@/components/BrowseShows";
-import Team from "@/components/Team";
+
 import Partners from "@/components/Partners";
 import AboutUs from "@/components/AboutUs";
 import WeeklyNews from "@/components/WeeklyNews";
@@ -11,7 +11,7 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import Subsidiaries from "@/components/Subsidiaries";
 import UpcomingProjects from "@/components/UpcomingProjects";
-import Facilities from "@/components/Facilities";
+
 import { shows } from "@/lib/tv-shows";
 
 
@@ -43,13 +43,6 @@ export default function Home() {
           <Divider />
           <WeeklyNews />
           
-          <Divider />
-          <Team />
-          
-          <Divider />
-          <Facilities />
-
-
 
           <Divider />
           <Subsidiaries />

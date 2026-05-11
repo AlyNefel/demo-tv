@@ -13,8 +13,9 @@ const menuItems = [
     label: "About Us",
     href: "/about-us",
     subItems: [
-      { label: "Leadership", href: "/#leadership" },
-      { label: "Facilities", href: "/#facilities" },
+      { label: "About Us", href: "/about-us" },
+      { label: "Leadership", href: "/leadership" },
+      { label: "Facilities", href: "/facilities" },
     ],
   },
   {
