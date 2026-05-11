@@ -67,7 +67,7 @@ export const fictionSeries: FictionSeries[] = [
   {
     id: "f7",
     title: "The two Horned King",
-    description: "Discover the gripping multi-season saga of a boy born with extraordinary superpowers who, instead of using his gifts for good, is drawn down a dark path of ambition and chaos, seeking to dominate the world. This compelling series explores themes of power, redemption, and the thin line between hero and villain as the protagonist's journey unfolds.",
+    description: "Join us for a multi-season series featuring the epic adventures of the Two Horned King, a powerful monarch with extraordinary abilities who battles to save Earth from the menace of creatures invading from another dimension.",
     year: 2028,
     img: "7.png",
     fontClass: "font-pirata-one"
@@ -75,9 +75,17 @@ export const fictionSeries: FictionSeries[] = [
   {
     id: "f8",
     title: "QIRCH",
-    description: "Discover the gripping multi-season saga of a boy born with extraordinary superpowers who, instead of using his gifts for good, is drawn down a dark path of ambition and chaos, seeking to dominate the world. This compelling series explores themes of power, redemption, and the thin line between hero and villain as the protagonist's journey unfolds.",
+    description: "The world's first thriller series set in the dangerous, mysterious world of sharks. Off North Africa, two mutated juvenile white sharks, affected by pollution, develop terrifying intelligence and hunger. As they grow into ruthless predators, they haunt fishermen, swimmers, and lost souls, blurring the line between nature and nightmare.",
     year: 2028,
     img: "8.png",
     fontClass: "font-archivo-black"
+  },
+  {
+    id: "f9",
+    title: "SATÌH The SoothSayer",
+    description: "Join us for a captivating multi-season series showcasing the legendary sorcerer Satih, the renowned Arabian soothsayer of the 5th century, whose epic tale is rooted in true historical events from pre-Islamic Arabian folklore. This masterpiece weaves fiction and fact to bring to life the story of Satih the Sorcerer, a legendary figure who foretold the fall of the Sassanid kings of Persia, making him one of the greatest mystics of all time.",
+    year: 2028,
+    img: "9.png",
+    fontClass: "font-anaktoria-black"
   }
 ];

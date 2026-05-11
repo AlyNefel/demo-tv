@@ -9,23 +9,23 @@ import Footer from "@/components/Footer";
 const channels = [
   {
     name: "MONARCH TV CHANNEL",
-    launch: "June 2026",
+    launch: "July 2026",
     desc: "Monarch TV Channel, the group's flagship station, offers engaging documentaries and reality shows focused on space exploration, satellite and shuttle launches, space mining, and recent discoveries like VLA, as well as space tourism. It also features programs on oceanography, marine biology, and ocean conservation, highlighting the beauty and importance of our oceans. Through inspiring content, Monarch TV Channel aims to educate and entertain viewers about the universe, the depths of the oceans, and human history's mysteries.",
     icon: "/Chanel Bouquet/monarch_tv_channe.png",
     color: "text-white"
   },
   {
     name: "MONARCH TV CRYPTO",
-    launch: "August 2026",
+    launch: "September 2026",
     desc: "Monarch TV Crypto is a premier financial channel dedicated to delivering in-depth business and market insights, real-time updates from leading stock exchanges, and expert analysis on financial assets trends, investment strategies, and emerging technologies. With live connections to global markets, it serves as an essential resource for investors, financial professionals, and viewers seeking comprehensive market intelligence, innovative investment opportunities, and engaging debates on renewable energy and cutting-edge technological advancements.",
     icon: "/Chanel Bouquet/monarch-tv-crypto.png",
     color: "text-blue-300"
   },
   {
     name: "MONARCH TV NOVELS",
-    launch: "September 2026",
+    launch: "October 2026",
     desc: "Monarch TV Novels is a hybrid channel dedicated to a diverse blend of fiction and pseudo-fiction series, entertainment, unconventional sports, music, and reality shows, offering a wide array of captivating stories across various genres. The channel is committed to delivering high-quality scripted and unscripted content that appeals to fans of dramatic, adventurous, and imaginative programming. Positioned as a premier source of fictional and entertainment storytelling within the group, Monarch TV Novels aims to engage audiences with compelling narratives and innovative entertainment experiences.",
-    icon: "/Chanel Bouquet/Monarch-tv-novels.png",
+    icon: "/Chanel Bouquet/novel.png",
     color: "text-primary"
   }
 ];
@@ -35,30 +35,50 @@ export default function ThreeSatellitesPage() {
     <>
       <Navbar />
       <main className="min-h-screen bg-black overflow-hidden">
-        
-        {/* Pink Smoke Animations */}
+
+        {/* Pink Smoke & Border Animations */}
         <style>{`
           @keyframes smoke-float {
             0% { transform: translate(0, 0) scale(1); opacity: 0; }
             50% { opacity: 0.4; }
             100% { transform: translate(-10%, -10%) scale(1.3); opacity: 0; }
           }
+          @keyframes border-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
           .smoke-pink { animation: smoke-float 8s infinite ease-in-out; }
           .smoke-pink-delayed { animation: smoke-float 10s infinite ease-in-out 2s; }
+          .charging-border::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(
+              from 0deg,
+              transparent 0deg,
+              transparent 280deg,
+              #ffcce9 310deg,
+              #ffcce9 360deg
+            );
+            animation: border-rotate 3s linear infinite;
+          }
         `}</style>
 
         {/* Hero Section */}
         <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-          <motion.div 
+          <motion.div
             initial={{ scale: 1.1 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.5 }}
             className="absolute inset-0 z-0"
           >
-            <Image 
-              src="/threeSatellites/background-hero-section.png" 
-              fill 
-              alt="Channel Bouquet Background" 
+            <Image
+              src="/threeSatellites/background-hero-section.png"
+              fill
+              alt="Channel Bouquet Background"
               className="object-cover opacity-60"
               priority
             />
@@ -106,18 +126,19 @@ export default function ThreeSatellitesPage() {
               >
                 {/* Channel Card Container - Matching Fiction Cards Style */}
                 <div className="w-full lg:w-1/2 relative group">
-                   <div className="relative aspect-[2/3] max-w-[400px] mx-auto rounded-3xl overflow-hidden border border-white/10 bg-muted transition-all duration-700 shadow-[0_0_60px_rgba(0,0,0,0.5)]">
+                  <div className="relative aspect-[2/3] max-w-[320px] mx-auto rounded-3xl overflow-hidden border border-white/10 bg-muted transition-all duration-700 shadow-[0_0_60px_rgba(0,0,0,0.5)] charging-border">
+                    <div className="absolute inset-[2px] rounded-3xl bg-black z-10 overflow-hidden">
                       {/* Base Image with scale crop */}
-                      <Image 
-                        src={channel.icon} 
-                        fill 
-                        alt={channel.name} 
-                        className="object-cover scale-[1.2] transition-transform duration-700 group-hover:scale-[1.3]" 
+                      <Image
+                        src={channel.icon}
+                        fill
+                        alt={channel.name}
+                        className="object-cover scale-[1.2] transition-transform duration-700 group-hover:scale-[1.3]"
                       />
-                      
+
                       {/* Gradient Overlay matching ShowCard */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
-                      
+
                       {/* Smoke Effect Overlay */}
                       <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none">
                         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-primary/20 smoke-pink" />
@@ -129,10 +150,11 @@ export default function ThreeSatellitesPage() {
                           Launch: {channel.launch.split(' ')[1]} {channel.launch.split(' ')[0]}
                         </span>
                       </div>
-                   </div>
+                    </div>
+                  </div>
 
-                   {/* External Glow Pulse */}
-                   <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full blur-[100px] opacity-0 group-hover:opacity-30 transition-opacity duration-700 z-0 ${i === 1 ? 'bg-blue-400' : 'bg-primary'}`} />
+                  {/* External Glow Pulse */}
+                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] rounded-full blur-[100px] opacity-0 group-hover:opacity-30 transition-opacity duration-700 z-0 ${i === 1 ? 'bg-blue-400' : 'bg-primary'}`} />
                 </div>
 
                 {/* Channel Details */}

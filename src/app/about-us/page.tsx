@@ -8,11 +8,11 @@ import Footer from "@/components/Footer";
 import { Film, Globe, Zap, Heart } from 'lucide-react';
 
 const milestones = [
-  { year: "2022", title: "The Vision", desc: "Monarch TV Studios was conceived by a group of visionary storytellers and technologists who believed that broadcast television could be elevated to a true cinematic art form." },
-  { year: "2023", title: "The Foundation", desc: "We secured our first round of investment and assembled a world-class team of directors, writers, visual effects artists, and production designers." },
-  { year: "2024", title: "Development", desc: "Our flagship fiction series went into full development. Simultaneously, our documentary division began production on our Weekly News TV programs." },
-  { year: "2025", title: "Production", desc: "Principal photography began on Hannibal: The Dragon of Carthage and several other original productions. Our state-of-the-art studio facilities came online." },
+  { year: "2024", title: "The Vision", desc: "Monarch TV Studios is a concept by a visionary Forex trader and artist who believes broadcast TV can be transformed into a new, innovative art form." },
+  { year: "2025", title: "The Foundation", desc: "We are securing our first seed investment and have built a top-tier team of C-level executives, VPs, editors, storytellers, experts, directors, writers, visual effects artists, and production designers." },
   { year: "2026", title: "Launch", desc: "Monarch TV Studios officially launched its three network channels: Monarch TV Channel, Monarch TV Crypto, and Monarch TV Novels, broadcasting across the globe." },
+  { year: "2026", title: "Production", desc: "Our main fiction series will start full production and distribution, while our documentary division will begin airing our content on Weekly News TV programs." },
+  { year: "2027", title: "Development", desc: "We will raise a second round of funding by listing on the stock market and will begin our upcoming projects, such as the giant telescope observatory." },
 ];
 
 const values = [
@@ -241,7 +241,7 @@ export default function AboutUsPage() {
                     <div className="relative">
                       <div className={`absolute inset-0 blur-lg opacity-40 bg-gradient-to-br ${value.color}`} />
                       <div className="relative z-10 text-white">
-                        {React.cloneElement(value.icon as React.ReactElement, { 
+                        {React.cloneElement(value.icon as React.ReactElement<any>, { 
                           className: "w-12 h-12 stroke-[1.5]",
                           style: { 
                             stroke: "url(#pink-gradient)" 
@@ -274,7 +274,7 @@ export default function AboutUsPage() {
               <div className="space-y-12">
                 {milestones.map((m, i) => (
                   <motion.div
-                    key={m.year}
+                    key={`${m.year}-${m.title}`}
                     initial={{ opacity: 0, x: -40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.4 }}

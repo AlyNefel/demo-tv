@@ -132,7 +132,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-8">
           {menuItems.map((item) => (
             <div key={item.label} className="relative group/menu">
-              {item.label === "Production" ? (
+              {item.label === "Production" || item.label === "Channel Bouquet" ? (
                 <div className="flex items-center gap-1 text-sm font-medium hover:text-primary transition-colors py-2 cursor-default">
                   {item.label}
                   <ChevronDown size={14} className="group-hover/menu:rotate-180 transition-transform" />
