@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Facilities from "@/components/Facilities";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Facilities | Monarch TV Studios",
@@ -14,7 +13,6 @@ export default function FacilitiesPage() {
       <main className="flex-1 pt-24 bg-black min-h-screen">
         <Facilities />
       </main>
-      <Footer />
     </>
   );
 }

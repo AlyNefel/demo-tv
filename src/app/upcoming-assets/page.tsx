@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Footer from "@/components/Footer";
+
 
 const assets = [
   {
@@ -151,8 +151,6 @@ export default function UpcomingAssets() {
           ))}
         </div>
       </main>
-
-      <Footer />
     </>
   );
 }

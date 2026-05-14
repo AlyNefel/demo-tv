@@ -4,12 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const pageData = {
   title: "Capsule: Our Scientific Quarterly Magazine",
   desc: "Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers.",
-  image: "/assets/Capsule our Scientific Quaterly Magazine.png",
+  image: "/assets/capsule.png",
 };
 
 export default function CapsulePage() {
@@ -35,7 +34,7 @@ export default function CapsulePage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -51,23 +50,23 @@ export default function CapsulePage() {
 
             {/* Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative aspect-video lg:aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group"
               >
-                <Image 
-                  src={pageData.image} 
-                  fill 
-                  alt={pageData.title} 
+                <Image
+                  src={pageData.image}
+                  fill
+                  alt={pageData.title}
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -97,7 +96,6 @@ export default function CapsulePage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

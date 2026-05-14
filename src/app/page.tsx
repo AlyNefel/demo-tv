@@ -6,11 +6,12 @@ import BrowseShows from "@/components/BrowseShows";
 import Partners from "@/components/Partners";
 import AboutUs from "@/components/AboutUs";
 import WeeklyNews from "@/components/WeeklyNews";
+import ProductionSection from "@/components/ProductionSection";
 import FeaturedCards from "@/components/FeaturedCards";
 import ContactForm from "@/components/ContactForm";
-import Footer from "@/components/Footer";
 import Subsidiaries from "@/components/Subsidiaries";
 import UpcomingProjects from "@/components/UpcomingProjects";
+import FloatingBackgroundLogos from "@/components/FloatingBackgroundLogos";
 
 import { shows } from "@/lib/tv-shows";
 
@@ -26,6 +27,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <FloatingBackgroundLogos />
       <main className="flex-1">
         <Hero />
         
@@ -43,6 +45,8 @@ export default function Home() {
           <Divider />
           <WeeklyNews />
           
+          <Divider />
+          <ProductionSection />
 
           <Divider />
           <Subsidiaries />
@@ -52,8 +56,6 @@ export default function Home() {
           <ContactForm />
         </div>
       </main>
-      
-      <Footer />
     </>
   );
 }

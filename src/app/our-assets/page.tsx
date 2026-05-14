@@ -7,10 +7,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 const assets = [
   {
-    title: "Capsule: Our Scientific Quarterly Magazine",
+    title: "Capsule: Our Scientific Quarterly Publication",
     subtitle: "Print & Digital Publication",
     desc: "Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers. Symbolizing a space, abyssal, and time capsule, it aims to be a vessel for knowledge, exploration, and the preservation of our planet's wonders.",
-    image: "/assets/Capsule our Scientific Quaterly Magazine.png",
+    image: "/assets/capsule.png",
     tag: "MEDIA",
     color: "from-blue-950/80",
   },
@@ -18,7 +18,7 @@ const assets = [
     title: "The Carthaginians: Our American Football Franchise",
     subtitle: "Sports & Entertainment",
     desc: "Representing the strength and strategic brilliance of ancient Carthage, The Carthaginians American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
-    image: "/assets/The Carthaginians  our American Football Franchise.png",
+    image: "/assets/carthagenna.png",
     tag: "SPORTS",
     color: "from-rose-950/80",
   },
@@ -93,9 +93,20 @@ export default function OurAssetsPage() {
 
         {/* Hero */}
         <section ref={heroRef} className="relative h-[75vh] flex items-center justify-center overflow-hidden">
-          <motion.div style={{ y: heroY }} className="absolute inset-0 scale-110">
-            <Image src="/canvas/23.png" fill alt="Our Assets" className="object-cover opacity-60" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black" />
+          <motion.div 
+            style={{ y: heroY }} 
+            animate={{ 
+              y: [0, -30, 0],
+            }}
+            transition={{ 
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="absolute inset-0 scale-110"
+          >
+            <Image src="/assets/hero-image.png" fill alt="Our Assets" className="object-cover opacity-[0.85]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
           </motion.div>
           <motion.div style={{ opacity: heroOpacity }} className="relative z-10 text-center px-6">
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.3 }}>

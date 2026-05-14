@@ -4,7 +4,6 @@ import React, { useRef } from 'react';
 import Navbar from "@/components/Navbar";
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Footer from "@/components/Footer";
 import { Film, Globe, Zap, Heart } from 'lucide-react';
 
 const milestones = [
@@ -296,7 +295,6 @@ export default function AboutUsPage() {
         </section>
 
       </main>
-      <Footer />
     </>
   );
 }

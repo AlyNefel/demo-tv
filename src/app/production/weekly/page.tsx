@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ShowCard from "@/components/ShowCard";
 import { weeklyPrograms } from "@/lib/weekly-programs";
 import { motion } from 'framer-motion';
@@ -142,7 +141,6 @@ export default function WeeklyProgramsPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

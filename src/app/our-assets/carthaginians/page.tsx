@@ -4,12 +4,11 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const pageData = {
   title: "The Carthaginians: Our American Football Franchise",
   desc: "Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.",
-  image: "/assets/The Carthaginians  our American Football Franchise.png",
+  image: "/assets/carthagenna.png",
 };
 
 export default function CarthaginiansPage() {
@@ -35,7 +34,7 @@ export default function CarthaginiansPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -51,23 +50,23 @@ export default function CarthaginiansPage() {
 
             {/* Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative aspect-video lg:aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group"
               >
-                <Image 
-                  src={pageData.image} 
-                  fill 
-                  alt={pageData.title} 
+                <Image
+                  src={pageData.image}
+                  fill
+                  alt={pageData.title}
                   className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -84,12 +83,14 @@ export default function CarthaginiansPage() {
 
                 <div className="grid grid-cols-2 gap-6 pt-8">
                   <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <span className="block text-primary font-black text-2xl mb-1">ELITE</span>
+                    <span className="block text-primary font-black text-2xl mb-1">FFFA 
+</span>
                     <span className="text-xs text-white/40 uppercase tracking-widest font-bold">Competition</span>
                   </div>
                   <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <span className="block text-primary font-black text-2xl mb-1">GLOBAL</span>
-                    <span className="text-xs text-white/40 uppercase tracking-widest font-bold">Stage</span>
+                    <span className="block text-primary font-black text-2xl mb-1">European
+</span>
+                    <span className="text-xs text-white/40 uppercase tracking-widest font-bold">New League</span>
                   </div>
                 </div>
               </motion.div>
@@ -97,7 +98,6 @@ export default function CarthaginiansPage() {
           </motion.div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

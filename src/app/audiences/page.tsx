@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const audienceRegions = [
   { region: "Europe", detail: "Scandinavia, the Baltics, and the United Kingdom" },
@@ -180,8 +179,6 @@ export default function AudiencesPage() {
               </div>
             </div>
           </section>
-
-          <Footer />
         </div>
       </main>
     </>

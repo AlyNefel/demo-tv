@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Team from "@/components/Team";
-import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Leadership | Monarch TV Studios",
@@ -14,7 +13,6 @@ export default function LeadershipPage() {
       <main className="flex-1 pt-24 bg-black min-h-screen">
         <Team />
       </main>
-      <Footer />
     </>
   );
 }

@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ShowCard from "@/components/ShowCard";
 import { fictionSeries } from "@/lib/fiction-series";
 import { motion } from 'framer-motion';
@@ -143,7 +142,6 @@ export default function FictionSeriesPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

@@ -63,7 +63,7 @@ const TypingEffect = ({ text }: { text: string }) => {
     if (isInView && displayedCount < text.length) {
       const timeout = setTimeout(() => {
         setDisplayedCount((prev) => prev + 1);
-      }, 18);
+      }, 5);
       return () => clearTimeout(timeout);
     }
   }, [displayedCount, text, isInView]);
@@ -75,7 +75,7 @@ const TypingEffect = ({ text }: { text: string }) => {
           key={i}
           initial={{ opacity: 0, filter: 'blur(12px)', y: 10, scale: 1.2 }}
           animate={i < displayedCount ? { opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className={i < displayedCount ? "inline-block whitespace-pre" : "hidden"}
         >
           {char}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CanvasBackground from "@/components/CanvasBackground";
 import SmoothScroll from "@/components/SmoothScroll";
+import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function RootLayout({
           <CanvasBackground />
           <div className="relative z-0 flex min-h-screen flex-col">
             {children}
+            <Footer />
           </div>
 
         </SmoothScroll>
