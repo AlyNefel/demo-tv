@@ -53,122 +53,116 @@ const Partners = () => {
   }, []);
 
   return (
-    <div className="w-full bg-black py-32 overflow-hidden border-y border-white/5 relative">
-      {/* Cinematic Spotlight Background - Matching Reference Image */}
+    <div className="w-full bg-[#050505] py-10 overflow-hidden relative border-y border-white/10">
+      {/* Brightened Cinematic Spotlight Background */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15)_0%,transparent_70%)]" />
-        <div className="absolute left-0 top-0 bottom-0 w-1/3 bg-gradient-to-r from-black to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-black to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,204,233,0.15)_0%,transparent_80%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_100%)]" />
+        <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-[#050505] to-transparent" />
+        <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-[#050505] to-transparent" />
       </div>
 
       <style>{`
-        @keyframes shine {
-          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          20%, 100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        @keyframes border-rotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
 
         .partner-item {
-          opacity: 0.1;
-          transition: opacity 0.8s ease;
-          position: relative;
-        }
-        .partner-item.is-center {
           opacity: 1;
-          z-index: 50;
-        }
-
-        /* Logo image styling */
-        .partner-item .partner-img-container {
+          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
           position: relative;
-          transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-          transform: scale(0.8);
-          overflow: visible;
+          perspective: 1000px;
         }
         
-        .partner-item.is-center .partner-img-container {
-          transform: scale(2.5);
+        .partner-item.is-center {
+          z-index: 50;
+          transform: scale(1.4);
         }
 
-        .partner-item .partner-img {
-          transition: filter 1s ease;
-          filter: grayscale(1) brightness(0.6);
+        /* Card Container */
+        .partner-card {
+          position: relative;
+          width: 220px;
+          height: 120px;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(12px);
+          border-radius: 1.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .partner-item.is-center .partner-card {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 204, 233, 0.5);
+          box-shadow: 0 0 60px rgba(255, 204, 233, 0.3);
+        }
+
+        /* Spinning Border Base */
+        .spinning-border {
+          position: absolute;
+          inset: -50%;
+          background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            transparent 280deg,
+            #ffcce9 310deg,
+            #ffcce9 360deg
+          );
+          animation: border-rotate 4s linear infinite;
+          opacity: 0.8;
+          transition: all 0.8s ease;
+        }
+
+        .card-inner {
+          position: absolute;
+          inset: 2px;
+          background: rgba(10, 10, 10, 0.8);
+          backdrop-filter: blur(5px);
+          border-radius: calc(1.5rem - 2px);
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1.5rem;
+        }
+
+        .partner-img {
+          transition: all 0.8s ease;
+          filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
         }
 
         .partner-item.is-center .partner-img {
-          filter: grayscale(0) brightness(1.5) drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
-        }
-
-        /* Shine Effect Overlay */
-        .partner-item .shine-overlay {
-          position: absolute;
-          inset: -100%;
-          background: linear-gradient(
-            to bottom right,
-            transparent,
-            rgba(255, 255, 255, 0),
-            rgba(255, 255, 255, 0.4),
-            rgba(255, 255, 255, 0),
-            transparent
-          );
-          pointer-events: none;
-          z-index: 15;
-          animation: shine 4s infinite ease-in-out;
-        }
-
-        /* Moon Effect Light (Halo behind logo) */
-        .partner-item .partner-glow {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          translate: -50% -50%;
-          width: 500px;
-          height: 500px;
-          border-radius: 50%;
-          background: radial-gradient(circle at center,
-            rgba(255,255,255,0.4) 0%,
-            rgba(255,255,255,0.05) 50%,
-            transparent 80%
-          );
-          opacity: 0;
-          transform: scale(0.4);
-          transition: opacity 1s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-          pointer-events: none;
-          z-index: 0;
-          filter: blur(40px);
-        }
-        
-        .partner-item.is-center .partner-glow {
-          opacity: 1;
-          transform: scale(1.5);
-          background: radial-gradient(circle at center,
-            rgba(255,255,255,0.6) 0%,
-            rgba(255,255,255,0.15) 50%,
-            transparent 80%
-          );
+          filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+          transform: scale(1.15);
         }
       `}</style>
 
       <div
         ref={containerRef}
-        className="flex w-fit animate-marquee whitespace-nowrap items-center"
+        className="flex w-fit animate-marquee whitespace-nowrap items-center py-10"
       >
         {doubled.map((logo, index) => (
           <div
             key={index}
-            className="partner-item flex items-center justify-center mx-[30vw] cursor-default"
+            className="partner-item flex items-center justify-center mx-[10vw] cursor-default"
           >
-            {/* White radial spotlight background */}
-            <div className="partner-glow" />
-
-            <div className="partner-img-container relative h-16 w-40 z-10">
-              <Image
-                src={logo.src}
-                alt={`Partner ${index + 1}`}
-                fill
-                className="partner-img object-contain"
-              />
-              {/* Shine streak moving across */}
-              <div className="shine-overlay" />
+            <div className="partner-card">
+              <div className="spinning-border" />
+              <div className="card-inner">
+                <div className="relative h-12 w-32">
+                  <Image
+                    src={logo.src}
+                    alt={`Partner ${index + 1}`}
+                    fill
+                    className="partner-img object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         ))}
