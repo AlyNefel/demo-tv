@@ -34,10 +34,11 @@ export default function FictionSeriesPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
               {/* Left: Image Card */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, x: -50 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9, y: 30 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="lg:col-span-1 relative aspect-[2/3] max-w-[320px] mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group charging-border"
+                className="lg:col-span-1 relative aspect-[2/3] w-full max-w-[280px] sm:max-w-[320px] mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-white/10 shadow-2xl group charging-border z-20"
               >
                 <div className="absolute inset-[2px] rounded-2xl bg-black z-10 overflow-hidden">
                   <Image 
