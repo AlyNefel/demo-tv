@@ -4,16 +4,15 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 const partnerLogos = [
-  { src: "/partner/2.png" },
-  { src: "/partner/3.png" },
-  { src: "/partner/4.png" },
-  { src: "/partner/7.png" },
-  { src: "/partner/8.png" },
+  { src: "/partner/2.png", scale: 3.2 },
+  { src: "/partner/3.png", scale: 1.3 },
+  { src: "/partner/4.png", scale: 1.3 },
+  { src: "/partner/7.png", scale: 1.3 },
   { src: "/partner/9.png" },
   { src: "/partner/10.png" },
-  { src: "/partner/11.png" },
+  { src: "/partner/11.png", scale: 1.3 },
   { src: "/partner/12.png" },
-  { src: "/partner/13.png" },
+  { src: "/partner/13.png", scale: 1.6 },
 ];
 
 const doubled = [...partnerLogos, ...partnerLogos];
@@ -85,14 +84,14 @@ const Partners = () => {
           position: relative;
           width: 220px;
           height: 120px;
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(12px);
+          background: rgba(255, 204, 233, 0.1);
+          backdrop-filter: blur(15px);
           border-radius: 1.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 204, 233, 0.3);
           transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -102,33 +101,50 @@ const Partners = () => {
           box-shadow: 0 0 60px rgba(255, 204, 233, 0.3);
         }
 
-        /* Spinning Border Base */
+        /* Static Glow Border */
         .spinning-border {
           position: absolute;
-          inset: -50%;
-          background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            transparent 280deg,
-            #ffcce9 310deg,
-            #ffcce9 360deg
-          );
-          animation: border-rotate 4s linear infinite;
-          opacity: 0.8;
+          inset: -3px;
+          background: #f5f5f5;
+          opacity: 0.9;
+          box-shadow: 
+            0 0 15px rgba(255, 255, 255, 0.3), 
+            inset 0 0 10px rgba(255, 255, 255, 0.2);
           transition: all 0.8s ease;
+        }
+        
+        .partner-item.is-center .spinning-border {
+          box-shadow: 
+            0 0 25px rgba(255, 255, 255, 0.5), 
+            inset 0 0 15px rgba(255, 255, 255, 0.4);
+          opacity: 1;
+          background: #ffffff;
+        }
+
+        .card-inner::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 50%;
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+          pointer-events: none;
+          z-index: 20;
         }
 
         .card-inner {
           position: absolute;
           inset: 2px;
-          background: rgba(10, 10, 10, 0.8);
-          backdrop-filter: blur(5px);
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(10px);
           border-radius: calc(1.5rem - 2px);
           z-index: 10;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 1.5rem;
+          padding: 1rem;
+          border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .partner-img {
@@ -142,9 +158,16 @@ const Partners = () => {
         }
       `}</style>
 
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center mb-12">
+        <h2 className="text-4xl md:text-6xl font-heading font-black text-white italic tracking-tighter mb-4 uppercase">
+          OUR <span className="text-primary">PARTNERS</span>
+        </h2>
+        <div className="w-24 h-1 bg-primary mx-auto rounded-full glow-pink" />
+      </div>
+
       <div
         ref={containerRef}
-        className="flex w-fit animate-marquee whitespace-nowrap items-center py-10"
+        className="flex w-fit animate-marquee whitespace-nowrap items-center py-6"
       >
         {doubled.map((logo, index) => (
           <div
@@ -154,12 +177,13 @@ const Partners = () => {
             <div className="partner-card">
               <div className="spinning-border" />
               <div className="card-inner">
-                <div className="relative h-12 w-32">
+                <div className="relative h-16 w-44">
                   <Image
                     src={logo.src}
                     alt={`Partner ${index + 1}`}
                     fill
                     className="partner-img object-contain"
+                    style={{ transform: logo.scale ? `scale(${logo.scale})` : 'none' }}
                   />
                 </div>
               </div>

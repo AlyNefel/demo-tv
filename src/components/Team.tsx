@@ -46,9 +46,11 @@ const initialTeamData = [
 const TypingEffect = ({ text }: { text: string }) => {
   const [displayedCount, setDisplayedCount] = React.useState(0);
   const [isInView, setIsInView] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
   const ref = React.useRef(null);
 
   React.useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setIsInView(true);
@@ -62,11 +64,11 @@ const TypingEffect = ({ text }: { text: string }) => {
   React.useEffect(() => {
     if (isInView && displayedCount < text.length) {
       const timeout = setTimeout(() => {
-        setDisplayedCount((prev) => prev + 1);
-      }, 5);
+        setDisplayedCount((prev) => prev + (isMobile ? 15 : 1));
+      }, isMobile ? 1 : 5);
       return () => clearTimeout(timeout);
     }
-  }, [displayedCount, text, isInView]);
+  }, [displayedCount, text, isInView, isMobile]);
 
   return (
     <div ref={ref} className="font-sans font-medium text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed tracking-wide">
@@ -75,7 +77,7 @@ const TypingEffect = ({ text }: { text: string }) => {
           key={i}
           initial={{ opacity: 0, filter: 'blur(12px)', y: 10, scale: 1.2 }}
           animate={i < displayedCount ? { opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: isMobile ? 0.1 : 0.3, ease: "easeOut" }}
           className={i < displayedCount ? "inline-block whitespace-pre" : "hidden"}
         >
           {char}

@@ -100,7 +100,7 @@ const ContactForm = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="relative inline-block"
           >
-            <h2 className="text-7xl md:text-9xl font-creepster text-primary tracking-widest dripping-text">
+            <h2 className="text-5xl sm:text-7xl md:text-9xl font-creepster text-primary tracking-widest dripping-text uppercase">
               CONTACT
             </h2>
             {/* Blood Drops */}
@@ -215,10 +215,10 @@ const ContactForm = () => {
                 <Button 
                   disabled={status === 'loading'}
                   type="submit" 
-                  className="w-full h-16 rounded-xl text-lg font-black tracking-[0.4em] bg-black border border-primary/40 text-primary neon-button hover:bg-primary hover:text-black transition-all group"
+                  className="w-full h-14 sm:h-16 rounded-xl text-sm sm:text-lg font-black tracking-[0.2em] sm:tracking-[0.4em] bg-black border border-primary/40 text-primary neon-button hover:bg-primary hover:text-black transition-all group"
                 >
                   {status === 'loading' ? 'CAPTURING...' : 'SEND A MESSAGE'}
-                  <Send size={20} className="ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <Send size={18} className="ml-2 sm:ml-3 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Button>
                 {status === 'error' && (
                   <p className="text-center text-red-500 text-xs mt-2">The abyss is currently unreachable. Try again later.</p>

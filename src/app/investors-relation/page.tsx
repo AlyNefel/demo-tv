@@ -168,25 +168,37 @@ export default function InvestorsRelationPage() {
           .spinning-border-container::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(
-              transparent,
-              transparent,
-              #ffcce9,
-              transparent 30%
-            );
-            animation: rotate 4s linear infinite;
+            inset: -3px;
+            background: #f5f5f5;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
             z-index: 0;
+          }
+          .spinning-border-container:hover::before {
+            background: #ffffff;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
+            opacity: 1;
           }
           .spinning-border-inner {
             position: relative;
-            background: #000;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 1.5rem;
             z-index: 1;
             height: 100%;
+            overflow: hidden;
+          }
+          .spinning-border-inner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent);
+            pointer-events: none;
+            z-index: 5;
           }
         `}</style>
 

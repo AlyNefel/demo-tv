@@ -17,7 +17,7 @@ const assets = [
   {
     title: "The Carthaginians: Our American Football Franchise",
     subtitle: "Sports & Entertainment",
-    desc: "Representing the strength and strategic brilliance of ancient Carthage, The Carthaginians American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
+    desc: "Representing the strength and strategic brilliance of ancient Carthage, **The Carthaginians** American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
     image: "/assets/carthagenna.png",
     tag: "SPORTS",
     color: "from-rose-950/80",
@@ -28,7 +28,7 @@ function AssetSection({ asset, index }: { asset: typeof assets[0], index: number
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 1, 1, 0.2]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.6, 1, 1, 0.6]);
   const isEven = index % 2 === 0;
 
   return (
@@ -41,9 +41,12 @@ function AssetSection({ asset, index }: { asset: typeof assets[0], index: number
         {/* Image */}
         <motion.div
           style={{ opacity }}
-          className={`relative h-[60vh] rounded-3xl overflow-hidden border border-white/10 hover:border-primary/30 transition-colors duration-500 shadow-[0_0_60px_rgba(255,204,233,0.08)] group ${isEven ? 'order-1' : 'order-1 lg:order-2'}`}
+          className={`relative h-[40vh] lg:h-[60vh] rounded-3xl overflow-hidden border border-white/10 hover:border-primary/30 transition-colors duration-500 shadow-[0_0_60px_rgba(255,204,233,0.08)] group ${isEven ? 'order-1' : 'order-1 lg:order-2'}`}
         >
-          <motion.div style={{ y }} className="absolute inset-[-15%] w-[130%] h-[130%]">
+          <motion.div 
+            style={{ y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : y }} 
+            className="absolute inset-[-15%] lg:inset-[-15%] w-[130%] h-[130%]"
+          >
             <Image src={asset.image} fill alt={asset.title} className="object-cover transition-transform duration-1000 group-hover:scale-105" />
             <div className={`absolute inset-0 bg-gradient-to-t ${asset.color} to-transparent opacity-70`} />
           </motion.div>
@@ -72,7 +75,7 @@ function AssetSection({ asset, index }: { asset: typeof assets[0], index: number
           </h2>
           <div className="w-20 h-1 bg-primary rounded-full glow-pink mb-8" />
           <p className="text-lg text-white/70 leading-relaxed font-medium">
-            {asset.desc}
+            {asset.desc.split('**').map((part, i) => i % 2 === 1 ? <strong key={i} className="text-white font-black">{part}</strong> : part)}
           </p>
         </motion.div>
       </div>

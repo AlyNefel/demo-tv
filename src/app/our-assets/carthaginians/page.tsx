@@ -42,7 +42,7 @@ export default function CarthaginiansPage() {
           >
             {/* Header */}
             <div className="text-center md:text-left">
-              <h1 className="text-5xl md:text-7xl font-heading font-black text-white italic tracking-tighter uppercase mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-white italic tracking-tight sm:tracking-tighter uppercase mb-6 leading-tight">
                 THE <span className="text-primary">CARTHAGINIANS</span>
               </h1>
               <div className="w-32 h-1.5 bg-primary rounded-full glow-pink mx-auto md:mx-0" />
@@ -77,7 +77,7 @@ export default function CarthaginiansPage() {
                     Our American Football <span className="text-primary">Franchise</span>
                   </h2>
                   <p className="text-xl text-white/70 leading-relaxed font-rosario font-light">
-                    {pageData.desc}
+                    Representing the strength and strategic brilliance of Carthage, our American Football franchise, <strong className="text-white font-black">The Carthaginians</strong>, brings elite-level competition and community spirit to the global stage.
                   </p>
                 </div>
 
