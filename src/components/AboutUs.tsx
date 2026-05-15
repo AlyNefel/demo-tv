@@ -12,10 +12,10 @@ const AboutUs = () => {
     offset: ["start end", "end start"]
   });
 
-  // Stronger Parallax effects
-  const y1 = useTransform(scrollYProgress, [0, 1], [-800, 800]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [600, -600]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  // Parallax effects - responsive intensity
+  const y1 = useTransform(scrollYProgress, [0, 1], [-400, 400]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [300, -300]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <section ref={containerRef} className="relative py-32 overflow-hidden bg-black flex items-center min-h-[80vh]">
@@ -53,11 +53,11 @@ const AboutUs = () => {
             </Link>
           </motion.div>
 
-          {/* Parallax Image Grid - ABSOLUTE EDGE-TO-EDGE FILL WITH NO WHITE GAPS */}
-          <div className="relative h-[600px] hidden lg:block">
+          {/* Parallax Image Grid - Responsive for mobile */}
+          <div className="relative h-[450px] md:h-[600px] mt-16 lg:mt-0">
             <motion.div
               style={{ y: y2 }}
-              className="absolute top-10 left-0 w-[300px] h-[300px] rounded-3xl overflow-hidden border-4 border-primary shadow-[0_0_50px_rgba(255,204,233,0.4)] z-20 bg-black"
+              className="absolute top-0 left-0 w-[240px] h-[240px] md:w-[300px] md:h-[300px] rounded-3xl overflow-hidden border-4 border-primary shadow-[0_0_50px_rgba(255,204,233,0.4)] z-20 bg-black"
             >
               <img
                 src="/assets/capsule.png"
@@ -65,10 +65,10 @@ const AboutUs = () => {
                 className="w-full h-full object-cover block"
               />
             </motion.div>
-
+ 
             <motion.div
               style={{ y: y1 }}
-              className="absolute bottom-10 right-0 w-[350px] h-[350px] rounded-3xl overflow-hidden border-4 border-primary shadow-[0_0_60px_rgba(255,204,233,0.4)] z-10 bg-black"
+              className="absolute bottom-0 right-0 w-[280px] h-[280px] md:w-[350px] md:h-[350px] rounded-3xl overflow-hidden border-4 border-primary shadow-[0_0_60px_rgba(255,204,233,0.4)] z-10 bg-black"
             >
               <img
                 src="/assets/carthagenna.png"
