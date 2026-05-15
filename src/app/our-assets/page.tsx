@@ -9,7 +9,7 @@ const assets = [
   {
     title: "Capsule: Our Scientific Quarterly Publication",
     subtitle: "Print & Digital Publication",
-    desc: "Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers. Symbolizing a space, abyssal, and time capsule, it aims to be a vessel for knowledge, exploration, and the preservation of our planet's wonders.",
+    desc: "**Capsule Magazine:** Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers. Symbolizing a space, abyssal, and time capsule, it aims to be a vessel for knowledge, exploration, and the preservation of our planet's wonders.",
     image: "/assets/capsule.png",
     tag: "MEDIA",
     color: "from-blue-950/80",
@@ -17,7 +17,7 @@ const assets = [
   {
     title: "The Carthaginians: Our American Football Franchise",
     subtitle: "Sports & Entertainment",
-    desc: "Representing the strength and strategic brilliance of ancient Carthage, **The Carthaginians** American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
+    desc: "**The Carthaginians:** Representing the strength and strategic brilliance of ancient Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
     image: "/assets/carthagenna.png",
     tag: "SPORTS",
     color: "from-rose-950/80",

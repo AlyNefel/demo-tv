@@ -39,11 +39,11 @@ const AboutUs = () => {
             <div className="w-24 h-1 bg-primary rounded-full glow-pink" />
 
             <p className="text-xl text-muted-foreground leading-relaxed">
-              <strong>Capsule Magazine:</strong> Published quarterly in print and online, connecting a global community of explorers and scientists with stunning photography and insightful articles on remarkable discoveries.
+              <strong className="text-white font-black">Capsule Magazine:</strong> Published quarterly in print and online, connecting a global community of explorers and scientists with stunning photography and insightful articles on remarkable discoveries.
             </p>
 
             <p className="text-lg text-white/60 leading-relaxed font-light">
-              <strong>The Carthaginians:</strong> Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.
+              <strong className="text-white font-black">The Carthaginians:</strong> Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.
             </p>
 
             <Link href="/our-assets">
