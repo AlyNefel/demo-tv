@@ -9,7 +9,7 @@ const assets = [
   {
     title: "Capsule: Our Scientific Quarterly Publication",
     subtitle: "Print & Digital Publication",
-    desc: "**Capsule Magazine:** Monarch TV Capsule Magazine, published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers. Symbolizing a space, abyssal, and time capsule, it aims to be a vessel for knowledge, exploration, and the preservation of our planet's wonders.",
+    desc: "**Capsule Magazine:**  published quarterly in print and online, connects a global community of explorers, scientists, and enthusiasts. Featuring stunning photos and insightful articles, it shares remarkable discoveries, research, and adventures, inspiring and educating readers. Symbolizing a space, abyssal, and time capsule, it aims to be a vessel for knowledge, exploration, and the preservation of our planets wonders.",
     image: "/assets/capsule.png",
     tag: "MEDIA",
     color: "from-blue-950/80",
@@ -17,7 +17,7 @@ const assets = [
   {
     title: "The Carthaginians: Our American Football Franchise",
     subtitle: "Sports & Entertainment",
-    desc: "**The Carthaginians:** Representing the strength and strategic brilliance of ancient Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage. Named after history's most fearless military strategists, our franchise embodies resilience, tactical excellence, and the unbreakable will to dominate the field — carrying the legacy of Hannibal Barca into every play.",
+    desc: "**The Carthaginians:** our American football franchise under Monarch TV Studios, is set to make its debut in France, specifically in Poitiers, starting in Q3 2026. The team will be fully operational by the end of 2026, preparing to compete in the French championship under a partnership with the FFFA (French American Football Federation) and the new European League from 2027. To bolster this venture, we are currently negotiating a strategic alliance with several NFL and CFL franchises in the USA and Canada, who are expected to serve as sponsors and potential shareholders, ensuring a strong foundation for the franchise’s growth and success in the European football landscape.",
     image: "/assets/carthagenna.png",
     tag: "SPORTS",
     color: "from-rose-950/80",
@@ -43,8 +43,8 @@ function AssetSection({ asset, index }: { asset: typeof assets[0], index: number
           style={{ opacity }}
           className={`relative h-[40vh] lg:h-[60vh] rounded-3xl overflow-hidden border border-white/10 hover:border-primary/30 transition-colors duration-500 shadow-[0_0_60px_rgba(255,204,233,0.08)] group ${isEven ? 'order-1' : 'order-1 lg:order-2'}`}
         >
-          <motion.div 
-            style={{ y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : y }} 
+          <motion.div
+            style={{ y: typeof window !== 'undefined' && window.innerWidth < 1024 ? 0 : y }}
             className="absolute inset-[-15%] lg:inset-[-15%] w-[130%] h-[130%]"
           >
             <Image src={asset.image} fill alt={asset.title} className="object-cover transition-transform duration-1000 group-hover:scale-105" />
@@ -96,12 +96,12 @@ export default function OurAssetsPage() {
 
         {/* Hero */}
         <section ref={heroRef} className="relative h-[75vh] flex items-center justify-center overflow-hidden">
-          <motion.div 
-            style={{ y: heroY }} 
-            animate={{ 
+          <motion.div
+            style={{ y: heroY }}
+            animate={{
               y: [0, -30, 0],
             }}
-            transition={{ 
+            transition={{
               duration: 12,
               repeat: Infinity,
               ease: "easeInOut"
