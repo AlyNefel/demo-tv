@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 
 const pageData = {
   title: "The Carthaginians: Our American Football Franchise",
-  desc: "Representing the strength and strategic brilliance of Carthage, our American Football franchise brings elite-level competition and community spirit to the global stage.",
+  desc: "our American football franchise under Monarch TV Studios, is set to make its debut in France, specifically in Poitiers, starting in Q3 2026. The team will be fully operational by the end of 2026, preparing to compete in the French championship under a partnership with the FFFA (French American Football Federation) and the new European League from 2027. To bolster this venture, we are currently negotiating a strategic alliance with several NFL and CFL franchises in the USA and Canada, who are expected to serve as sponsors and potential shareholders, ensuring a strong foundation for the franchise’s growth and success in the European football landscape.",
   image: "/assets/carthagenna.png",
 };
 
@@ -77,19 +77,19 @@ export default function CarthaginiansPage() {
                     Our American Football <span className="text-primary">Franchise</span>
                   </h2>
                   <p className="text-xl text-white/70 leading-relaxed font-rosario font-light">
-                    Representing the strength and strategic brilliance of Carthage, our American Football franchise, <strong className="text-white font-black">The Carthaginians</strong>, brings elite-level competition and community spirit to the global stage.
+                    Our American football franchise under Monarch TV Studios, is set to make its debut in France, specifically in Poitiers, starting in Q3 2026. The team will be fully operational by the end of 2026, preparing to compete in the French championship under a partnership with the FFFA (French American Football Federation) and the new European League from 2027. To bolster this venture, we are currently negotiating a strategic alliance with several NFL and CFL franchises in the USA and Canada, who are expected to serve as sponsors and potential shareholders, ensuring a strong foundation for the franchise’s growth and success in the European football landscape.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-6 pt-8">
                   <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <span className="block text-primary font-black text-2xl mb-1">FFFA 
-</span>
+                    <span className="block text-primary font-black text-2xl mb-1">FFFA
+                    </span>
                     <span className="text-xs text-white/40 uppercase tracking-widest font-bold">Competition</span>
                   </div>
                   <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
                     <span className="block text-primary font-black text-2xl mb-1">European
-</span>
+                    </span>
                     <span className="text-xs text-white/40 uppercase tracking-widest font-bold">New League</span>
                   </div>
                 </div>

@@ -4,15 +4,15 @@ import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 
 const partnerLogos = [
-  { src: "/partner/2.png", scale: 3.2 },
-  { src: "/partner/3.png", scale: 1.3 },
-  { src: "/partner/4.png", scale: 1.3 },
-  { src: "/partner/7.png", scale: 1.3 },
-  { src: "/partner/9.png" },
-  { src: "/partner/10.png" },
-  { src: "/partner/11.png", scale: 1.3 },
-  { src: "/partner/12.png" },
-  { src: "/partner/13.png", scale: 1.6 },
+  { src: "/new-logos/image copy 2.png" },
+  { src: "/new-logos/image copy 3.png" },
+  { src: "/new-logos/image copy 4.png" },
+  { src: "/new-logos/image copy 5.png" },
+  { src: "/new-logos/image copy 6.png" },
+  { src: "/new-logos/image copy 7.png" },
+  { src: "/new-logos/image copy 8.png" },
+  { src: "/new-logos/image copy.png" },
+  { src: "/new-logos/image.png" },
 ];
 
 const doubled = [...partnerLogos, ...partnerLogos];
@@ -57,16 +57,11 @@ const Partners = () => {
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,204,233,0.15)_0%,transparent_80%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_100%)]" />
-        <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-[#050505] to-transparent" />
-        <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-[#050505] to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-1/4 bg-gradient-to-r from-[#050505] to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-1/4 bg-gradient-to-l from-[#050505] to-transparent z-10" />
       </div>
 
       <style>{`
-        @keyframes border-rotate {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
         .partner-item {
           opacity: 1;
           transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -79,82 +74,35 @@ const Partners = () => {
           transform: scale(1.4);
         }
 
-        /* Card Container */
+        /* Card Container - No border radius and without background */
         .partner-card {
           position: relative;
-          width: 220px;
-          height: 120px;
-          background: rgba(255, 204, 233, 0.1);
-          backdrop-filter: blur(15px);
-          border-radius: 1.5rem;
+          width: 260px;
+          height: 140px;
+          border-radius: 1.5rem; /* Border radius */
           display: flex;
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          border: 1px solid rgba(255, 204, 233, 0.3);
           transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          background: transparent; /* Without background */
+          border: 1px solid rgba(255, 255, 255, 0.15); /* Visible border */
         }
 
         .partner-item.is-center .partner-card {
-          background: rgba(255, 255, 255, 0.15);
-          border-color: rgba(255, 204, 233, 0.5);
-          box-shadow: 0 0 60px rgba(255, 204, 233, 0.3);
-        }
-
-        /* Static Glow Border */
-        .spinning-border {
-          position: absolute;
-          inset: -3px;
-          background: #f5f5f5;
-          opacity: 0.9;
-          box-shadow: 
-            0 0 15px rgba(255, 255, 255, 0.3), 
-            inset 0 0 10px rgba(255, 255, 255, 0.2);
-          transition: all 0.8s ease;
-        }
-        
-        .partner-item.is-center .spinning-border {
-          box-shadow: 
-            0 0 25px rgba(255, 255, 255, 0.5), 
-            inset 0 0 15px rgba(255, 255, 255, 0.4);
-          opacity: 1;
-          background: #ffffff;
-        }
-
-        .card-inner::after {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 50%;
-          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
-          pointer-events: none;
-          z-index: 20;
-        }
-
-        .card-inner {
-          position: absolute;
-          inset: 2px;
-          background: rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(10px);
-          border-radius: calc(1.5rem - 2px);
-          z-index: 10;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 1rem;
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          box-shadow: 0 0 40px rgba(255, 204, 233, 0.2);
+          border: 1px solid rgba(255, 204, 233, 0.4); /* Highlighted border on center */
         }
 
         .partner-img {
           transition: all 0.8s ease;
-          filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+          object-fit: contain;
+          padding: 1rem;
         }
 
         .partner-item.is-center .partner-img {
-          filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
-          transform: scale(1.15);
+          filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+          transform: scale(1.05);
         }
       `}</style>
 
@@ -175,18 +123,12 @@ const Partners = () => {
             className="partner-item flex items-center justify-center mx-[10vw] cursor-default"
           >
             <div className="partner-card">
-              <div className="spinning-border" />
-              <div className="card-inner">
-                <div className="relative h-16 w-44">
-                  <Image
-                    src={logo.src}
-                    alt={`Partner ${index + 1}`}
-                    fill
-                    className="partner-img object-contain"
-                    style={{ transform: logo.scale ? `scale(${logo.scale})` : 'none' }}
-                  />
-                </div>
-              </div>
+              <Image
+                src={logo.src}
+                alt={`Partner ${index + 1}`}
+                fill
+                className="partner-img"
+              />
             </div>
           </div>
         ))}
