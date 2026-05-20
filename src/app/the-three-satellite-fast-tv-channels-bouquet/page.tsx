@@ -10,7 +10,7 @@ const channels = [
     name: "MONARCH TV CHANNEL",
     launch: "July 2026",
     desc: "Monarch TV Channel, the group's flagship station, offers engaging documentaries and reality shows focused on space exploration, satellite and shuttle launches, space mining, and recent discoveries like VLA, as well as space tourism. It also features programs on oceanography, marine biology, and ocean conservation, highlighting the beauty and importance of our oceans. Through inspiring content, Monarch TV Channel aims to educate and entertain viewers about the universe, the depths of the oceans, and human history's mysteries.",
-    icon: "/Chanel Bouquet/monarch_tv_channe.png",
+    icon: "/Chanel Bouquet/novel.png",
     color: "text-white"
   },
   {
@@ -24,7 +24,7 @@ const channels = [
     name: "MONARCH TV NOVELS",
     launch: "October 2026",
     desc: "Monarch TV Novels is a hybrid channel dedicated to a diverse blend of fiction and pseudo-fiction series, entertainment, unconventional sports, music, and reality shows, offering a wide array of captivating stories across various genres. The channel is committed to delivering high-quality scripted and unscripted content that appeals to fans of dramatic, adventurous, and imaginative programming. Positioned as a premier source of fictional and entertainment storytelling within the group, Monarch TV Novels aims to engage audiences with compelling narratives and innovative entertainment experiences.",
-    icon: "/Chanel Bouquet/novel.png",
+    icon: "/Chanel Bouquet/monarch_tv_channe.png",
     color: "text-primary"
   }
 ];

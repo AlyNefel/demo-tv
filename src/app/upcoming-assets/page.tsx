@@ -134,8 +134,8 @@ export default function UpcomingAssets() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-7xl md:text-[12rem] font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-8 leading-[0.75]">
-              FUTURE <br /><span className="text-white">HORIZONS</span>
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-8 leading-[0.75] break-words">
+              FUTURE <br /><span className="text-white">HORIZON</span>
             </h1>
             <div className="w-48 h-2 bg-primary mx-auto rounded-full glow-pink mb-12" />
             <p className="text-2xl text-white/50 max-w-3xl mx-auto italic font-rosario">
