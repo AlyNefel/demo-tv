@@ -161,11 +161,15 @@ export default function InvestorsRelationPage() {
           
           .spinning-border-container {
             position: relative;
-            padding: 2.5px;
+            padding: 3px;
             border-radius: 1.5rem;
             overflow: hidden;
-            background: rgba(252, 194, 232, 0.1);
+            background: rgba(252, 194, 232, 0.15);
             transition: all 0.5s ease;
+            box-shadow: 0 0 15px rgba(252, 194, 232, 0.15);
+          }
+          .spinning-border-container:hover {
+            box-shadow: 0 0 30px rgba(252, 194, 232, 0.35);
           }
           .spinning-border-container::before {
             content: '';
@@ -174,35 +178,33 @@ export default function InvestorsRelationPage() {
             background: conic-gradient(
               from 0deg,
               transparent 0%,
-              #fcc2e8 15%,
-              transparent 30%,
-              #fcc2e8 50%,
-              transparent 65%,
-              #fcc2e8 80%,
-              transparent 100%
+              #fcc2e8 20%,
+              transparent 40%,
+              #fcc2e8 60%,
+              transparent 80%,
+              #fcc2e8 100%
             );
-            animation: rotate 8s infinite linear;
+            animation: rotate 6s infinite linear;
             z-index: 0;
-            opacity: 0.85;
+            opacity: 1;
             transition: opacity 0.5s ease;
           }
           .spinning-border-container:hover::before {
-            opacity: 1;
-            animation: rotate 4s infinite linear;
+            animation: rotate 3s infinite linear;
           }
           .spinning-border-inner {
             position: relative;
             background: #050203;
-            border-radius: calc(1.5rem - 2.5px);
+            border-radius: calc(1.5rem - 3px);
             z-index: 1;
             height: 100%;
             overflow: hidden;
-            border: 1px solid rgba(252, 194, 232, 0.15);
+            border: 1px solid rgba(252, 194, 232, 0.25);
             transition: all 0.5s ease;
           }
           .spinning-border-container:hover .spinning-border-inner {
             background: #0d060a;
-            border-color: rgba(252, 194, 232, 0.45);
+            border-color: rgba(252, 194, 232, 0.55);
             box-shadow: inset 0 0 20px rgba(252, 194, 232, 0.2);
           }
           .spinning-border-inner::after {

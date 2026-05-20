@@ -81,14 +81,14 @@ export default function CapsulePage() {
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6 pt-8">
-                  <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <span className="block text-primary font-black text-2xl mb-1">GLOBAL</span>
-                    <span className="text-xs text-white/40 uppercase tracking-widest font-bold">Community</span>
+                <div className="grid grid-cols-2 gap-4 md:gap-6 pt-8">
+                  <div className="p-4 md:p-6 bg-white/5 border border-white/10 rounded-2xl">
+                    <span className="block text-primary font-black text-lg sm:text-xl md:text-2xl mb-1 tracking-tight">GLOBAL</span>
+                    <span className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest font-bold">Community</span>
                   </div>
-                  <div className="p-6 bg-white/5 border border-white/10 rounded-2xl">
-                    <span className="block text-primary font-black text-2xl mb-1">QUARTERLY</span>
-                    <span className="text-xs text-white/40 uppercase tracking-widest font-bold">Publication</span>
+                  <div className="p-4 md:p-6 bg-white/5 border border-white/10 rounded-2xl">
+                    <span className="block text-primary font-black text-lg sm:text-xl md:text-2xl mb-1 tracking-tight">QUARTERLY</span>
+                    <span className="text-[10px] sm:text-xs text-white/40 uppercase tracking-widest font-bold">Publication</span>
                   </div>
                 </div>
               </motion.div>

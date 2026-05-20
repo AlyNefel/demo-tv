@@ -249,7 +249,7 @@ const Team = () => {
                 <div key={index} className="flex flex-col gap-6">
                   {/* Floating Name Label - Button Style (OUTSIDE) */}
                   <div className="z-20 w-full">
-                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[44px] flex items-center justify-center">
+                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[72px] md:min-h-[44px] flex items-center justify-center">
                       {member.name}
                     </span>
                   </div>
@@ -276,7 +276,7 @@ const Team = () => {
                 <div key={index + 6} className="flex flex-col gap-6">
                   {/* Floating Name Label - Button Style (OUTSIDE) */}
                   <div className="z-20 w-full">
-                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[44px] flex items-center justify-center">
+                    <span className="block px-3 py-2 bg-primary/20 backdrop-blur-md text-[10px] md:text-[11px] font-black uppercase tracking-[0.2em] text-primary border border-primary/40 rounded-full glow-pink text-center whitespace-normal leading-tight min-h-[72px] md:min-h-[44px] flex items-center justify-center">
                       {member.name}
                     </span>
                   </div>

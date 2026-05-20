@@ -4,14 +4,29 @@ import React from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Navbar from "@/components/Navbar";
+import { Globe, MapPin, Compass, Navigation, Landmark, Radio, Tv } from 'lucide-react';
 
 const audienceRegions = [
-  { region: "Europe", detail: "Scandinavia, the Baltics, and the United Kingdom" },
-  { region: "North America", detail: "USA and Canada" },
-  { region: "East Asia", detail: "Japan, South Korea, Southeast Asia, and East Asia" },
-  { region: "Oceania", detail: "" },
-  { region: "Sub-Saharan Africa", detail: "" }
+  { region: "Europe", detail: "Scandinavia, the Baltics, and the United Kingdom", icon: Globe },
+  { region: "North America", detail: "USA and Canada", icon: MapPin },
+  { region: "East Asia", detail: "Japan, South Korea, Southeast Asia, and East Asia", icon: Compass },
+  { region: "Oceania", detail: "", icon: Navigation },
+  { region: "Sub-Saharan Africa", detail: "", icon: Landmark }
 ];
+
+const SpinningBorderCard = ({ children, className = "", whileHover = { y: -5 }, innerClassName = "p-8" }: { children: React.ReactNode, className?: string, whileHover?: any, innerClassName?: string }) => {
+  return (
+    <motion.div 
+      whileHover={whileHover}
+      className={`spinning-border-container h-full ${className}`}
+    >
+      <div className={`spinning-border-inner flex flex-col h-full group ${innerClassName}`}>
+        {children}
+      </div>
+    </motion.div>
+  );
+};
+
 
 export default function AudiencesPage() {
   const containerRef = React.useRef(null);
@@ -70,6 +85,73 @@ export default function AudiencesPage() {
           <div className="absolute bottom-[-15%] left-[-10%] w-[1000px] h-[1000px] bg-pink-600/15 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '3s' }} />
         </div>
 
+        <style>{`
+          @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+          
+          .spinning-border-container {
+            position: relative;
+            padding: 3px;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: rgba(252, 194, 232, 0.15);
+            transition: all 0.5s ease;
+            box-shadow: 0 0 15px rgba(252, 194, 232, 0.15);
+          }
+          .spinning-border-container:hover {
+            box-shadow: 0 0 30px rgba(252, 194, 232, 0.35);
+          }
+          .spinning-border-container::before {
+            content: '';
+            position: absolute;
+            inset: -150%;
+            background: conic-gradient(
+              from 0deg,
+              transparent 0%,
+              #fcc2e8 20%,
+              transparent 40%,
+              #fcc2e8 60%,
+              transparent 80%,
+              #fcc2e8 100%
+            );
+            animation: rotate 6s infinite linear;
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+          }
+          .spinning-border-container:hover::before {
+            animation: rotate 3s infinite linear;
+          }
+          .spinning-border-inner {
+            position: relative;
+            background: #050203;
+            border-radius: calc(1.5rem - 3px);
+            z-index: 1;
+            height: 100%;
+            overflow: hidden;
+            border: 1px solid rgba(252, 194, 232, 0.25);
+            transition: all 0.5s ease;
+          }
+          .spinning-border-container:hover .spinning-border-inner {
+            background: #0d060a;
+            border-color: rgba(252, 194, 232, 0.55);
+            box-shadow: inset 0 0 20px rgba(252, 194, 232, 0.25);
+          }
+          .spinning-border-inner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to bottom, rgba(252, 194, 232, 0.08), transparent);
+            pointer-events: none;
+            z-index: 5;
+          }
+        `}</style>
+
         {/* Content Layers */}
         <div className="relative z-20">
           
@@ -91,7 +173,7 @@ export default function AudiencesPage() {
               <div className="w-56 h-2.5 bg-primary mx-auto rounded-full glow-pink shadow-[0_0_50px_rgba(255,204,233,1)]" />
             </motion.div>
           </section>
-
+ 
           {/* Distribution Details */}
           <section className="py-48 px-6">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -99,21 +181,22 @@ export default function AudiencesPage() {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.5 }}
-                className="relative p-1 bg-gradient-to-br from-primary/50 via-white/10 to-transparent rounded-[3rem] group overflow-hidden shadow-[0_0_60px_rgba(255,204,233,0.1)]"
+                className="h-full"
               >
-                <div className="relative z-10 p-14 bg-black/95 backdrop-blur-3xl rounded-[2.9rem] h-full flex flex-col justify-center border border-white/5">
-                  <div className="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mb-10 border border-primary/40 glow-pink">
-                    <span className="text-primary font-black text-3xl">01</span>
+                <SpinningBorderCard innerClassName="p-14 justify-start h-full">
+                  {/* Circular Icon block - Editorial Partnership style */}
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                    <Radio className="text-primary animate-pulse" size={32} />
                   </div>
+                  
                   <h3 className="text-primary font-black uppercase tracking-widest text-sm mb-4">MENA Region</h3>
-                  <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-8 leading-tight">
-                    SATELLITE <br /><span className="text-primary">DISTRIBUTION</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-8 leading-tight group-hover:text-primary transition-colors">
+                    SATELLITE <br /><span className="text-primary text-glow-pink">DISTRIBUTION</span>
                   </h2>
                   <p className="text-3xl text-white/70 font-rosario font-light italic leading-relaxed">
                     Eutelsat 7WA @ 7/8° West
                   </p>
-                </div>
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                </SpinningBorderCard>
               </motion.div>
 
               <motion.div 
@@ -121,61 +204,73 @@ export default function AudiencesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ amount: 0.5 }}
                 transition={{ delay: 0.2 }}
-                className="relative p-1 bg-gradient-to-br from-primary/50 via-white/10 to-transparent rounded-[3rem] group overflow-hidden shadow-[0_0_60px_rgba(255,204,233,0.1)]"
+                className="h-full"
               >
-                <div className="relative z-10 p-14 bg-black/95 backdrop-blur-3xl rounded-[2.9rem] h-full flex flex-col justify-center border border-white/5">
-                  <div className="w-20 h-20 bg-primary/20 rounded-3xl flex items-center justify-center mb-10 border border-primary/40 glow-pink">
-                    <span className="text-primary font-black text-3xl">02</span>
+                <SpinningBorderCard innerClassName="p-14 justify-start h-full">
+                  {/* Circular Icon block - Editorial Partnership style */}
+                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                    <Tv className="text-primary" size={32} />
                   </div>
+                  
                   <h3 className="text-primary font-black uppercase tracking-widest text-sm mb-4">Worldwide Access</h3>
-                  <h2 className="text-4xl md:text-6xl font-black text-white italic tracking-tighter mb-8 leading-tight">
-                    FAST <br /><span className="text-primary">PLATFORMS</span>
+                  <h2 className="text-4xl md:text-5xl font-black text-white italic tracking-tighter mb-8 leading-tight group-hover:text-primary transition-colors">
+                    FAST <br /><span className="text-primary text-glow-pink">PLATFORMS</span>
                   </h2>
                   <p className="text-3xl text-white/70 font-rosario font-light italic leading-relaxed">
                     The Global FAST Platforms
                   </p>
-                </div>
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                </SpinningBorderCard>
               </motion.div>
             </div>
           </section>
-
+ 
           {/* Regional Grid */}
           <section className="py-48 px-6 relative">
             <div className="max-w-7xl mx-auto">
               <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-10">
                 <div className="flex-1">
-                  <h2 className="text-7xl md:text-9xl font-heading font-black text-white italic tracking-tighter uppercase leading-none">
+                  <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-white italic tracking-tighter uppercase leading-none break-words">
                     REGIONAL <br /><span className="text-primary text-glow-pink">COVERAGE</span>
                   </h2>
                 </div>
                 <div className="w-full md:w-1/3 h-[2px] bg-gradient-to-r from-primary via-primary/50 to-transparent" />
               </div>
-
+ 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                {audienceRegions.map((region, i) => (
-                  <motion.div
-                    key={region.region}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="group p-12 rounded-[2.5rem] bg-white/[0.03] border border-white/10 hover:border-primary/60 hover:bg-white/[0.07] transition-all duration-700 relative overflow-hidden shadow-2xl"
-                  >
-                    <div className="relative z-10">
-                      <h3 className="text-4xl font-black text-white italic tracking-tighter mb-6 group-hover:text-primary transition-colors">
-                        {region.region}
-                      </h3>
-                      {region.detail && (
-                        <p className="text-white/50 font-rosario text-sm uppercase tracking-[0.25em] font-bold leading-relaxed">
-                          {region.detail}
-                        </p>
-                      )}
-                    </div>
-                    {/* Hover Glow */}
-                    <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-primary/20 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  </motion.div>
-                ))}
+                {audienceRegions.map((region, i) => {
+                  const Icon = region.icon;
+                  return (
+                    <motion.div
+                      key={region.region}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="h-full"
+                    >
+                      <SpinningBorderCard innerClassName="p-12 justify-start h-full">
+                        {/* Circular Icon block - Editorial Partnership style */}
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                          <Icon className="text-primary" size={24} />
+                        </div>
+                        
+                        <h3 className="text-2xl font-black text-white italic mb-4 tracking-tighter group-hover:text-primary transition-colors">
+                          {region.region}
+                        </h3>
+                        
+                        {region.detail ? (
+                          <p className="text-white/60 font-rosario leading-relaxed font-light">
+                            {region.detail}
+                          </p>
+                        ) : (
+                          <p className="text-white/40 font-rosario leading-relaxed font-light italic">
+                            Full digital and satellite broadcast streaming coverage.
+                          </p>
+                        )}
+                      </SpinningBorderCard>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </section>
