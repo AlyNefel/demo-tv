@@ -9,9 +9,9 @@ const partnerLogos = [
   { src: "/new-logos/image copy 4.png" },
   { src: "/new-logos/image copy 5.png" },
   { src: "/new-logos/image copy 6.png" },
-  { src: "/new-logos/image copy 7.png" },
+  { src: "/new-logos/sg.png", padding: "0.7rem" },
   { src: "/new-logos/image copy 8.png" },
-  { src: "/new-logos/image copy.png" },
+  { src: "/new-logos/log-removebg-preview.png" },
   { src: "/new-logos/image.png" },
 ];
 
@@ -128,6 +128,7 @@ const Partners = () => {
                 alt={`Partner ${index + 1}`}
                 fill
                 className="partner-img"
+                style={{ padding: logo.padding || '1rem' }}
               />
             </div>
           </div>

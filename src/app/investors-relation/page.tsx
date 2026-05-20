@@ -161,33 +161,49 @@ export default function InvestorsRelationPage() {
           
           .spinning-border-container {
             position: relative;
-            padding: 1px;
+            padding: 2.5px;
             border-radius: 1.5rem;
             overflow: hidden;
+            background: rgba(252, 194, 232, 0.1);
+            transition: all 0.5s ease;
           }
           .spinning-border-container::before {
             content: '';
             position: absolute;
-            inset: -3px;
-            background: #f5f5f5;
-            opacity: 0.9;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+            inset: -150%;
+            background: conic-gradient(
+              from 0deg,
+              transparent 0%,
+              #fcc2e8 15%,
+              transparent 30%,
+              #fcc2e8 50%,
+              transparent 65%,
+              #fcc2e8 80%,
+              transparent 100%
+            );
+            animation: rotate 8s infinite linear;
             z-index: 0;
+            opacity: 0.85;
+            transition: opacity 0.5s ease;
           }
           .spinning-border-container:hover::before {
-            background: #ffffff;
-            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6));
             opacity: 1;
+            animation: rotate 4s infinite linear;
           }
           .spinning-border-inner {
             position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 1.5rem;
+            background: #050203;
+            border-radius: calc(1.5rem - 2.5px);
             z-index: 1;
             height: 100%;
             overflow: hidden;
+            border: 1px solid rgba(252, 194, 232, 0.15);
+            transition: all 0.5s ease;
+          }
+          .spinning-border-container:hover .spinning-border-inner {
+            background: #0d060a;
+            border-color: rgba(252, 194, 232, 0.45);
+            box-shadow: inset 0 0 20px rgba(252, 194, 232, 0.2);
           }
           .spinning-border-inner::after {
             content: '';
@@ -196,7 +212,7 @@ export default function InvestorsRelationPage() {
             left: 0;
             right: 0;
             height: 60%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent);
+            background: linear-gradient(to bottom, rgba(252, 194, 232, 0.08), transparent);
             pointer-events: none;
             z-index: 5;
           }

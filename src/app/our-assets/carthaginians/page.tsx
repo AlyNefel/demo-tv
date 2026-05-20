@@ -7,8 +7,8 @@ import Navbar from "@/components/Navbar";
 
 const pageData = {
   title: "The Carthaginians: Our American Football Franchise",
-  desc: "our American football franchise under Monarch TV Studios, is set to make its debut in France, specifically in Poitiers, starting in Q3 2026. The team will be fully operational by the end of 2026, preparing to compete in the French championship under a partnership with the FFFA (French American Football Federation) and the new European League from 2027. To bolster this venture, we are currently negotiating a strategic alliance with several NFL and CFL franchises in the USA and Canada, who are expected to serve as sponsors and potential shareholders, ensuring a strong foundation for the franchise’s growth and success in the European football landscape.",
-  image: "/assets/carthagenna.png",
+  desc: "The Carthaginians, our American football franchise under Monarch TV Studios, is set to make its debut in France, specifically in Poitiers, starting in Q3 2026. The team will be fully operational by the end of 2026, preparing to compete in the French championship under a partnership with the FFFA (French American Football Federation) and the new European League from 2027. To bolster this venture, we are currently negotiating a strategic alliance with several NFL and CFL franchises in the USA and Canada, who are expected to serve as sponsors and potential shareholders, ensuring a strong foundation for the franchise’s growth and success in the European football landscape.",
+  image: "/assets/The Carthaginians  our American Football Franchise.png",
 };
 
 export default function CarthaginiansPage() {

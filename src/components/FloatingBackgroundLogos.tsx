@@ -2,79 +2,67 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const FloatingBackgroundLogos = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* 1. M-Logo 1 - top right */}
+      {/* 1. M-Logo 1 - top right quadrant, slow orbital-like float */}
       <motion.div
         animate={{
-          x: [50, -150],
-          y: [-50, 100],
-          rotate: [0, 360],
+          x: [0, -180, 150, 0],
+          y: [0, 150, -80, 0],
+          rotate: [0, 120, 240, 360],
         }}
-        transition={{ duration: 25, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className="absolute top-[10%] right-[10%] w-[220px] h-[220px] opacity-[0.25]"
+        transition={{ 
+          duration: 45, 
+          repeat: Infinity, 
+          ease: "linear" 
+        }}
+        className="absolute top-[12%] right-[8%] w-[250px] h-[250px] opacity-[0.16] blur-[2px]"
       >
         <Image src="/m-logos/m-1.png" alt="Background Logo" fill className="object-contain" />
       </motion.div>
 
-      {/* 2. M-Logo 2 - mid left */}
+      {/* 2. M-Logo 2 - mid-low left quadrant, deep space slow float */}
       <motion.div
         animate={{
-          x: [-50, 200],
-          y: [100, -100],
-          rotate: [360, 0],
+          x: [0, 220, -120, 0],
+          y: [0, -160, 180, 0],
+          rotate: [0, -90, -270, -360],
         }}
-        transition={{ duration: 32, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className="absolute top-[35%] left-[5%] w-[200px] h-[200px] opacity-[0.22]"
+        transition={{ 
+          duration: 55, 
+          repeat: Infinity, 
+          ease: "linear",
+          delay: 2
+        }}
+        className="absolute top-[40%] left-[6%] w-[220px] h-[220px] opacity-[0.14] blur-[3px]"
       >
         <Image src="/m-logos/m-2.png" alt="Background Logo" fill className="object-contain" />
       </motion.div>
 
-      {/* 3. Main Logo - center right */}
+      {/* 3. M-Logo 3 - bottom right quadrant, sweeping slow float */}
       <motion.div
         animate={{
-          x: [100, -100],
-          y: [-150, 150],
-          rotate: [0, -45],
+          x: [0, -250, 100, 0],
+          y: [0, -100, 120, 0],
+          rotate: [0, 45, 90, 0],
         }}
-        transition={{ duration: 40, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className="absolute top-[50%] right-[5%] w-[350px] h-[350px] opacity-[0.18] blur-[0.5px]"
-      >
-        <Image src="/logo/logo.png" alt="Background Logo" fill className="object-contain" />
-      </motion.div>
-
-      {/* 4. M-Logo 3 - bottom left */}
-      <motion.div
-        animate={{
-          x: [-100, 150],
-          y: [50, -150],
-          rotate: [0, -360],
+        transition={{ 
+          duration: 50, 
+          repeat: Infinity, 
+          ease: "linear",
+          delay: 4
         }}
-        transition={{ duration: 28, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className="absolute top-[75%] left-[10%] w-[240px] h-[240px] opacity-[0.25]"
+        className="absolute top-[70%] right-[10%] w-[280px] h-[280px] opacity-[0.15] blur-[1px]"
       >
         <Image src="/m-logos/image.png" alt="Background Logo" fill className="object-contain" />
       </motion.div>
 
-      {/* 5. Modified Logo - bottom right */}
-      <motion.div
-        animate={{
-          x: [150, -50],
-          y: [100, -200],
-          rotate: [15, -15],
-        }}
-        transition={{ duration: 35, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
-        className="absolute top-[85%] right-[15%] w-[300px] h-[300px] opacity-[0.15]"
-      >
-        <Image src="/logo/logo-modified.png" alt="Background Logo" fill className="object-contain" />
-      </motion.div>
-
-      {/* Atmosphere */}
-      <div className="absolute top-[40%] left-[25%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
-      <div className="absolute top-[70%] right-[15%] w-[400px] h-[400px] bg-primary/3 rounded-full blur-[130px]" />
+      {/* Space ambient lighting glows */}
+      <div className="absolute top-[30%] left-[20%] w-[600px] h-[600px] bg-primary/4 rounded-full blur-[160px] mix-blend-screen" />
+      <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-primary/3 rounded-full blur-[140px] mix-blend-screen" />
     </div>
   );
 };
