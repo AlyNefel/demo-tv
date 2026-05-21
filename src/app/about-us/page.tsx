@@ -130,7 +130,7 @@ export default function AboutUsPage() {
                       src="/canvas/38.png"
                       fill
                       alt="Our Mascot"
-                      className="object-cover"
+                      className="object-contain"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
 

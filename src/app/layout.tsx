@@ -9,6 +9,9 @@ export const metadata: Metadata = {
 // ... (rest of metadata)
   title: "MONARCH | Cinematic TV Shows",
   description: "Experience the best TV shows with a modern, cinematic feel.",
+  icons: {
+    icon: "/logo/logo-modified.png",
+  },
 };
 
 export default function RootLayout({
