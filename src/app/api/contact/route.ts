@@ -9,15 +9,22 @@ export async function POST(req: Request) {
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
       secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+      ...(process.env.SMTP_USER && process.env.SMTP_PASS ? {
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
+      } : {}),
+      tls: {
+        rejectUnauthorized: false,
       },
     });
 
+    const contactEmail = process.env.CONTACT_EMAIL || 'business@monarchtvstudios.com';
+
     // 1. Auto-reply to user
     await transporter.sendMail({
-      from: `"Monarch TV Studios" <${process.env.SMTP_USER}>`,
+      from: `"Monarch TV Studios" <${contactEmail}>`,
       to: email,
       subject: "Your message has been received…",
       html: `
@@ -36,8 +43,8 @@ export async function POST(req: Request) {
 
     // 2. Notification to Admin
     await transporter.sendMail({
-      from: `"The Abyss" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER,
+      from: `"The Abyss" <${contactEmail}>`,
+      to: contactEmail,
       subject: "Someone has reached out from the abyss…",
       html: `
         <div style="background-color: #111; color: #fff; padding: 30px; font-family: sans-serif; border-left: 5px solid #ffcce9;">
