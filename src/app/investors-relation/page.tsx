@@ -322,7 +322,7 @@ export default function InvestorsRelationPage() {
               </motion.p>
               <Link
                 href="/#contact"
-                className="px-12 py-5 bg-primary text-black font-black uppercase tracking-[0.3em] rounded-full hover:scale-110 hover:shadow-[0_0_50px_rgba(255,204,233,0.6)] transition-all duration-500 active:scale-95 text-lg"
+                className="px-6 md:px-12 py-4 md:py-5 bg-primary text-black font-black uppercase tracking-[0.2em] md:tracking-[0.3em] rounded-full hover:scale-110 hover:shadow-[0_0_50px_rgba(255,204,233,0.6)] transition-all duration-500 active:scale-95 text-sm md:text-lg whitespace-nowrap"
               >
                 Become a Partner
               </Link>
