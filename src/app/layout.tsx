@@ -6,9 +6,17 @@ import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
-// ... (rest of metadata)
-  title: "MONARCH TV STUDIOS GROUP",
-  description: "Experience the best TV shows with a modern, cinematic feel.",
+  title: {
+    template: "%s | MONARCH TV STUDIOS GROUP",
+    default: "MONARCH TV STUDIOS GROUP | Premium Cinematic Content",
+  },
+  description: "Experience the future of entertainment with Monarch TV Studios. We produce premium cinematic television, fiction series, and global broadcasting networks.",
+  keywords: ["Monarch TV Studios", "Cinematic TV", "Fast TV Channels", "TV Production", "Global Broadcasting", "Fiction Series", "Entertainment Group"],
+  openGraph: {
+    title: "MONARCH TV STUDIOS GROUP",
+    description: "Experience the future of entertainment with Monarch TV Studios.",
+    type: "website",
+  },
   icons: {
     icon: "/logo/logo-modified.png",
   },

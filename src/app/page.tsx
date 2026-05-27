@@ -1,7 +1,13 @@
+import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ShowCarousel from "@/components/ShowCarousel";
 import BrowseShows from "@/components/BrowseShows";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Monarch TV Studios controls the entire value chain—from script development to broadcast. Discover our global channels, fiction series, and diverse portfolio.",
+};
 
 import Partners from "@/components/Partners";
 import AboutUs from "@/components/AboutUs";
