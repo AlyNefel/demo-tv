@@ -12,9 +12,6 @@ const CanvasBackground = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
-    let isVisible = true;
-
     const draw = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -57,7 +54,6 @@ const CanvasBackground = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibility);
-      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
