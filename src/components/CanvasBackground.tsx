@@ -45,15 +45,8 @@ const CanvasBackground = () => {
     const handleResize = () => draw();
     window.addEventListener('resize', handleResize);
 
-    // Pause when tab is hidden (saves battery/GPU on iPhone)
-    const handleVisibility = () => {
-      isVisible = document.visibilityState === 'visible';
-    };
-    document.addEventListener('visibilitychange', handleVisibility);
-
     return () => {
       window.removeEventListener('resize', handleResize);
-      document.removeEventListener('visibilitychange', handleVisibility);
     };
   }, []);
 
