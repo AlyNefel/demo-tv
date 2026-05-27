@@ -13,16 +13,13 @@ const CanvasBackground = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
+    let isVisible = true;
 
-    const resize = () => {
+    const draw = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    };
 
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Deep cinematic gradient
+      // Deep cinematic gradient - drawn once, not in a loop
       const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, canvas.width
@@ -33,26 +30,33 @@ const CanvasBackground = () => {
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Add a subtle vignette
+      // Subtle vignette
       const vignette = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, canvas.height / 2,
         canvas.width / 2, canvas.height / 2, canvas.width
       );
       vignette.addColorStop(0, 'rgba(0,0,0,0)');
       vignette.addColorStop(1, 'rgba(0,0,0,0.8)');
-      
       ctx.fillStyle = vignette;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener('resize', resize);
-    resize();
-    animate();
+    // Draw once on load
+    draw();
+
+    // Only redraw on resize, not every frame
+    const handleResize = () => draw();
+    window.addEventListener('resize', handleResize);
+
+    // Pause when tab is hidden (saves battery/GPU on iPhone)
+    const handleVisibility = () => {
+      isVisible = document.visibilityState === 'visible';
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     return () => {
-      window.removeEventListener('resize', resize);
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

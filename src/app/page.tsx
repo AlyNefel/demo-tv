@@ -5,7 +5,9 @@ import ShowCarousel from "@/components/ShowCarousel";
 import BrowseShows from "@/components/BrowseShows";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: {
+    absolute: "MONARCH TV STUDIOS GROUP | Premium Cinematic Content",
+  },
   description: "Monarch TV Studios controls the entire value chain—from script development to broadcast. Discover our global channels, fiction series, and diverse portfolio.",
 };
 

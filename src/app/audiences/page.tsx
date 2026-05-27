@@ -81,8 +81,8 @@ export default function AudiencesPage() {
 
         {/* Cinematic Pink Glows */}
         <div className="fixed inset-0 z-15 pointer-events-none">
-          <div className="absolute top-[-15%] right-[-10%] w-[1200px] h-[1200px] bg-primary/20 rounded-full blur-[180px] animate-pulse" />
-          <div className="absolute bottom-[-15%] left-[-10%] w-[1000px] h-[1000px] bg-pink-600/15 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-[-15%] right-[-10%] w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] bg-primary/20 rounded-full blur-[80px] md:blur-[180px]" />
+          <div className="absolute bottom-[-15%] left-[-10%] w-[300px] h-[300px] md:w-[1000px] md:h-[1000px] bg-pink-600/15 rounded-full blur-[80px] md:blur-[150px]" style={{ animationDelay: '3s' }} />
         </div>
 
         <style>{`
@@ -166,7 +166,7 @@ export default function AudiencesPage() {
               <span className="inline-block px-6 py-1.5 bg-primary/20 border border-primary/40 text-primary text-[13px] font-black tracking-[0.5em] uppercase rounded-full mb-10 glow-pink">
                 Global Network
               </span>
-              <h1 className="text-7xl md:text-[12rem] font-heading font-black text-white italic tracking-tighter uppercase leading-[0.75] mb-10">
+              <h1 className="text-5xl sm:text-7xl md:text-[12rem] font-heading font-black text-white italic tracking-tighter uppercase leading-[0.75] mb-10">
                 AUDIENCE <br />
                 <span className="text-primary text-glow-pink">& REACH</span>
               </h1>
@@ -229,7 +229,7 @@ export default function AudiencesPage() {
             <div className="max-w-7xl mx-auto">
               <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-10">
                 <div className="flex-1">
-                  <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-white italic tracking-tighter uppercase leading-none break-words">
+                  <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-heading font-black text-white italic tracking-tighter uppercase leading-none break-keep">
                     REGIONAL <br /><span className="text-primary text-glow-pink">COVERAGE</span>
                   </h2>
                 </div>

@@ -6,7 +6,8 @@ import { motion } from 'framer-motion';
 
 const FloatingBackgroundLogos = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    // hidden on mobile (md:block) — saves GPU on all phones
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden hidden md:block">
       {/* 1. M-Logo 1 - top right quadrant, slow orbital-like float */}
       <motion.div
         animate={{
@@ -21,7 +22,7 @@ const FloatingBackgroundLogos = () => {
         }}
         className="absolute top-[12%] right-[8%] w-[250px] h-[250px] opacity-[0.16] blur-[2px]"
       >
-        <Image src="/m-logos/m-1.png" alt="Background Logo" fill className="object-contain" />
+        <Image src="/m-logos/m-1.png" alt="" fill className="object-contain" />
       </motion.div>
 
       {/* 2. M-Logo 2 - mid-low left quadrant, deep space slow float */}
@@ -39,7 +40,7 @@ const FloatingBackgroundLogos = () => {
         }}
         className="absolute top-[40%] left-[6%] w-[220px] h-[220px] opacity-[0.14] blur-[3px]"
       >
-        <Image src="/m-logos/m-2.png" alt="Background Logo" fill className="object-contain" />
+        <Image src="/m-logos/m-2.png" alt="" fill className="object-contain" />
       </motion.div>
 
       {/* 3. M-Logo 3 - bottom right quadrant, sweeping slow float */}
@@ -57,7 +58,7 @@ const FloatingBackgroundLogos = () => {
         }}
         className="absolute top-[70%] right-[10%] w-[280px] h-[280px] opacity-[0.15] blur-[1px]"
       >
-        <Image src="/m-logos/image.png" alt="Background Logo" fill className="object-contain" />
+        <Image src="/m-logos/image.png" alt="" fill className="object-contain" />
       </motion.div>
 
       {/* Space ambient lighting glows */}

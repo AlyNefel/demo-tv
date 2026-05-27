@@ -27,10 +27,7 @@ const Hero = () => {
       >
         <motion.div 
           animate={{ 
-            x: [0, -40, 20, 0],
-            y: [0, -25, 10, 0],
-            scale: [1.1, 1.18, 1.12, 1.1],
-            rotate: [0, 2, -1, 0]
+            scale: [1.1, 1.18, 1.1],
           }}
           transition={{ 
             duration: 18, 

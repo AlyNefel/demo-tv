@@ -132,6 +132,15 @@
     @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
+  /* Prevent mid-word breaking on mobile headings */
+  @media (max-width: 768px) {
+    h1, h2, h3 {
+      overflow-wrap: break-word;
+      word-break: keep-all;
+      hyphens: none;
+    }
+  }
 }
 
 /* Custom Neon Glows */

@@ -123,8 +123,8 @@ export default function UpcomingAssets() {
       <main className="min-h-screen bg-black">
         {/* Background Atmosphere */}
         <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
-          <div className="absolute top-[20%] right-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-[10%] left-[-10%] w-[1000px] h-[1000px] bg-pink-600/10 rounded-full blur-[150px]" />
+          <div className="absolute top-[20%] right-[-10%] w-[300px] h-[300px] md:w-[800px] md:h-[800px] bg-primary/10 rounded-full blur-[80px] md:blur-[120px]" />
+          <div className="absolute bottom-[10%] left-[-10%] w-[300px] h-[300px] md:w-[1000px] md:h-[1000px] bg-pink-600/10 rounded-full blur-[80px] md:blur-[150px]" />
         </div>
 
         {/* Simplified Cinematic Header */}
@@ -134,7 +134,7 @@ export default function UpcomingAssets() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-8 leading-[0.75] break-words">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-nosifer text-primary text-glow-pink tracking-tighter uppercase mb-8 leading-[0.75] break-keep">
               FUTURE <br /><span className="text-white">HORIZON</span>
             </h1>
             <div className="w-48 h-2 bg-primary mx-auto rounded-full glow-pink mb-12" />
