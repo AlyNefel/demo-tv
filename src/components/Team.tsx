@@ -70,19 +70,36 @@ const TypingEffect = ({ text }: { text: string }) => {
     }
   }, [displayedCount, text, isInView, isMobile]);
 
+  // Split text into tokens: words and spaces/punctuation are kept so spaces render correctly
+  const tokens = text.split(/(\s+)/);
+
+  // Build a flat list of {char, globalIndex} grouped by token
+  let globalIndex = 0;
+  const tokenData = tokens.map((token) => {
+    const chars = token.split('').map((char) => ({ char, index: globalIndex++ }));
+    return { token, chars };
+  });
+
   return (
     <div ref={ref} className="font-sans font-medium text-lg md:text-xl lg:text-2xl text-white/90 leading-relaxed tracking-wide">
-      {text.split('').map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ opacity: 0, filter: 'blur(12px)', y: 10, scale: 1.2 }}
-          animate={i < displayedCount ? { opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 } : {}}
-          transition={{ duration: isMobile ? 0.1 : 0.3, ease: "easeOut" }}
-          className={i < displayedCount ? "inline-block whitespace-pre" : "hidden"}
-        >
-          {char}
-        </motion.span>
-      ))}
+      {tokenData.map(({ token, chars }, tokenIdx) => {
+        const isSpace = /^\s+$/.test(token);
+        return (
+          <span key={tokenIdx} className={isSpace ? "inline" : "inline-block whitespace-nowrap"}>
+            {chars.map(({ char, index }) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, filter: 'blur(12px)', y: 10, scale: 1.2 }}
+                animate={index < displayedCount ? { opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 } : {}}
+                transition={{ duration: isMobile ? 0.1 : 0.3, ease: "easeOut" }}
+                className={index < displayedCount ? "inline-block whitespace-pre" : "hidden"}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+        );
+      })}
       <span className="inline-block w-[2px] h-[1.2em] bg-primary ml-1 align-middle animate-[blink_1s_infinite] shadow-[0_0_10px_rgba(255,204,233,1)]" />
       <style>{`
         @keyframes blink {
