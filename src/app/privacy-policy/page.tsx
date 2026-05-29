@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Navbar from "@/components/Navbar";
@@ -12,42 +12,63 @@ const floatingLogos = [
 ];
 
 export default function PrivacyPolicy() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile / iOS — disable heavy GPU effects on these devices
+    const mobile =
+      /iPad|iPhone|iPod|Android/i.test(navigator.userAgent) ||
+      window.innerWidth < 768;
+    setIsMobile(mobile);
+  }, []);
+
   return (
     <>
       <Navbar />
       <main className="relative min-h-screen overflow-hidden bg-black">
-        {/* Floating Background Logos with Heavy Blur */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          {floatingLogos.map((logo, i) => (
-            <motion.div
-              key={i}
-              className="absolute opacity-30 blur-[20px]"
-              style={{
-                top: logo.top,
-                left: logo.left,
-                right: logo.right,
-                bottom: logo.bottom,
-                width: logo.size,
-                height: logo.size,
-              }}
-              animate={{
-                y: [0, -80, 80, 0],
-                x: [0, 250, -250, 0],
-                rotate: [0, 45, 90, 0],
-              }}
-              transition={{
-                duration: 35 + i * 5,
-                repeat: Infinity,
-                ease: "linear",
-                delay: logo.delay,
-              }}
-            >
-              <Image src={logo.src} fill alt="Background Logo" className="object-contain" />
-            </motion.div>
-          ))}
-          {/* Pink Glows for extra atmosphere */}
-          <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[140px] mix-blend-screen" />
-          <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-rose-500/15 rounded-full blur-[150px] mix-blend-screen" />
+        {/* Floating Background Logos — disabled on mobile to prevent iOS GPU freeze */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          aria-hidden="true"
+        >
+          {!isMobile &&
+            floatingLogos.map((logo, i) => (
+              <motion.div
+                key={i}
+                className="absolute opacity-20"
+                style={{
+                  top: logo.top,
+                  left: logo.left,
+                  right: logo.right,
+                  bottom: logo.bottom,
+                  width: logo.size,
+                  height: logo.size,
+                  filter: "blur(8px)", // reduced from 20px
+                  willChange: "transform",
+                }}
+                animate={{
+                  y: [0, -40, 40, 0],   // reduced range
+                  x: [0, 80, -80, 0],    // reduced range
+                  rotate: [0, 20, 0],    // reduced rotation
+                }}
+                transition={{
+                  duration: 50 + i * 8,  // slower = fewer repaints
+                  repeat: Infinity,
+                  ease: "easeInOut",      // easeInOut is cheaper than linear
+                  delay: logo.delay,
+                }}
+              >
+                <Image src={logo.src} fill alt="" className="object-contain" />
+              </motion.div>
+            ))}
+
+          {/* Pink Glows — no mix-blend-mode, reduced blur */}
+          {!isMobile && (
+            <>
+              <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-primary/15 rounded-full blur-[80px]" />
+              <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-[80px]" />
+            </>
+          )}
         </div>
 
         {/* Main Content */}
@@ -92,7 +113,7 @@ export default function PrivacyPolicy() {
                 We implement appropriate technical and organizational measures to protect your data against
                 unauthorized access, alteration, disclosure, or destruction. You have rights under the GDPR, including
                 access, rectification, deletion, opposition, and data portability, which you can exercise by contacting
-                us at contact@monarchtvstudios.com.
+                us at business@monarchtvstudios.com.
               </p>
             </section>
 
@@ -125,7 +146,7 @@ export default function PrivacyPolicy() {
                 For questions, requests, or to exercise your rights regarding your personal data, please contact us at:
               </p>
               <ul className="space-y-2">
-                <li><strong className="text-white">Email:</strong> contact@monarchtvstudios.com</li>
+                <li><strong className="text-white">Email:</strong> business@monarchtvstudios.com</li>
                 <li><strong className="text-white">Phone:</strong> TBA</li>
                 <li><strong className="text-white">Address:</strong> Futuroscope-Poitiers Avenue René Monory, 86360 Chasseneuil-du-Poitou, France.</li>
               </ul>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Navbar from "@/components/Navbar";
@@ -12,42 +12,63 @@ const floatingLogos = [
 ];
 
 export default function TermsOfUse() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Detect mobile / iOS — disable heavy GPU effects on these devices
+    const mobile =
+      /iPad|iPhone|iPod|Android/i.test(navigator.userAgent) ||
+      window.innerWidth < 768;
+    setIsMobile(mobile);
+  }, []);
+
   return (
     <>
       <Navbar />
       <main className="relative min-h-screen overflow-hidden bg-black">
-        {/* Floating Background Logos with Heavy Blur */}
-        <div className="fixed inset-0 pointer-events-none z-0">
-          {floatingLogos.map((logo, i) => (
-            <motion.div
-              key={i}
-              className="absolute opacity-30 blur-[20px]"
-              style={{
-                top: logo.top,
-                left: logo.left,
-                right: logo.right,
-                bottom: logo.bottom,
-                width: logo.size,
-                height: logo.size,
-              }}
-              animate={{
-                y: [0, -80, 80, 0],
-                x: [0, 250, -250, 0],
-                rotate: [0, 45, 90, 0],
-              }}
-              transition={{
-                duration: 35 + i * 5,
-                repeat: Infinity,
-                ease: "linear",
-                delay: logo.delay,
-              }}
-            >
-              <Image src={logo.src} fill alt="Background Logo" className="object-contain" />
-            </motion.div>
-          ))}
-          {/* Pink Glows for extra atmosphere */}
-          <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-primary/20 rounded-full blur-[140px] mix-blend-screen" />
-          <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-rose-500/15 rounded-full blur-[150px] mix-blend-screen" />
+        {/* Floating Background Logos — disabled on mobile to prevent iOS GPU freeze */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0"
+          aria-hidden="true"
+        >
+          {!isMobile &&
+            floatingLogos.map((logo, i) => (
+              <motion.div
+                key={i}
+                className="absolute opacity-20"
+                style={{
+                  top: logo.top,
+                  left: logo.left,
+                  right: logo.right,
+                  bottom: logo.bottom,
+                  width: logo.size,
+                  height: logo.size,
+                  filter: "blur(8px)", // reduced from 20px
+                  willChange: "transform",
+                }}
+                animate={{
+                  y: [0, -40, 40, 0],   // reduced range
+                  x: [0, 80, -80, 0],    // reduced range
+                  rotate: [0, 20, 0],    // reduced rotation
+                }}
+                transition={{
+                  duration: 50 + i * 8,  // slower = fewer repaints
+                  repeat: Infinity,
+                  ease: "easeInOut",      // easeInOut is cheaper than linear
+                  delay: logo.delay,
+                }}
+              >
+                <Image src={logo.src} fill alt="" className="object-contain" />
+              </motion.div>
+            ))}
+
+          {/* Pink Glows — no mix-blend-mode, reduced blur */}
+          {!isMobile && (
+            <>
+              <div className="absolute top-[20%] left-[10%] w-[400px] h-[400px] bg-primary/15 rounded-full blur-[80px]" />
+              <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-rose-500/10 rounded-full blur-[80px]" />
+            </>
+          )}
         </div>
 
         {/* Main Content */}
@@ -64,14 +85,14 @@ export default function TermsOfUse() {
               <div>
                 <h4 className="text-lg font-semibold text-white/90 mb-2">I.1 Acceptance of the Terms</h4>
                 <p className="leading-relaxed">
-                  These General Terms of Use ("CGU") govern your access to and use of the Monarch TV Studios website and related services. By accessing, browsing, or using the site, you acknowledge that you have read, understood, and accepted all the provisions contained herein. If you do not agree to these terms, please refrain from using the service. Certain features or sections of the site may require users to accept additional terms or conditions, which will be clearly indicated on those specific pages.
+                  These General Terms of Use (&quot;CGU&quot;) govern your access to and use of the Monarch TV Studios website and related services. By accessing, browsing, or using the site, you acknowledge that you have read, understood, and accepted all the provisions contained herein. If you do not agree to these terms, please refrain from using the service. Certain features or sections of the site may require users to accept additional terms or conditions, which will be clearly indicated on those specific pages.
                 </p>
               </div>
 
               <div>
                 <h4 className="text-lg font-semibold text-white/90 mb-2">I.2 Purpose and Scope</h4>
                 <p className="leading-relaxed">
-                  These CGU apply to all users, regardless of whether they are individuals, professionals, or entities, and regardless of geographic location, provided they access the site from within the supported jurisdictions. They govern your rights and obligations and define the legal framework for your use of the site's content, features, and services.
+                  These CGU apply to all users, regardless of whether they are individuals, professionals, or entities, and regardless of geographic location, provided they access the site from within the supported jurisdictions. They govern your rights and obligations and define the legal framework for your use of the site&apos;s content, features, and services.
                 </p>
               </div>
 
