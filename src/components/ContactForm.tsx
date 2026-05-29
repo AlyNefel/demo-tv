@@ -19,7 +19,7 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('loading');
-    
+
     const formData = new FormData(e.currentTarget);
     const data = {
       name: formData.get('name'),
@@ -90,12 +90,12 @@ const ContactForm = () => {
           background: radial-gradient(circle, rgba(255,204,233,0.15) 0%, transparent 70%);
         }
       `}</style>
-      
+
 
 
       <div className="max-w-7xl mx-auto px-6 relative z-20 w-full">
         <div className="text-center mb-20 relative">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="relative inline-block"
@@ -111,16 +111,16 @@ const ContactForm = () => {
               { left: '75%', delay: '2.2s', dur: '5s', width: '2px' },
               { left: '85%', delay: '1.5s', dur: '4s', width: '3px' },
             ].map((drop, idx) => (
-              <div 
-                key={idx} 
-                className="blood-drop" 
-                style={{ 
-                  left: drop.left, 
-                  animationDelay: drop.delay, 
+              <div
+                key={idx}
+                className="blood-drop"
+                style={{
+                  left: drop.left,
+                  animationDelay: drop.delay,
                   animationDuration: drop.dur,
                   width: drop.width,
-                  backgroundColor: '#ffcce9' 
-                }} 
+                  backgroundColor: '#ffcce9'
+                }}
               />
             ))}
           </motion.div>
@@ -152,7 +152,7 @@ const ContactForm = () => {
           </div>
 
           {/* Form Side */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             className="liquid-container p-10 rounded-[2rem] border border-white/10 relative overflow-hidden"
@@ -164,7 +164,7 @@ const ContactForm = () => {
               <div className="text-center py-20 space-y-6">
                 <Ghost className="mx-auto text-primary animate-bounce" size={64} />
                 <h3 className="text-3xl font-creepster text-primary">MESSAGE CAPTURED</h3>
-                <p className="text-white/60 font-rosario">The abyss has received your soul. Expect a whisper soon.</p>
+                <p className="text-white/60 font-rosario">The abyss has received your Words. Expect a whisper soon.</p>
                 <Button variant="outline" onClick={() => setStatus('idle')} className="mt-4 border-primary/40 text-primary hover:bg-primary/10">SEND ANOTHER</Button>
               </div>
             ) : (
@@ -182,9 +182,9 @@ const ContactForm = () => {
                 <div className="space-y-2">
                   <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">Nature of Inquiry</label>
                   <div className="relative group">
-                    <select 
-                      name="subject" 
-                      required 
+                    <select
+                      name="subject"
+                      required
                       defaultValue=""
                       className="w-full bg-black/60 border border-white/10 h-14 rounded-xl px-6 focus:border-primary/60 focus:ring-4 focus:ring-primary/10 transition-all font-rosario text-white outline-none appearance-none cursor-pointer group-hover:border-primary/30"
                     >
@@ -201,7 +201,7 @@ const ContactForm = () => {
                     {/* Custom Premium Arrow */}
                     <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-primary group-hover:scale-110 transition-transform duration-300">
                       <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>
                     </div>
                     {/* Inner Glow Effect */}
@@ -212,9 +212,9 @@ const ContactForm = () => {
                   <label className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em] ml-2">The Message</label>
                   <Textarea name="message" required placeholder="Whisper your thoughts..." className="bg-black/40 border-white/5 min-h-[160px] rounded-xl focus:border-primary/40 focus:ring-primary/20 transition-all resize-none font-rosario" />
                 </div>
-                <Button 
+                <Button
                   disabled={status === 'loading'}
-                  type="submit" 
+                  type="submit"
                   className="w-full h-14 sm:h-16 rounded-xl text-sm sm:text-lg font-black tracking-[0.2em] sm:tracking-[0.4em] bg-black border border-primary/40 text-primary neon-button hover:bg-primary hover:text-black transition-all group"
                 >
                   {status === 'loading' ? 'CAPTURING...' : 'SEND A MESSAGE'}
