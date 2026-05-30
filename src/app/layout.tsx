@@ -16,6 +16,21 @@ export const metadata: Metadata = {
     title: "MONARCH TV STUDIOS GROUP",
     description: "Experience the future of entertainment with Monarch TV Studios.",
     type: "website",
+    url: "https://www.monarchtvstudios.com",
+    images: [
+      {
+        url: "https://www.monarchtvstudios.com/logo/logo-modified.png",
+        width: 800,
+        height: 800,
+        alt: "Monarch TV Studios Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MONARCH TV STUDIOS GROUP",
+    description: "Experience the future of entertainment with Monarch TV Studios.",
+    images: ["https://www.monarchtvstudios.com/logo/logo-modified.png"],
   },
   icons: {
     icon: "/logo/logo-modified.png",
