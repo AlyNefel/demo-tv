@@ -64,7 +64,7 @@ export default function WeeklyProgramsPage() {
                 <span className="inline-block px-4 py-1 bg-primary/20 border border-primary/40 text-primary text-[11px] font-black tracking-[0.3em] uppercase rounded mb-6">
                   Flagship Programs
                 </span>
-                <h1 className="text-6xl md:text-8xl font-heading font-black text-white italic tracking-tighter uppercase mb-6 leading-none">
+                <h1 className="text-5xl sm:text-6xl md:text-8xl font-heading font-black text-white italic tracking-tighter uppercase mb-6 leading-none">
                   Weekly <br />
                   <span className="text-primary text-glow-pink">TV Programs</span>
                 </h1>
